@@ -1,0 +1,11 @@
+﻿C:\Users\micha\Projects\ESN-WebApi\Business\Calendar\CalendarService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\EventTemplate\EventTemplateService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Event\EventService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Exceptions\ForbiddenAccessException.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Interfaces\ICalendarService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Interfaces\IEventService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Interfaces\IEventTemplateService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Interfaces\IPropositionService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Interfaces\IUserService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\Proposition\PropositionService.cs
+C:\Users\micha\Projects\ESN-WebApi\Business\User\UserService.cs

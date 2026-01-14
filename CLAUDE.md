@@ -283,53 +283,152 @@ pwsh -File run-coverage.ps1
 
 ## 📝 Workflow de Développement
 
-### Workflow Standard pour Nouvelle Feature (TDD)
+### Workflow Standard pour Nouvelle Feature (Process Complet en 14 Étapes)
+
+**IMPORTANT : Ce workflow DOIT être suivi pour toute nouvelle fonctionnalité**
+
+#### Phase 1 : Planification et Documentation (Étapes 1-2)
 
 ```
-1. Demande utilisateur
+1. Mode Planification
+   → Utiliser EnterPlanMode automatiquement
+   → Étudier l'intégration de la fonctionnalité au projet
+   → Poser des questions en cas de besoin
+   → Sortir un plan d'action détaillé
    ↓
-2. Mode Planification (doc-first s'active)
-   → Crée doc/specs/YYYYMMDD-feature-name.md
-   → Présente pour validation
+2. Documentation de la Spec
+   → Sur validation du plan par l'utilisateur
+   → Créer doc/specs/YYYYMMDD-nom-feature.md
+   → Documentation CONCISE (pas de code, pas de SQL)
+   → Décrire la fonctionnalité, les endpoints, les DTOs, le comportement attendu
+```
+
+#### Phase 2 : Développement Backend TDD (Étapes 3-5)
+
+```
+3. Tests Unitaires EN PREMIER (TDD)
+   → Créer TOUS les tests AVANT l'implémentation
+   → Tests pour Service, Repository, Controller
+   → Couvrir succès, échecs, edge cases
+   → Les tests échouent (normal, pas encore implémenté)
    ↓
-3. Validation utilisateur du plan
+4. Implémentation Backend
+   → Créer les INTERFACES avec commentaires XML COMPLETS
+     • IXxxService.cs
+     • IXxxRepository.cs
+     • /// <summary>, /// <param>, /// <returns>, /// <remarks>
+   → Créer les implémentations avec /// <inheritdoc />
+   → Respecter strictement l'architecture en couches (Web → Business → Dal → Bo)
+   → DTOs pour tous les Request/Response
    ↓
-4. Création des TESTS EN PREMIER (TDD)
-   → Tests unitaires pour la feature
-   → Tests couvrent tous les cas (succès, échec, edge cases)
-   → Les tests échouent (feature pas encore implémentée)
-   ↓
-5. Si nouveau controller nécessaire
-   → Utiliser /crud-generator EntityName
-   → Génère interfaces, DTOs, Repo, Service, Controller, Tests
-   ↓
-6. Implémentation selon la doc
-   → Respect strict de l'architecture
-   → Créer INTERFACES (IXxxService, IXxxRepository)
-   → Commentaires XML complets sur INTERFACES
-   → Utiliser /// <inheritdoc /> sur implémentations
-   ↓
-7. Exécution tests
-   → Tous les tests doivent PASSER (100%)
-   → dotnet test Tests/Tests.csproj
-   → Coverage ≥ 80%
-   ↓
-8. Refactoring & Audits (OBLIGATOIRE)
-   → Refactoring du code (DRY, SOLID, Clean Code)
-   → Audit de performance (/performance-audit)
+5. Validation des Tests
+   → Exécuter : dotnet test Tests/Tests.csproj
+   → TOUS les tests DOIVENT passer (0 échec)
+   → Coverage ≥ 80% obligatoire
+```
+
+#### Phase 3 : Audits et Optimisation (Étape 6)
+
+```
+6. Refactoring + Audits (OBLIGATOIRE)
+   → Refactoring du code
+     • Principes SOLID, DRY, Clean Code
+     • Supprimer duplication
+     • Simplifier complexité
+   → Audit de Performance (/performance-audit)
      • Vérifier N+1 queries
-     • AsNoTracking sur lectures seules
-     • Index appropriés
-   → Audit de sécurité
+     • AsNoTracking() sur lectures seules
+     • Index manquants
+     • Pagination appropriée
+   → Audit de Sécurité
      • OWASP Top 10
      • Validation des entrées
-     • Gestion des erreurs sécurisée
-   ↓
-9. Validation finale
-   → Tests passent ✅
-   → Audits OK ✅
-   → Code review si nécessaire
+     • Pas de secrets en dur
+     • Authorization/Authentication correcte
+   → IMPLÉMENTER les corrections suggérées par les audits
+   → RE-RUN Tests Unitaires
+     • Exécuter : dotnet test Tests/Tests.csproj
+     • Tous les tests DOIVENT passer
+     • Vérifier qu'aucune régression n'a été introduite
 ```
+
+#### Phase 4 : Frontend (Étapes 7-9)
+
+```
+7. Implémentation Frontend
+   → Nuxt 3 / Vue 3 Composition API
+   → TypeScript strict
+   → Composables pour API calls
+   → Suivre les patterns existants du projet ESN-Nuxt
+   ↓
+8. Notification Utilisateur
+   → Dire explicitement : "✅ Implémentation terminée, prêt pour test manuel"
+   → Lister les fonctionnalités à tester
+   → Attendre feedback utilisateur
+   ↓
+9. Attente Validation Utilisateur
+   → Attendre que l'utilisateur dise "c'est bon" ou similaire
+   → Si bugs signalés → corriger et revenir à l'étape 8
+   → Si validation OK → passer à l'étape 10
+```
+
+#### Phase 5 : SonarCloud (Étapes 10-12)
+
+```
+10. Lancer SonarScanner
+    → Exécuter ces commandes dans l'ordre :
+
+    dotnet sonarscanner begin /o:"cubeleopard5" /k:"CubeLeopard5_ESN-WebApi" /d:sonar.token="b794def3a5389f65a580c0c7edf2560c90aaf3d8"
+    dotnet build
+    dotnet sonarscanner end /d:sonar.token="b794def3a5389f65a580c0c7edf2560c90aaf3d8"
+
+    ↓
+11. Corriger Issues SonarCloud
+    → Vérifier : https://sonarcloud.io/summary/overall?id=CubeLeopard5_ESN-WebApi&branch=master
+    → Corriger UNIQUEMENT :
+      • Issues SECURITY (toutes)
+        https://sonarcloud.io/project/issues?impactSoftwareQualities=SECURITY&issueStatuses=OPEN%2CCONFIRMED&id=CubeLeopard5_ESN-WebApi
+      • Issues Blocker severity
+      • Issues High severity
+    → NE PAS corriger Minor/Info sauf si trivial
+    ↓
+12. Re-run Tests Finale
+    → Exécuter : dotnet test Tests/Tests.csproj
+    → Tous les tests DOIVENT passer
+    → Aucune régression introduite par les corrections SonarCloud
+```
+
+#### Phase 6 : Git Commit & Push (Étapes 13-14)
+
+```
+13. Demander Retest Final
+    → Dire : "✅ Corrections SonarCloud terminées, merci de retester la fonctionnalité"
+    → Attendre validation utilisateur
+    ↓
+14. Git Commit et Push (sur validation utilisateur)
+    → Exécuter :
+
+    git add *
+    git commit -m "claude - <Titre de la fonctionnalité> - <Description>"
+    git push
+
+    → ✅ Feature complète et déployée !
+```
+
+---
+
+### Résumé du Workflow
+
+| Phase | Étapes | Durée | Validation |
+|-------|--------|-------|------------|
+| **1. Plan & Doc** | 1-2 | 10-20 min | Utilisateur valide plan |
+| **2. Backend TDD** | 3-5 | 30-60 min | Tests passent 100% |
+| **3. Audits** | 6 | 15-30 min | Audits OK |
+| **4. Frontend** | 7-9 | 20-40 min | Utilisateur teste et valide |
+| **5. SonarCloud** | 10-12 | 10-20 min | Issues corrigées, tests passent |
+| **6. Git** | 13-14 | 2-5 min | Utilisateur revalide et commit OK |
+
+**Total estimé** : 1h30 - 3h par feature complète
 
 ### Workflow CRUD Rapide
 
@@ -725,12 +824,17 @@ Chaque changement significatif DOIT passer par :
 
 1. ✅ Lire ce fichier CLAUDE.md ENTIÈREMENT
 2. ✅ Respecter l'architecture en couches STRICTEMENT
-3. ✅ Mode planification AVANT implémentation (/doc-first)
-4. ✅ TDD : Tests AVANT implémentation
-5. ✅ Créer INTERFACES avec commentaires XML complets
-6. ✅ Utiliser /// <inheritdoc /> sur implémentations
-7. ✅ Tous les tests doivent PASSER (0 échec)
-8. ✅ Audits obligatoires (/performance-audit + sécurité)
+3. ✅ **Suivre le Workflow en 14 Étapes pour TOUTE nouvelle fonctionnalité**
+4. ✅ Mode planification AVANT implémentation (EnterPlanMode)
+5. ✅ TDD : Tests AVANT implémentation
+6. ✅ Créer INTERFACES avec commentaires XML complets
+7. ✅ Utiliser /// <inheritdoc /> sur implémentations
+8. ✅ Tous les tests doivent PASSER (0 échec) après implémentation ET après audits
+9. ✅ Audits obligatoires (refactoring + /performance-audit + sécurité)
+10. ✅ Implémenter le frontend après validation backend
+11. ✅ Attendre validation utilisateur AVANT SonarCloud
+12. ✅ Corriger issues SonarCloud (Security + Blocker + High)
+13. ✅ Attendre validation finale AVANT git commit/push
 
 ### Ne JAMAIS
 
@@ -742,6 +846,10 @@ Chaque changement significatif DOIT passer par :
 6. ❌ Dupliquer la documentation (utiliser inheritdoc)
 7. ❌ Implémenter sans validation utilisateur de la doc
 8. ❌ Terminer une feature sans audits (performance + sécurité)
+9. ❌ Passer au frontend sans que backend soit validé
+10. ❌ Lancer SonarCloud sans validation utilisateur du test manuel
+11. ❌ Git commit/push sans validation finale de l'utilisateur
+12. ❌ Ignorer les issues Security/Blocker/High de SonarCloud
 
 ### En Cas de Doute
 
@@ -794,6 +902,23 @@ Chaque changement significatif DOIT passer par :
 ## Changelog
 - YYYY-MM-DD : [Description du changement]
 ```
+
+---
+
+## 📅 Changelog
+
+### 2026-01-14 : Workflow Complet en 14 Étapes
+- **Ajout** : Nouveau workflow complet pour toute nouvelle fonctionnalité
+- **Phases** :
+  1. Planification & Documentation (EnterPlanMode + doc specs)
+  2. Backend TDD (Tests → Implémentation → Validation)
+  3. Audits & Optimisation (Refactoring + Performance + Sécurité + Re-run tests)
+  4. Frontend (Nuxt/Vue + Test manuel utilisateur)
+  5. SonarCloud (Scan + Correction Security/Blocker/High + Re-run tests)
+  6. Git (Validation finale + Commit + Push)
+- **Intégration SonarCloud** : Commandes et URLs documentées
+- **Validation utilisateur** : Checkpoints obligatoires avant frontend, avant SonarCloud, et avant commit
+- **Total estimé** : 1h30-3h par feature complète
 
 ---
 

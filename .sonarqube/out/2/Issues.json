@@ -1,0 +1,3039 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilateur Microsoft (R) Visual C#",
+        "version": "5.0.0.0",
+        "fileVersion": "5.0.0-2.25569.105 (fad253f5)",
+        "semanticVersion": "5.0.0",
+        "language": "fr-FR"
+      },
+      "results": [
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Admins » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 35,
+                  "endLine": 17,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Events » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 35,
+                  "endLine": 18,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « EventRegistrations » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 47,
+                  "endLine": 19,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « EventTemplates » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 43,
+                  "endLine": 20,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Users » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 34,
+                  "endLine": 21,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Roles » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 34,
+                  "endLine": 22,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Propositions » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 41,
+                  "endLine": 23,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « PropositionVotes » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 45,
+                  "endLine": 24,
+                  "endColumn": 61
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Calendars » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 38,
+                  "endLine": 25,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « CalendarSubOrganizers » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 12,
+                  "endLine": 8,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 50,
+                  "endLine": 26,
+                  "endColumn": 71
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS9107",
+          "level": "warning",
+          "message": "Paramètre 'EsnDevContext context' est capturé dans l’état du type englobant et sa valeur est également passée au constructeur de base. La valeur peut également être capturée par la classe de base.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/EventRegistrationRepository.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 99,
+                  "endLine": 10,
+                  "endColumn": 106
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Admins » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 35,
+                  "endLine": 17,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Events » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 35,
+                  "endLine": 18,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « EventRegistrations » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 47,
+                  "endLine": 19,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « EventTemplates » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 43,
+                  "endLine": 20,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Users » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 34,
+                  "endLine": 21,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Roles » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 34,
+                  "endLine": 22,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Propositions » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 41,
+                  "endLine": 23,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « PropositionVotes » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 45,
+                  "endLine": 24,
+                  "endColumn": 61
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « Calendars » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 38,
+                  "endLine": 25,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Le propriété « CalendarSubOrganizers » non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le propriété comme pouvant accepter la valeur Null.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 12,
+                  "endLine": 12,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 50,
+                  "endLine": 26,
+                  "endColumn": 71
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS9107",
+          "level": "warning",
+          "message": "Paramètre 'EsnDevContext context' est capturé dans l’état du type englobant et sa valeur est également passée au constructeur de base. La valeur peut également être capturée par la classe de base.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/PropositionVoteRepository.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 95,
+                  "endLine": 11,
+                  "endColumn": 102
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS9107",
+          "level": "warning",
+          "message": "Paramètre 'EsnDevContext context' est capturé dans l’état du type englobant et sa valeur est également passée au constructeur de base. La valeur peut également être capturée par la classe de base.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/CalendarSubOrganizerRepository.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 105,
+                  "endLine": 10,
+                  "endColumn": 112
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS9107",
+          "level": "warning",
+          "message": "Paramètre 'EsnDevContext context' est capturé dans l’état du type englobant et sa valeur est également passée au constructeur de base. La valeur peut également être capturée par la classe de base.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/RoleRepository.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 73,
+                  "endLine": 10,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8603",
+          "level": "warning",
+          "message": "Existence possible d'un retour de référence null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 41,
+                  "endLine": 19,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8603",
+          "level": "warning",
+          "message": "Existence possible d'un retour de référence null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 41,
+                  "endLine": 45,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Déréférencement d'une éventuelle référence null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/CalendarRepository.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 35,
+                  "endLine": 16,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8603",
+          "level": "warning",
+          "message": "Existence possible d'un retour de référence null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 41,
+                  "endLine": 59,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Déréférencement d'une éventuelle référence null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/CalendarRepository.cs",
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 35,
+                  "endLine": 29,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Déréférencement d'une éventuelle référence null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/CalendarRepository.cs",
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 35,
+                  "endLine": 42,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Déréférencement d'une éventuelle référence null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Repositories/CalendarRepository.cs",
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 35,
+                  "endLine": 82,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Admins' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 23,
+                  "endLine": 15,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 41,
+                  "endLine": 106,
+                  "endColumn": 49
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 24,
+                  "endLine": 173,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 234,
+                  "startColumn": 23,
+                  "endLine": 234,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'PropositionVotes' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251221172509_AddPropositionVotesManual.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 23,
+                  "endLine": 15,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251221172509_AddPropositionVotesManual.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 24,
+                  "endLine": 45,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251221172509_AddPropositionVotesManual.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 24,
+                  "endLine": 50,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251221172509_AddPropositionVotesManual.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 23,
+                  "endLine": 59,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal '(getdate())' 10 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 66,
+                  "endLine": 39,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 68,
+                  "endLine": 40,
+                  "endColumn": 81
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 66,
+                  "endLine": 52,
+                  "endColumn": 79
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 71,
+                  "startColumn": 37,
+                  "endLine": 71,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 107,
+                  "startColumn": 66,
+                  "endLine": 107,
+                  "endColumn": 79
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 68,
+                  "endLine": 108,
+                  "endColumn": 81
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 146,
+                  "startColumn": 37,
+                  "endLine": 146,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 183,
+                  "startColumn": 37,
+                  "endLine": 183,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 212,
+                  "startColumn": 37,
+                  "endLine": 212,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 271,
+                  "startColumn": 37,
+                  "endLine": 271,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Roles' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20260111093808_SeedRolesAndAdminUser.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 24,
+                  "endLine": 17,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20260111093808_SeedRolesAndAdminUser.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 24,
+                  "endLine": 36,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20260111093808_SeedRolesAndAdminUser.cs",
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 24,
+                  "endLine": 41,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20260111093808_SeedRolesAndAdminUser.cs",
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 24,
+                  "endLine": 51,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'SqlServer:Identity' 6 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 37,
+                  "endLine": 19,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 37,
+                  "endLine": 37,
+                  "endColumn": 57
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 37,
+                  "endLine": 56,
+                  "endColumn": 57
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 37,
+                  "endLine": 87,
+                  "endColumn": 57
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 121,
+                  "startColumn": 37,
+                  "endLine": 121,
+                  "endColumn": 57
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 148,
+                  "startColumn": 37,
+                  "endLine": 148,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'datetime' 16 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 95,
+                  "endLine": 39,
+                  "endColumn": 105
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 97,
+                  "endLine": 40,
+                  "endColumn": 107
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 61,
+                  "endLine": 50,
+                  "endColumn": 71
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 59,
+                  "endLine": 51,
+                  "endColumn": 69
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 95,
+                  "endLine": 52,
+                  "endColumn": 105
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 32,
+                  "endLine": 72,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 101,
+                  "startColumn": 61,
+                  "endLine": 101,
+                  "endColumn": 71
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 107,
+                  "startColumn": 95,
+                  "endLine": 107,
+                  "endColumn": 105
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 97,
+                  "endLine": 108,
+                  "endColumn": 107
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 145,
+                  "startColumn": 32,
+                  "endLine": 145,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 149,
+                  "startColumn": 32,
+                  "endLine": 149,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 161,
+                  "startColumn": 32,
+                  "endLine": 161,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 32,
+                  "endLine": 182,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 32,
+                  "endLine": 187,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 211,
+                  "startColumn": 32,
+                  "endLine": 211,
+                  "endColumn": 42
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 272,
+                  "startColumn": 32,
+                  "endLine": 272,
+                  "endColumn": 42
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "10": null,
+              "11": null,
+              "12": null,
+              "13": null,
+              "14": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null,
+              "9": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'varchar(255)' 8 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 56,
+                  "endLine": 20,
+                  "endColumn": 70
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 63,
+                  "endLine": 21,
+                  "endColumn": 77
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 56,
+                  "endLine": 57,
+                  "endColumn": 70
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 63,
+                  "endLine": 58,
+                  "endColumn": 77
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 64,
+                  "startColumn": 65,
+                  "endLine": 64,
+                  "endColumn": 79
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 56,
+                  "endLine": 88,
+                  "endColumn": 70
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 90,
+                  "startColumn": 59,
+                  "endLine": 90,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 122,
+                  "startColumn": 56,
+                  "endLine": 122,
+                  "endColumn": 70
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'varchar(100)' 5 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 60,
+                  "endLine": 22,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 59,
+                  "endLine": 23,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 60,
+                  "endLine": 59,
+                  "endColumn": 74
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 59,
+                  "endLine": 60,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 64,
+                  "endLine": 66,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'datetime' 12 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 62,
+                  "endLine": 24,
+                  "endColumn": 72
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 64,
+                  "endLine": 25,
+                  "endColumn": 74
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 62,
+                  "endLine": 61,
+                  "endColumn": 72
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 67,
+                  "startColumn": 62,
+                  "endLine": 67,
+                  "endColumn": 72
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 68,
+                  "startColumn": 64,
+                  "endLine": 68,
+                  "endColumn": 74
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 91,
+                  "startColumn": 62,
+                  "endLine": 91,
+                  "endColumn": 72
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 92,
+                  "startColumn": 60,
+                  "endLine": 92,
+                  "endColumn": 70
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 96,
+                  "startColumn": 62,
+                  "endLine": 96,
+                  "endColumn": 72
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 125,
+                  "startColumn": 62,
+                  "endLine": 125,
+                  "endColumn": 72
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 126,
+                  "startColumn": 63,
+                  "endLine": 126,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 127,
+                  "startColumn": 62,
+                  "endLine": 127,
+                  "endColumn": 72
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 65,
+                  "endLine": 151,
+                  "endColumn": 75
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "10": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null,
+              "9": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal '(getdate())' 7 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 107,
+                  "endLine": 24,
+                  "endColumn": 120
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 109,
+                  "endLine": 25,
+                  "endColumn": 122
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 67,
+                  "startColumn": 107,
+                  "endLine": 67,
+                  "endColumn": 120
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 68,
+                  "startColumn": 109,
+                  "endLine": 68,
+                  "endColumn": 122
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 96,
+                  "startColumn": 107,
+                  "endLine": 96,
+                  "endColumn": 120
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 125,
+                  "startColumn": 107,
+                  "endLine": 125,
+                  "endColumn": 120
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 110,
+                  "endLine": 151,
+                  "endColumn": 123
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Roles' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 23,
+                  "endLine": 33,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 77,
+                  "startColumn": 41,
+                  "endLine": 77,
+                  "endColumn": 48
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 205,
+                  "startColumn": 24,
+                  "endLine": 205,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 240,
+                  "startColumn": 23,
+                  "endLine": 240,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Users' 7 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 23,
+                  "endLine": 52,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 41,
+                  "endLine": 111,
+                  "endColumn": 48
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 138,
+                  "startColumn": 41,
+                  "endLine": 138,
+                  "endColumn": 48
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 166,
+                  "startColumn": 41,
+                  "endLine": 166,
+                  "endColumn": 48
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 211,
+                  "startColumn": 24,
+                  "endLine": 211,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 216,
+                  "startColumn": 24,
+                  "endLine": 216,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 237,
+                  "startColumn": 23,
+                  "endLine": 237,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Events' 5 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 83,
+                  "startColumn": 23,
+                  "endLine": 83,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 160,
+                  "startColumn": 41,
+                  "endLine": 160,
+                  "endColumn": 49
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 190,
+                  "startColumn": 24,
+                  "endLine": 190,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 195,
+                  "startColumn": 24,
+                  "endLine": 195,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 231,
+                  "startColumn": 23,
+                  "endLine": 231,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'EventRegistrations' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 23,
+                  "endLine": 144,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 179,
+                  "startColumn": 24,
+                  "endLine": 179,
+                  "endColumn": 44
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 184,
+                  "startColumn": 24,
+                  "endLine": 184,
+                  "endColumn": 44
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 225,
+                  "startColumn": 23,
+                  "endLine": 225,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S3251",
+          "level": "warning",
+          "message": "Supply an implementation for this partial method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 285,
+                  "startColumn": 5,
+                  "endLine": 285,
+                  "endColumn": 12
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3881",
+          "level": "warning",
+          "message": "Fix this implementation of 'IDisposable' to conform to the dispose pattern.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/UnitOfWork/UnitOfWork.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 14,
+                  "endLine": 11,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/UnitOfWork/UnitOfWork.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 14,
+                  "endLine": 11,
+                  "endColumn": 24
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/UnitOfWork/UnitOfWork.cs",
+                "region": {
+                  "startLine": 73,
+                  "startColumn": 17,
+                  "endLine": 73,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Provide 'protected' overridable implementation of 'Dispose(bool)' on 'UnitOfWork' or mark the type as 'sealed'.",
+              "1": "'UnitOfWork.Dispose()' should also call 'Dispose(true)'."
+            }
+          }
+        },
+        {
+          "ruleId": "S6562",
+          "level": "warning",
+          "message": "Provide the \"DateTimeKind\" when creating this object.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Seeds/InitialDataSeed.cs",
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 25,
+                  "endLine": 70,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'AddInclude' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 13,
+                  "endLine": 57,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'AddInclude' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 13,
+                  "endLine": 58,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'ApplyOrderByDescending' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 13,
+                  "endLine": 59,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'ApplyPaging' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 13,
+                  "endLine": 60,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'AddInclude' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 13,
+                  "endLine": 17,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'AddInclude' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 13,
+                  "endLine": 18,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'ApplyOrderByDescending' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 13,
+                  "endLine": 19,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2068",
+          "level": "warning",
+          "message": "\"password\" detected here, make sure this is not a hard-coded credential.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Seeds/InitialDataSeed.cs",
+                "region": {
+                  "startLine": 78,
+                  "startColumn": 13,
+                  "endLine": 78,
+                  "endColumn": 112
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S6562",
+          "level": "warning",
+          "message": "Provide the \"DateTimeKind\" when creating this object.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Seeds/DatabaseSeeder.cs",
+                "region": {
+                  "startLine": 109,
+                  "startColumn": 33,
+                  "endLine": 109,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'AddInclude' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 13,
+                  "endLine": 44,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'ApplyOrderByDescending' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 13,
+                  "endLine": 45,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'AddInclude' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 13,
+                  "endLine": 31,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1699",
+          "level": "warning",
+          "message": "Remove this call from a constructor to the overridable 'AddInclude' method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Specifications/EventSpecifications.cs",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 13,
+                  "endLine": 32,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Préférer les champs 'static readonly' aux arguments de tableau de constantes si la méthode appelée est appelée à plusieurs reprises et ne mute pas le tableau passé",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251221172509_AddPropositionVotesManual.cs",
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 26,
+                  "endLine": 51,
+                  "endColumn": 61
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Préférer les champs 'static readonly' aux arguments de tableau de constantes si la méthode appelée est appelée à plusieurs reprises et ne mute pas le tableau passé",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20260111093808_SeedRolesAndAdminUser.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 26,
+                  "endLine": 18,
+                  "endColumn": 159
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Préférer les champs 'static readonly' aux arguments de tableau de constantes si la méthode appelée est appelée à plusieurs reprises et ne mute pas le tableau passé",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20260111093808_SeedRolesAndAdminUser.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 26,
+                  "endLine": 28,
+                  "endColumn": 233
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "S2139",
+          "level": "warning",
+          "message": "Either log this exception and handle it, or rethrow it with some contextual information.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Seeds/DatabaseSeeder.cs",
+                "region": {
+                  "startLine": 130,
+                  "startColumn": 26,
+                  "endLine": 130,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Seeds/DatabaseSeeder.cs",
+                "region": {
+                  "startLine": 132,
+                  "startColumn": 13,
+                  "endLine": 132,
+                  "endColumn": 74
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Seeds/DatabaseSeeder.cs",
+                "region": {
+                  "startLine": 133,
+                  "startColumn": 13,
+                  "endLine": 133,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Logging statement.",
+              "1": "Thrown exception."
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Préférer les champs 'static readonly' aux arguments de tableau de constantes si la méthode appelée est appelée à plusieurs reprises et ne mute pas le tableau passé",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/Migrations/20251026185817_UpdateEventUserIdColumn.cs",
+                "region": {
+                  "startLine": 185,
+                  "startColumn": 26,
+                  "endLine": 185,
+                  "endColumn": 55
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "S3251",
+          "level": "warning",
+          "message": "Supply an implementation for the partial method, otherwise this call will be ignored.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Dal/EsnDevContext.cs",
+                "region": {
+                  "startLine": 283,
+                  "startColumn": 9,
+                  "endLine": 283,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1861": {
+          "id": "CA1861",
+          "shortDescription": "Éviter les tableaux constants en tant qu’arguments",
+          "fullDescription": "Les tableaux constants passés en argument ne sont pas réutilisés en cas d’appels répétés, ce qui implique la création d’un nouveau tableau à chaque fois. Envisagez de les extraire vers des champs « static readonly » pour améliorer le niveau de performance si le tableau passé n’est pas modifié au sein de la méthode appelée.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1861",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CS8602": {
+          "id": "CS8602",
+          "shortDescription": "Déréférencement d'une éventuelle référence null.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8602)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8603": {
+          "id": "CS8603",
+          "shortDescription": "Existence possible d'un retour de référence null.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8603)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8618": {
+          "id": "CS8618",
+          "shortDescription": "Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS9107": {
+          "id": "CS9107",
+          "shortDescription": "Un paramètre est capturé dans l’état du type englobant et sa valeur est également passée au constructeur de base. La valeur peut également être capturée par la classe de base.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS9107)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "S1192": {
+          "id": "S1192",
+          "shortDescription": "String literals should not be duplicated",
+          "fullDescription": "Duplicated string literals make the process of refactoring complex and error-prone, as any change would need to be propagated on all occurrences.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1192",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S1699": {
+          "id": "S1699",
+          "shortDescription": "Constructors should only call non-overridable methods",
+          "fullDescription": "Calling an overridable method from a constructor could result in failures or strange behaviors when instantiating a subclass which overrides the method.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1699",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2068": {
+          "id": "S2068",
+          "shortDescription": "Hard-coded credentials are security-sensitive",
+          "fullDescription": "Because it is easy to extract strings from an application source code or binary, credentials should not be hard-coded. This is particularly true for applications that are distributed or that are open-source.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2068",
+          "properties": {
+            "category": "Blocker Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2139": {
+          "id": "S2139",
+          "shortDescription": "Exceptions should be either logged or rethrown but not both",
+          "fullDescription": "When an exception is logged and rethrown, the upstream code may not be aware that the exception has already been logged. As a result, the same exception gets logged multiple times, making it difficult to identify the root cause of the issue. This can be particularly problematic in multi-threaded applications where messages from other threads can be interwoven with the repeated log entries.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2139",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3251": {
+          "id": "S3251",
+          "shortDescription": "Implementations should be provided for \"partial\" methods",
+          "fullDescription": "partial methods allow an increased degree of flexibility in programming a system. Hooks can be added to generated code by invoking methods that define their signature, but might not have an implementation yet. But if the implementation is still missing when the code makes it to production, the compiler silently removes the call. In the best case scenario, such calls simply represent cruft, but in they worst case they are critical, missing functionality, the loss of which will lead to unexpected results at runtime.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3251",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3881": {
+          "id": "S3881",
+          "shortDescription": "\"IDisposable\" should be implemented correctly",
+          "fullDescription": "The IDisposable interface is a mechanism to release unmanaged resources, if not implemented correctly this could result in resource leaks or more severe bugs.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3881",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S6562": {
+          "id": "S6562",
+          "shortDescription": "Always set the \"DateTimeKind\" when creating new \"DateTime\" instances",
+          "fullDescription": "Not knowing the Kind of the DateTime object that an application is using can lead to misunderstandings when displaying or comparing them. Explicitly setting the Kind property helps the application to stay consistent, and its maintainers understand what kind of date is being managed. To achieve this, when instantiating a new DateTime object you should always use a constructor overload that allows you to define the Kind property.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-6562",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

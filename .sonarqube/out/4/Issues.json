@@ -1,0 +1,3331 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilateur Microsoft (R) Visual C#",
+        "version": "5.0.0.0",
+        "fileVersion": "5.0.0-2.25569.105 (fad253f5)",
+        "semanticVersion": "5.0.0",
+        "language": "fr-FR"
+      },
+      "results": [
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'unknown' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Program.cs",
+                "region": {
+                  "startLine": 139,
+                  "startColumn": 77,
+                  "endLine": 139,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Program.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 77,
+                  "endLine": 151,
+                  "endColumn": 86
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Program.cs",
+                "region": {
+                  "startLine": 163,
+                  "startColumn": 77,
+                  "endLine": 163,
+                  "endColumn": 86
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Program.cs",
+                "region": {
+                  "startLine": 175,
+                  "startColumn": 77,
+                  "endLine": 175,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S3993",
+          "level": "warning",
+          "message": "Specify AttributeUsage on 'ValidateIdAttribute' to improve readability, even though it inherits it from its base type.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Attributes/ValidateIdAttribute.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 14,
+                  "endLine": 10,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 23,
+                  "endLine": 21,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 9,
+                  "endLine": 24,
+                  "endColumn": 11
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 13,
+                  "endLine": 27,
+                  "endColumn": 15
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 17,
+                  "endLine": 29,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 9,
+                  "endLine": 50,
+                  "endColumn": 16
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 13,
+                  "endLine": 52,
+                  "endColumn": 15
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 77,
+                  "endLine": 52,
+                  "endColumn": 79
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 54,
+                  "startColumn": 17,
+                  "endLine": 54,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 21,
+                  "endLine": 56,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 74,
+                  "endLine": 56,
+                  "endColumn": 76
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "2": "+3 (incl 2 for nesting)",
+              "3": "+1",
+              "4": "+2 (incl 1 for nesting)",
+              "5": "+1",
+              "6": "+3 (incl 2 for nesting)",
+              "7": "+4 (incl 3 for nesting)",
+              "8": "+1"
+            }
+          }
+        },
+        {
+          "ruleId": "S1066",
+          "level": "warning",
+          "message": "Merge this if statement with the enclosing one.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Attributes/ValidateIdAttribute.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 13,
+                  "endLine": 23,
+                  "endColumn": 15
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Attributes/ValidateIdAttribute.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 9,
+                  "endLine": 21,
+                  "endColumn": 11
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Merge this if statement with its nested one."
+            }
+          }
+        },
+        {
+          "ruleId": "S1066",
+          "level": "warning",
+          "message": "Merge this if statement with the enclosing one.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 13,
+                  "endLine": 27,
+                  "endColumn": 15
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 9,
+                  "endLine": 24,
+                  "endColumn": 11
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Merge this if statement with its nested one."
+            }
+          }
+        },
+        {
+          "ruleId": "S1066",
+          "level": "warning",
+          "message": "Merge this if statement with the enclosing one.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 17,
+                  "endLine": 29,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 13,
+                  "endLine": 27,
+                  "endColumn": 15
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Merge this if statement with its nested one."
+            }
+          }
+        },
+        {
+          "ruleId": "S1066",
+          "level": "warning",
+          "message": "Merge this if statement with the enclosing one.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 54,
+                  "startColumn": 17,
+                  "endLine": 54,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 13,
+                  "endLine": 52,
+                  "endColumn": 15
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Merge this if statement with its nested one."
+            }
+          }
+        },
+        {
+          "ruleId": "S1066",
+          "level": "warning",
+          "message": "Merge this if statement with the enclosing one.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 21,
+                  "endLine": 56,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 54,
+                  "startColumn": 17,
+                  "endLine": 54,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Merge this if statement with its nested one."
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Unhealthy' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/HealthController.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 51,
+                  "endLine": 28,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/HealthController.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 57,
+                  "endLine": 31,
+                  "endColumn": 68
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/HealthController.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 26,
+                  "endLine": 50,
+                  "endColumn": 37
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/HealthController.cs",
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 32,
+                  "endLine": 53,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S3267",
+          "level": "warning",
+          "message": "Loops should be simplified using the \"Where\" LINQ method",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 34,
+                  "endLine": 50,
+                  "endColumn": 66
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 17,
+                  "endLine": 52,
+                  "endColumn": 96
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null
+            }
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 9,
+                  "endLine": 26,
+                  "endColumn": 84
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 13,
+                  "endLine": 32,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1869",
+          "level": "note",
+          "message": "Évitez de créer une instance « JsonSerializerOptions » pour chaque opération de sérialisation. Mettez en cache et réutilisez les instances à la place.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/RequestLoggingActionFilter.cs",
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 52,
+                  "endLine": 51,
+                  "endColumn": 102
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 21,
+                  "endLine": 31,
+                  "endColumn": 109
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/ValidateIdMiddleware.cs",
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 25,
+                  "endLine": 59,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 128,
+                  "startColumn": 9,
+                  "endLine": 129,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 133,
+                  "startColumn": 9,
+                  "endLine": 134,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 9,
+                  "endLine": 21,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 9,
+                  "endLine": 26,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 145,
+                  "startColumn": 9,
+                  "endLine": 145,
+                  "endColumn": 71
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 13,
+                  "endLine": 151,
+                  "endColumn": 71
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 155,
+                  "startColumn": 9,
+                  "endLine": 155,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Middlewares/GlobalExceptionHandler.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 9,
+                  "endLine": 17,
+                  "endColumn": 107
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 55,
+                  "startColumn": 9,
+                  "endLine": 55,
+                  "endColumn": 101
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 9,
+                  "endLine": 59,
+                  "endColumn": 95
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 9,
+                  "endLine": 36,
+                  "endColumn": 75
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 13,
+                  "endLine": 42,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 9,
+                  "endLine": 46,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 112,
+                  "startColumn": 13,
+                  "endLine": 112,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 9,
+                  "endLine": 23,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 9,
+                  "endLine": 73,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 9,
+                  "endLine": 29,
+                  "endColumn": 77
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2325",
+          "level": "warning",
+          "message": "Make 'BeValidJson' a static method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Validators/CreateEventDtoValidator.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 18,
+                  "endLine": 40,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2325",
+          "level": "warning",
+          "message": "Make 'BeValidJson' a static method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Validators/EventTemplateDtoValidator.cs",
+                "region": {
+                  "startLine": 30,
+                  "startColumn": 18,
+                  "endLine": 30,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2325",
+          "level": "warning",
+          "message": "Make 'BeValidJson' a static method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Validators/CreateEventTemplateDtoValidator.cs",
+                "region": {
+                  "startLine": 30,
+                  "startColumn": 18,
+                  "endLine": 30,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2325",
+          "level": "warning",
+          "message": "Make 'BeValidJson' a static method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Validators/RegisterEventDtoValidator.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 18,
+                  "endLine": 20,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 181,
+                  "startColumn": 9,
+                  "endLine": 181,
+                  "endColumn": 88
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 13,
+                  "endLine": 187,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 193,
+                  "startColumn": 13,
+                  "endLine": 193,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 93,
+                  "startColumn": 9,
+                  "endLine": 93,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 9,
+                  "endLine": 56,
+                  "endColumn": 131
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 206,
+                  "startColumn": 9,
+                  "endLine": 206,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 214,
+                  "startColumn": 17,
+                  "endLine": 214,
+                  "endColumn": 83
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 218,
+                  "startColumn": 13,
+                  "endLine": 218,
+                  "endColumn": 77
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 224,
+                  "startColumn": 13,
+                  "endLine": 224,
+                  "endColumn": 91
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 9,
+                  "endLine": 66,
+                  "endColumn": 72
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 73,
+                  "startColumn": 13,
+                  "endLine": 73,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 77,
+                  "startColumn": 9,
+                  "endLine": 77,
+                  "endColumn": 106
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 9,
+                  "endLine": 21,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 9,
+                  "endLine": 40,
+                  "endColumn": 63
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 9,
+                  "endLine": 50,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 13,
+                  "endLine": 70,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 74,
+                  "startColumn": 9,
+                  "endLine": 74,
+                  "endColumn": 72
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 310,
+                  "startColumn": 9,
+                  "endLine": 310,
+                  "endColumn": 92
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 237,
+                  "startColumn": 9,
+                  "endLine": 237,
+                  "endColumn": 99
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 247,
+                  "startColumn": 17,
+                  "endLine": 248,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 256,
+                  "startColumn": 17,
+                  "endLine": 256,
+                  "endColumn": 75
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 260,
+                  "startColumn": 13,
+                  "endLine": 260,
+                  "endColumn": 83
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 277,
+                  "startColumn": 9,
+                  "endLine": 277,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 283,
+                  "startColumn": 13,
+                  "endLine": 283,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 287,
+                  "startColumn": 9,
+                  "endLine": 287,
+                  "endColumn": 68
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2325",
+          "level": "warning",
+          "message": "Make 'BeAValidAge' a static method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Validators/UserCreateDtoValidator.cs",
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 18,
+                  "endLine": 61,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionAdminController.cs",
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 9,
+                  "endLine": 45,
+                  "endColumn": 71
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionAdminController.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 13,
+                  "endLine": 53,
+                  "endColumn": 67
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionAdminController.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 13,
+                  "endLine": 60,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 86,
+                  "startColumn": 9,
+                  "endLine": 86,
+                  "endColumn": 107
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 98,
+                  "startColumn": 13,
+                  "endLine": 98,
+                  "endColumn": 95
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 116,
+                  "startColumn": 9,
+                  "endLine": 116,
+                  "endColumn": 119
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 125,
+                  "startColumn": 17,
+                  "endLine": 125,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 129,
+                  "startColumn": 13,
+                  "endLine": 129,
+                  "endColumn": 76
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 9,
+                  "endLine": 106,
+                  "endColumn": 75
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 120,
+                  "startColumn": 17,
+                  "endLine": 120,
+                  "endColumn": 83
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 124,
+                  "startColumn": 13,
+                  "endLine": 124,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2325",
+          "level": "warning",
+          "message": "Make 'BeAValidStudentType' a static method.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Validators/UserCreateDtoValidator.cs",
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 18,
+                  "endLine": 70,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 89,
+                  "startColumn": 9,
+                  "endLine": 89,
+                  "endColumn": 101
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 101,
+                  "startColumn": 13,
+                  "endLine": 101,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 147,
+                  "startColumn": 9,
+                  "endLine": 147,
+                  "endColumn": 81
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 156,
+                  "startColumn": 17,
+                  "endLine": 156,
+                  "endColumn": 92
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 160,
+                  "startColumn": 13,
+                  "endLine": 160,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 134,
+                  "startColumn": 9,
+                  "endLine": 134,
+                  "endColumn": 107
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 143,
+                  "startColumn": 17,
+                  "endLine": 143,
+                  "endColumn": 77
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 147,
+                  "startColumn": 13,
+                  "endLine": 147,
+                  "endColumn": 70
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 153,
+                  "startColumn": 13,
+                  "endLine": 153,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 142,
+                  "startColumn": 9,
+                  "endLine": 142,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 17,
+                  "endLine": 151,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/CalendarsController.cs",
+                "region": {
+                  "startLine": 155,
+                  "startColumn": 13,
+                  "endLine": 155,
+                  "endColumn": 76
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 331,
+                  "startColumn": 9,
+                  "endLine": 331,
+                  "endColumn": 76
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 337,
+                  "startColumn": 13,
+                  "endLine": 337,
+                  "endColumn": 88
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 343,
+                  "startColumn": 13,
+                  "endLine": 343,
+                  "endColumn": 79
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionAdminController.cs",
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 9,
+                  "endLine": 85,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionAdminController.cs",
+                "region": {
+                  "startLine": 94,
+                  "startColumn": 17,
+                  "endLine": 94,
+                  "endColumn": 100
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionAdminController.cs",
+                "region": {
+                  "startLine": 98,
+                  "startColumn": 13,
+                  "endLine": 98,
+                  "endColumn": 105
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionAdminController.cs",
+                "region": {
+                  "startLine": 104,
+                  "startColumn": 13,
+                  "endLine": 105,
+                  "endColumn": 54
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 165,
+                  "startColumn": 9,
+                  "endLine": 165,
+                  "endColumn": 75
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 174,
+                  "startColumn": 17,
+                  "endLine": 174,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 13,
+                  "endLine": 178,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 184,
+                  "startColumn": 13,
+                  "endLine": 184,
+                  "endColumn": 77
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 367,
+                  "startColumn": 9,
+                  "endLine": 368,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 380,
+                  "startColumn": 13,
+                  "endLine": 380,
+                  "endColumn": 87
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/UsersController.cs",
+                "region": {
+                  "startLine": 386,
+                  "startColumn": 13,
+                  "endLine": 386,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 179,
+                  "startColumn": 9,
+                  "endLine": 179,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 188,
+                  "startColumn": 17,
+                  "endLine": 188,
+                  "endColumn": 81
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 192,
+                  "startColumn": 13,
+                  "endLine": 192,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 281,
+                  "startColumn": 9,
+                  "endLine": 282,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 286,
+                  "startColumn": 9,
+                  "endLine": 287,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 197,
+                  "startColumn": 9,
+                  "endLine": 197,
+                  "endColumn": 88
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 204,
+                  "startColumn": 13,
+                  "endLine": 204,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 215,
+                  "startColumn": 13,
+                  "endLine": 215,
+                  "endColumn": 81
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 220,
+                  "startColumn": 13,
+                  "endLine": 220,
+                  "endColumn": 95
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 232,
+                  "startColumn": 9,
+                  "endLine": 232,
+                  "endColumn": 91
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 239,
+                  "startColumn": 13,
+                  "endLine": 239,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 250,
+                  "startColumn": 13,
+                  "endLine": 250,
+                  "endColumn": 109
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 211,
+                  "startColumn": 9,
+                  "endLine": 211,
+                  "endColumn": 84
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 220,
+                  "startColumn": 17,
+                  "endLine": 220,
+                  "endColumn": 83
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/PropositionsController.cs",
+                "region": {
+                  "startLine": 224,
+                  "startColumn": 13,
+                  "endLine": 224,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 261,
+                  "startColumn": 9,
+                  "endLine": 261,
+                  "endColumn": 93
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 267,
+                  "startColumn": 13,
+                  "endLine": 267,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 271,
+                  "startColumn": 9,
+                  "endLine": 271,
+                  "endColumn": 87
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 297,
+                  "startColumn": 9,
+                  "endLine": 297,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 303,
+                  "startColumn": 13,
+                  "endLine": 303,
+                  "endColumn": 84
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 307,
+                  "startColumn": 9,
+                  "endLine": 307,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 319,
+                  "startColumn": 9,
+                  "endLine": 319,
+                  "endColumn": 112
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 325,
+                  "startColumn": 13,
+                  "endLine": 325,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 373,
+                  "startColumn": 9,
+                  "endLine": 373,
+                  "endColumn": 83
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 381,
+                  "startColumn": 17,
+                  "endLine": 381,
+                  "endColumn": 91
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 385,
+                  "startColumn": 13,
+                  "endLine": 385,
+                  "endColumn": 81
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 391,
+                  "startColumn": 13,
+                  "endLine": 391,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 343,
+                  "startColumn": 9,
+                  "endLine": 343,
+                  "endColumn": 118
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 351,
+                  "startColumn": 17,
+                  "endLine": 351,
+                  "endColumn": 88
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 355,
+                  "startColumn": 13,
+                  "endLine": 355,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 361,
+                  "startColumn": 13,
+                  "endLine": 361,
+                  "endColumn": 87
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 403,
+                  "startColumn": 9,
+                  "endLine": 404,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 411,
+                  "startColumn": 13,
+                  "endLine": 411,
+                  "endColumn": 139
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 433,
+                  "startColumn": 9,
+                  "endLine": 433,
+                  "endColumn": 91
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 439,
+                  "startColumn": 13,
+                  "endLine": 439,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1873",
+          "level": "note",
+          "message": "L’évaluation de cet argument peut être coûteuse et inutile si la journalisation est désactivée",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Controllers/EventsController.cs",
+                "region": {
+                  "startLine": 445,
+                  "startColumn": 13,
+                  "endLine": 445,
+                  "endColumn": 84
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S6966",
+          "level": "warning",
+          "message": "Await RunAsync instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/micha/Projects/ESN-WebApi/Web/Program.cs",
+                "region": {
+                  "startLine": 248,
+                  "startColumn": 1,
+                  "endLine": 248,
+                  "endColumn": 10
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1869": {
+          "id": "CA1869",
+          "shortDescription": "Mettre en cache et réutiliser les instances « JsonSerializerOptions »",
+          "fullDescription": "Évitez de créer une instance « JsonSerializerOptions » pour chaque opération de sérialisation. Mettez en cache et réutilisez les instances à la place. Les instances « JsonSerializerOptions » à usage unique peuvent considérablement dégrader les performances de votre application.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1869",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1873": {
+          "id": "CA1873",
+          "shortDescription": "Évitez une journalisation potentiellement coûteuse",
+          "fullDescription": "Dans de nombreuses situations, la journalisation est désactivée ou configurée à un niveau qui entraîne une évaluation inutile pour cet argument.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1873",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "S1066": {
+          "id": "S1066",
+          "shortDescription": "Mergeable \"if\" statements should be combined",
+          "fullDescription": "Nested code - blocks of code inside blocks of code - is eventually necessary, but increases complexity. This is why keeping the code as flat as possible, by avoiding unnecessary nesting, is considered a good practice.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1066",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S1192": {
+          "id": "S1192",
+          "shortDescription": "String literals should not be duplicated",
+          "fullDescription": "Duplicated string literals make the process of refactoring complex and error-prone, as any change would need to be propagated on all occurrences.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1192",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2325": {
+          "id": "S2325",
+          "shortDescription": "Methods and properties that don't access instance data should be static",
+          "fullDescription": "Methods and properties that don’t access instance data should be marked as static for the following reasons:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2325",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3267": {
+          "id": "S3267",
+          "shortDescription": "Loops should be simplified with \"LINQ\" expressions",
+          "fullDescription": "Using explicit loops for filtering, selecting, or aggregating elements can make code more verbose and harder to read. LINQ expressions provide a more concise and expressive way to perform these operations, improving code clarity and maintainability.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3267",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3776": {
+          "id": "S3776",
+          "shortDescription": "Cognitive Complexity of methods should not be too high",
+          "fullDescription": "This rule raises an issue when the code cognitive complexity of a function is above a certain threshold.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3776",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3993": {
+          "id": "S3993",
+          "shortDescription": "Custom attributes should be marked with \"System.AttributeUsageAttribute\"",
+          "fullDescription": "When defining custom attributes, AttributeUsageAttribute must be used to indicate where the attribute can be applied. This will:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3993",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S6966": {
+          "id": "S6966",
+          "shortDescription": "Awaitable method should be used",
+          "fullDescription": "In an async method, any blocking operations should be avoided.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-6966",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
