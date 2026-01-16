@@ -19,6 +19,7 @@ namespace Tests.Services
         private Mock<IEventRepository> _mockEventRepository = null!;
         private Mock<IUserRepository> _mockUserRepository = null!;
         private Mock<IEventRegistrationRepository> _mockEventRegistrationRepository = null!;
+        private Mock<ICalendarRepository> _mockCalendarRepository = null!;
         private EventService _eventService = null!;
 
         [TestInitialize]
@@ -30,10 +31,12 @@ namespace Tests.Services
             _mockEventRepository = new Mock<IEventRepository>();
             _mockUserRepository = new Mock<IUserRepository>();
             _mockEventRegistrationRepository = new Mock<IEventRegistrationRepository>();
+            _mockCalendarRepository = new Mock<ICalendarRepository>();
 
             _mockUnitOfWork.Setup(u => u.Events).Returns(_mockEventRepository.Object);
             _mockUnitOfWork.Setup(u => u.Users).Returns(_mockUserRepository.Object);
             _mockUnitOfWork.Setup(u => u.EventRegistrations).Returns(_mockEventRegistrationRepository.Object);
+            _mockUnitOfWork.Setup(u => u.Calendars).Returns(_mockCalendarRepository.Object);
 
             _eventService = new EventService(
                 _mockUnitOfWork.Object,
@@ -284,6 +287,8 @@ namespace Tests.Services
                 .ReturnsAsync(user);
             _mockEventRepository.Setup(r => r.GetEventWithDetailsAsync(eventId))
                 .ReturnsAsync(existingEvent);
+            _mockCalendarRepository.Setup(r => r.GetCalendarByEventIdAsync(eventId))
+                .ReturnsAsync((CalendarBo?)null);
             _mockMapper.Setup(m => m.Map<EventDto>(existingEvent))
                 .Returns(updatedEventDto);
 
@@ -365,6 +370,8 @@ namespace Tests.Services
                 .ReturnsAsync(esnMember);
             _mockEventRepository.Setup(r => r.GetEventWithDetailsAsync(eventId))
                 .ReturnsAsync(existingEvent);
+            _mockCalendarRepository.Setup(r => r.GetCalendarByEventIdAsync(eventId))
+                .ReturnsAsync((CalendarBo?)null);
             _mockMapper.Setup(m => m.Map<EventDto>(existingEvent))
                 .Returns(updatedEventDto);
 

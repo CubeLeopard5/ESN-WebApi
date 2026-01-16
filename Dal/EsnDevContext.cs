@@ -76,6 +76,10 @@ public partial class EsnDevContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValue("registered");
 
+            // Attendance tracking fields
+            entity.Property(e => e.AttendanceValidatedAt)
+                .HasColumnType("datetime");
+
             entity.HasOne(d => d.Event)
                 .WithMany(p => p.EventRegistrations)
                 .HasForeignKey(d => d.EventId)
@@ -87,6 +91,13 @@ public partial class EsnDevContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Registrations_Users");
+
+            // Attendance validator relationship
+            entity.HasOne(d => d.AttendanceValidatedBy)
+                .WithMany()
+                .HasForeignKey(d => d.AttendanceValidatedById)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_Registrations_AttendanceValidator");
         });
 
         modelBuilder.Entity<UserBo>(entity =>

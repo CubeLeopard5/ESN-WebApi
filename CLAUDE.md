@@ -3,7 +3,7 @@
 > **Ce fichier est lu automatiquement par Claude à chaque démarrage de session**
 > Il contient toute la connaissance du projet pour assurer la cohérence entre les sessions
 
-**Dernière mise à jour** : 2026-01-14
+**Dernière mise à jour** : 2026-01-16
 
 ---
 
@@ -283,9 +283,23 @@ pwsh -File run-coverage.ps1
 
 ## 📝 Workflow de Développement
 
-### Workflow Standard pour Nouvelle Feature (Process Complet en 14 Étapes)
+### Workflow Standard pour Nouvelle Feature (Process Complet en 16 Étapes)
 
 **IMPORTANT : Ce workflow DOIT être suivi pour toute nouvelle fonctionnalité**
+
+#### Phase 0 : Création de Branche Git (Étape 0)
+
+```
+0. Créer une Branche Git Dédiée (OBLIGATOIRE)
+   → AVANT toute implémentation, créer une nouvelle branche :
+     git checkout -b feature/<nom-feature>
+   → Convention de nommage :
+     • feature/<nom>   - pour nouvelles fonctionnalités
+     • fix/<nom>       - pour corrections de bugs
+     • refactor/<nom>  - pour refactoring
+   → Se positionner sur cette branche
+   → JAMAIS travailler directement sur master
+```
 
 #### Phase 1 : Planification et Documentation (Étapes 1-2)
 
@@ -398,7 +412,7 @@ pwsh -File run-coverage.ps1
     → Aucune régression introduite par les corrections SonarCloud
 ```
 
-#### Phase 6 : Git Commit & Push (Étapes 13-14)
+#### Phase 6 : Git Commit, Push & Merge (Étapes 13-16)
 
 ```
 13. Demander Retest Final
@@ -410,25 +424,40 @@ pwsh -File run-coverage.ps1
 
     git add *
     git commit -m "claude - <Titre de la fonctionnalité> - <Description>"
-    git push
+    git push -u origin feature/<nom-feature>
 
-    → ✅ Feature complète et déployée !
+    ↓
+15. Demander Validation pour Merge
+    → Dire : "✅ Push effectué sur la branche feature/<nom-feature>"
+    → Attendre validation utilisateur pour le merge sur master
+    ↓
+16. Merge sur Master (sur validation utilisateur)
+    → Exécuter :
+
+    git checkout master
+    git merge feature/<nom-feature>
+    git push origin master
+
+    → Optionnel : Supprimer la branche feature après merge :
+    git branch -d feature/<nom-feature>
+    git push origin --delete feature/<nom-feature>
+
+    → ✅ Feature complète et mergée sur master !
 ```
 
 ---
 
 ### Résumé du Workflow
 
-| Phase | Étapes | Durée | Validation |
-|-------|--------|-------|------------|
-| **1. Plan & Doc** | 1-2 | 10-20 min | Utilisateur valide plan |
-| **2. Backend TDD** | 3-5 | 30-60 min | Tests passent 100% |
-| **3. Audits** | 6 | 15-30 min | Audits OK |
-| **4. Frontend** | 7-9 | 20-40 min | Utilisateur teste et valide |
-| **5. SonarCloud** | 10-12 | 10-20 min | Issues corrigées, tests passent |
-| **6. Git** | 13-14 | 2-5 min | Utilisateur revalide et commit OK |
-
-**Total estimé** : 1h30 - 3h par feature complète
+| Phase | Étapes | Description | Validation |
+|-------|--------|-------------|------------|
+| **0. Git Branch** | 0 | Créer branche feature | Branche créée |
+| **1. Plan & Doc** | 1-2 | Planification et spec | Utilisateur valide plan |
+| **2. Backend TDD** | 3-5 | Tests puis implémentation | Tests passent 100% |
+| **3. Audits** | 6 | Refactoring + audits | Audits OK |
+| **4. Frontend** | 7-9 | Implémentation frontend | Utilisateur teste et valide |
+| **5. SonarCloud** | 10-12 | Scan et corrections | Issues corrigées, tests passent |
+| **6. Git Merge** | 13-16 | Commit, push et merge master | Merge OK sur master |
 
 ### Workflow CRUD Rapide
 
@@ -824,32 +853,36 @@ Chaque changement significatif DOIT passer par :
 
 1. ✅ Lire ce fichier CLAUDE.md ENTIÈREMENT
 2. ✅ Respecter l'architecture en couches STRICTEMENT
-3. ✅ **Suivre le Workflow en 14 Étapes pour TOUTE nouvelle fonctionnalité**
-4. ✅ Mode planification AVANT implémentation (EnterPlanMode)
-5. ✅ TDD : Tests AVANT implémentation
-6. ✅ Créer INTERFACES avec commentaires XML complets
-7. ✅ Utiliser /// <inheritdoc /> sur implémentations
-8. ✅ Tous les tests doivent PASSER (0 échec) après implémentation ET après audits
-9. ✅ Audits obligatoires (refactoring + /performance-audit + sécurité)
-10. ✅ Implémenter le frontend après validation backend
-11. ✅ Attendre validation utilisateur AVANT SonarCloud
-12. ✅ Corriger issues SonarCloud (Security + Blocker + High)
-13. ✅ Attendre validation finale AVANT git commit/push
+3. ✅ **Suivre le Workflow en 16 Étapes pour TOUTE nouvelle fonctionnalité**
+4. ✅ **Créer une branche git AVANT toute implémentation** (feature/, fix/, refactor/)
+5. ✅ Mode planification AVANT implémentation (EnterPlanMode)
+6. ✅ TDD : Tests AVANT implémentation
+7. ✅ Créer INTERFACES avec commentaires XML complets
+8. ✅ Utiliser /// <inheritdoc /> sur implémentations
+9. ✅ Tous les tests doivent PASSER (0 échec) après implémentation ET après audits
+10. ✅ Audits obligatoires (refactoring + /performance-audit + sécurité)
+11. ✅ Implémenter le frontend après validation backend
+12. ✅ Attendre validation utilisateur AVANT SonarCloud
+13. ✅ Corriger issues SonarCloud (Security + Blocker + High)
+14. ✅ Attendre validation finale AVANT git commit/push
+15. ✅ **Merge sur master APRÈS push et validation utilisateur**
 
 ### Ne JAMAIS
 
-1. ❌ Coder sans documentation préalable (sauf typos/formatting)
-2. ❌ Implémenter AVANT d'écrire les tests (TDD strict)
-3. ❌ Mettre de la logique métier hors de Business Layer
-4. ❌ Retourner des entités Bo dans l'API
-5. ❌ Oublier les commentaires XML sur INTERFACES
-6. ❌ Dupliquer la documentation (utiliser inheritdoc)
-7. ❌ Implémenter sans validation utilisateur de la doc
-8. ❌ Terminer une feature sans audits (performance + sécurité)
-9. ❌ Passer au frontend sans que backend soit validé
-10. ❌ Lancer SonarCloud sans validation utilisateur du test manuel
-11. ❌ Git commit/push sans validation finale de l'utilisateur
-12. ❌ Ignorer les issues Security/Blocker/High de SonarCloud
+1. ❌ **Travailler directement sur la branche master** (TOUJOURS créer une branche)
+2. ❌ Coder sans documentation préalable (sauf typos/formatting)
+3. ❌ Implémenter AVANT d'écrire les tests (TDD strict)
+4. ❌ Mettre de la logique métier hors de Business Layer
+5. ❌ Retourner des entités Bo dans l'API
+6. ❌ Oublier les commentaires XML sur INTERFACES
+7. ❌ Dupliquer la documentation (utiliser inheritdoc)
+8. ❌ Implémenter sans validation utilisateur de la doc
+9. ❌ Terminer une feature sans audits (performance + sécurité)
+10. ❌ Passer au frontend sans que backend soit validé
+11. ❌ Lancer SonarCloud sans validation utilisateur du test manuel
+12. ❌ Git commit/push sans validation finale de l'utilisateur
+13. ❌ Ignorer les issues Security/Blocker/High de SonarCloud
+14. ❌ Merger sur master sans validation utilisateur
 
 ### En Cas de Doute
 
@@ -906,6 +939,13 @@ Chaque changement significatif DOIT passer par :
 ---
 
 ## 📅 Changelog
+
+### 2026-01-16 : Gestion des Branches Git
+- **Ajout** : Phase 0 - Création de branche git obligatoire AVANT toute implémentation
+- **Ajout** : Étapes 15-16 - Validation et merge sur master après push
+- **Convention** : Nommage des branches (feature/, fix/, refactor/)
+- **Workflow** : Passe de 14 à 16 étapes
+- **Règle** : JAMAIS travailler directement sur master
 
 ### 2026-01-14 : Workflow Complet en 14 Étapes
 - **Ajout** : Nouveau workflow complet pour toute nouvelle fonctionnalité

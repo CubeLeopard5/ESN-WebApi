@@ -60,6 +60,7 @@ public class EventRepository(EsnDevContext context) : Repository<EventBo>(contex
     {
         return await _dbSet
             .Include(e => e.EventRegistrations)
+                .ThenInclude(er => er.User)
             .Include(e => e.User)
             .FirstOrDefaultAsync(e => e.Id == eventId);
     }

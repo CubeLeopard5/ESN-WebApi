@@ -1,6 +1,7 @@
 using AutoMapper;
 using Bo.Constants;
 using Dto;
+using Dto.Attendance;
 using Dto.Calendar;
 using Dto.Event;
 using Dto.EventTemplate;
@@ -75,6 +76,11 @@ namespace Web.Mappings
             CreateMap<CreateEventTemplateDto, EventTemplateBo>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.Ignore());
+
+            // Attendance mappings
+            CreateMap<EventRegistrationBo, AttendanceDto>()
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
+                .ForMember(dest => dest.AttendanceValidatedBy, opt => opt.MapFrom(src => src.AttendanceValidatedBy));
         }
     }
 }

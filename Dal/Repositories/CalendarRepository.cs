@@ -12,6 +12,7 @@ public class CalendarRepository(EsnDevContext context)
     public async Task<IEnumerable<CalendarBo>> GetAllCalendarsWithDetailsAsync()
     {
         return await _dbSet
+            .AsNoTracking()
             .Include(c => c.Event)
                 .ThenInclude(e => e.User)
             .Include(c => c.MainOrganizer)
@@ -25,6 +26,7 @@ public class CalendarRepository(EsnDevContext context)
     public async Task<CalendarBo?> GetCalendarWithDetailsAsync(int calendarId)
     {
         return await _dbSet
+            .AsNoTracking()
             .Include(c => c.Event)
                 .ThenInclude(e => e.User)
             .Include(c => c.MainOrganizer)
@@ -38,6 +40,7 @@ public class CalendarRepository(EsnDevContext context)
     public async Task<IEnumerable<CalendarBo>> GetCalendarsByEventIdAsync(int? eventId)
     {
         var query = _dbSet
+            .AsNoTracking()
             .Include(c => c.Event)
                 .ThenInclude(e => e.User)
             .Include(c => c.MainOrganizer)
@@ -65,6 +68,7 @@ public class CalendarRepository(EsnDevContext context)
     public async Task<IEnumerable<CalendarBo>> GetCalendarsWithoutEventAsync()
     {
         return await _dbSet
+            .AsNoTracking()
             .Where(c => c.EventId == null)
             .Include(c => c.MainOrganizer)
             .Include(c => c.EventManager)
@@ -78,6 +82,7 @@ public class CalendarRepository(EsnDevContext context)
         var totalCount = await _dbSet.CountAsync();
 
         var items = await _dbSet
+            .AsNoTracking()
             .Include(c => c.Event)
                 .ThenInclude(e => e.User)
             .Include(c => c.MainOrganizer)
@@ -96,6 +101,7 @@ public class CalendarRepository(EsnDevContext context)
     public async Task<CalendarBo?> GetCalendarSimpleAsync(int calendarId)
     {
         return await _dbSet
+            .AsNoTracking()
             .FirstOrDefaultAsync(c => c.Id == calendarId);
     }
 
@@ -103,6 +109,7 @@ public class CalendarRepository(EsnDevContext context)
     {
         var totalCount = await _dbSet.CountAsync();
         var items = await _dbSet
+            .AsNoTracking()
             .OrderByDescending(c => c.Id)
             .Skip(skip)
             .Take(take)

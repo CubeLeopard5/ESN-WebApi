@@ -238,7 +238,8 @@ public class UnitOfWorkTests
         // Act
         _unitOfWork.Dispose();
 
-        // Assert - should not throw when calling again
+        // Assert - should not throw when calling Dispose again (idempotent)
         _unitOfWork.Dispose();
+        Assert.IsTrue(true, "Dispose should be idempotent and not throw on multiple calls");
     }
 }

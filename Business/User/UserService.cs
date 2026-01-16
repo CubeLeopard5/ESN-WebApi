@@ -84,7 +84,8 @@ public class UserService(
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var jwtConfig = configuration.GetSection("Jwt");
-        var key = Encoding.UTF8.GetBytes(jwtConfig["Key"]!);
+        var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? jwtConfig["Key"]!;
+        var key = Encoding.UTF8.GetBytes(jwtKey);
 
         try
         {
@@ -440,7 +441,8 @@ public class UserService(
         logger.LogInformation("UserService.GenerateJwtToken called for {Email}", user.Email);
 
         var jwtConfig = configuration.GetSection("Jwt");
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig["Key"]!));
+        var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? jwtConfig["Key"]!;
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var claims = new List<Claim>

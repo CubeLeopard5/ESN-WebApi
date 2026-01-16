@@ -1,3 +1,4 @@
+using Business.Attendance;
 using Business.Calendar;
 using Business.Event;
 using Business.EventTemplate;
@@ -36,6 +37,12 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<RequestLoggingActionFilter>();
+})
+.AddJsonOptions(options =>
+{
+    // Allow both string and integer values for enums
+    options.JsonSerializerOptions.Converters.Add(
+        new System.Text.Json.Serialization.JsonStringEnumConverter(allowIntegerValues: true));
 });
 
 // Add FluentValidation
@@ -96,8 +103,12 @@ if (builder.Environment.IsDevelopment())
 }
 
 // Add JWT Authentication
+// JWT Key should be stored securely: User Secrets (dev) or Environment Variable (prod)
 var jwtConfig = builder.Configuration.GetSection("Jwt");
-var key = Encoding.UTF8.GetBytes(jwtConfig["Key"] ?? throw new InvalidOperationException("JWT Key is not configured"));
+var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY")
+    ?? jwtConfig["Key"]
+    ?? throw new InvalidOperationException("JWT Key is not configured. Set JWT_SECRET_KEY environment variable or configure Jwt:Key in User Secrets.");
+var key = Encoding.UTF8.GetBytes(jwtKey);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -126,6 +137,7 @@ builder.Services.AddScoped<Business.Interfaces.IEventTemplateService, EventTempl
 builder.Services.AddScoped<Business.Interfaces.ICalendarService, CalendarService>();
 builder.Services.AddScoped<Business.Interfaces.IPropositionService, PropositionService>();
 builder.Services.AddScoped<Business.Interfaces.IUserService, UserService>();
+builder.Services.AddScoped<Business.Interfaces.IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<Dal.Seeds.DatabaseSeeder>();
 
 // Configure Rate Limiting

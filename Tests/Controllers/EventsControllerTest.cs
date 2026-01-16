@@ -57,7 +57,7 @@ namespace Tests.Controllers
                 new() { Id = 2, Title = "Event B", StartDate = DateTime.UtcNow.AddDays(1) }
             };
             var pagedResult = new PagedResult<EventDto>(events, 2, 1, 20);
-            _mockEventService.Setup(s => s.GetAllEventsAsync(It.IsAny<PaginationParams>())).ReturnsAsync(pagedResult);
+            _mockEventService.Setup(s => s.GetAllEventsAsync(It.IsAny<PaginationParams>(), It.IsAny<string?>())).ReturnsAsync(pagedResult);
 
             // Act
             var pagination = new PaginationParams();
@@ -82,7 +82,7 @@ namespace Tests.Controllers
         {
             // Arrange
             var eventDto = new EventDto { Id = 1, Title = "Test Event", StartDate = DateTime.UtcNow };
-            _mockEventService.Setup(s => s.GetEventByIdAsync(1)).ReturnsAsync(eventDto);
+            _mockEventService.Setup(s => s.GetEventByIdAsync(1, It.IsAny<string?>())).ReturnsAsync(eventDto);
 
             // Act
             var result = await _controller.GetEvent(1);
@@ -99,7 +99,7 @@ namespace Tests.Controllers
         public async Task GetEvent_ReturnsNotFound_WhenInvalidId()
         {
             // Arrange
-            _mockEventService.Setup(s => s.GetEventByIdAsync(999)).ReturnsAsync((EventDto?)null);
+            _mockEventService.Setup(s => s.GetEventByIdAsync(999, It.IsAny<string?>())).ReturnsAsync((EventDto?)null);
 
             // Act
             var result = await _controller.GetEvent(999);

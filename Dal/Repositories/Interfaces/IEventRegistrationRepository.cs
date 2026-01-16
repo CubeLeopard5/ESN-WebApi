@@ -1,3 +1,4 @@
+using Bo.Enums;
 using Bo.Models;
 
 namespace Dal.Repositories.Interfaces;
@@ -34,4 +35,32 @@ public interface IEventRegistrationRepository : IRepository<EventRegistrationBo>
     /// <param name="eventIds">Liste des IDs d'événements</param>
     /// <returns>Liste des inscriptions</returns>
     Task<IEnumerable<EventRegistrationBo>> GetByUserAndEventsAsync(int userId, int[] eventIds);
+
+    /// <summary>
+    /// Récupère toutes les inscriptions d'un événement avec les détails de présence
+    /// </summary>
+    /// <param name="eventId">ID de l'événement</param>
+    /// <returns>Inscriptions avec User et AttendanceValidatedBy</returns>
+    Task<IEnumerable<EventRegistrationBo>> GetByEventIdWithAttendanceAsync(int eventId);
+
+    /// <summary>
+    /// Récupère une inscription par son ID avec tous les détails
+    /// </summary>
+    /// <param name="registrationId">ID de l'inscription</param>
+    /// <returns>Inscription avec navigation properties</returns>
+    Task<EventRegistrationBo?> GetByIdWithDetailsAsync(int registrationId);
+
+    /// <summary>
+    /// Récupère les statistiques de présence pour un événement
+    /// </summary>
+    /// <param name="eventId">ID de l'événement</param>
+    /// <returns>Dictionnaire status -> count</returns>
+    Task<Dictionary<AttendanceStatus?, int>> GetAttendanceStatsAsync(int eventId);
+
+    /// <summary>
+    /// Récupère plusieurs inscriptions par leurs IDs en une seule requête (optimisation N+1)
+    /// </summary>
+    /// <param name="registrationIds">Liste des IDs d'inscriptions</param>
+    /// <returns>Dictionnaire id -> inscription</returns>
+    Task<Dictionary<int, EventRegistrationBo>> GetByIdsAsync(IEnumerable<int> registrationIds);
 }
