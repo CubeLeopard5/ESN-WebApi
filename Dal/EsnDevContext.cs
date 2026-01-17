@@ -24,6 +24,7 @@ public partial class EsnDevContext : DbContext
     public virtual DbSet<PropositionVoteBo> PropositionVotes { get; set; }
     public virtual DbSet<CalendarBo> Calendars { get; set; }
     public virtual DbSet<CalendarSubOrganizerBo> CalendarSubOrganizers { get; set; }
+    public virtual DbSet<EventFeedbackBo> EventFeedbacks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -52,6 +53,8 @@ public partial class EsnDevContext : DbContext
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
             entity.Property(e => e.EventfrogLink).IsUnicode(false);
             entity.Property(e => e.SurveyJsData).IsUnicode(false);
+            entity.Property(e => e.FeedbackFormData).IsUnicode(false);
+            entity.Property(e => e.FeedbackDeadline).HasColumnType("datetime");
             entity.Property(e => e.UserId).IsRequired();
 
             entity.HasOne(d => d.User)
@@ -285,6 +288,39 @@ public partial class EsnDevContext : DbContext
             entity.Property(e => e.SurveyJsData)
                 .IsUnicode(false)
                 .IsRequired();
+        });
+
+        modelBuilder.Entity<EventFeedbackBo>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__EventFeedback__3214EC07");
+
+            // Unique constraint: one user can submit only one feedback per event
+            entity.HasIndex(e => new { e.UserId, e.EventId }, "UQ_EventFeedback_User_Event")
+                .IsUnique();
+
+            entity.Property(e => e.FeedbackData)
+                .IsUnicode(false)
+                .IsRequired();
+
+            entity.Property(e => e.SubmittedAt)
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())")
+                .IsRequired();
+
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime");
+
+            entity.HasOne(d => d.Event)
+                .WithMany(p => p.Feedbacks)
+                .HasForeignKey(d => d.EventId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_EventFeedback_Events");
+
+            entity.HasOne(d => d.User)
+                .WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_EventFeedback_Users");
         });
 
         // Note: Initial data seeding is handled by Dal/Seeds/DatabaseSeeder.cs

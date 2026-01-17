@@ -138,6 +138,7 @@ builder.Services.AddScoped<Business.Interfaces.ICalendarService, CalendarService
 builder.Services.AddScoped<Business.Interfaces.IPropositionService, PropositionService>();
 builder.Services.AddScoped<Business.Interfaces.IUserService, UserService>();
 builder.Services.AddScoped<Business.Interfaces.IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<Business.Interfaces.IEventFeedbackService, Business.EventFeedback.EventFeedbackService>();
 builder.Services.AddScoped<Dal.Seeds.DatabaseSeeder>();
 
 // Configure Rate Limiting

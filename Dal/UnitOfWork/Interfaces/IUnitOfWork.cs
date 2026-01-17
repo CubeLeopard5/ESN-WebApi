@@ -18,6 +18,7 @@ public interface IUnitOfWork : IDisposable
     ICalendarSubOrganizerRepository CalendarSubOrganizers { get; }
     IRoleRepository Roles { get; }
     IPropositionVoteRepository PropositionVotes { get; }
+    IEventFeedbackRepository EventFeedbacks { get; }
 
     /// <summary>
     /// Sauvegarde tous les changements en une seule transaction

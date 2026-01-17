@@ -46,6 +46,16 @@ namespace Dto.Event
         /// </summary>
         public bool? IsCurrentUserRegistered { get; set; }
 
+        /// <summary>
+        /// JSON data for the feedback form (SurveyJS schema)
+        /// </summary>
+        public string? FeedbackFormData { get; set; }
+
+        /// <summary>
+        /// Deadline for submitting feedback
+        /// </summary>
+        public DateTime? FeedbackDeadline { get; set; }
+
         // Navigation properties (for GET responses)
         public UserDto? User { get; set; }
     }

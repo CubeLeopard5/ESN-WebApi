@@ -40,6 +40,9 @@ public class UnitOfWork(EsnDevContext context) : Interfaces.IUnitOfWork
     public IPropositionVoteRepository PropositionVotes =>
         field ??= new PropositionVoteRepository(context);
 
+    public IEventFeedbackRepository EventFeedbacks =>
+        field ??= new EventFeedbackRepository(context);
+
     public async Task<int> SaveChangesAsync()
     {
         return await context.SaveChangesAsync();

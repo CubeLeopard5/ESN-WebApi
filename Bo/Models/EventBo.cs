@@ -18,7 +18,23 @@ public partial class EventBo
     [MaxLength(100000)]
     public string? SurveyJsData { get; set; }
 
+    /// <summary>
+    /// Schéma du formulaire de feedback (JSON SurveyJS)
+    /// </summary>
+    [MaxLength(100000)]
+    public string? FeedbackFormData { get; set; }
+
+    /// <summary>
+    /// Date limite pour soumettre un feedback (null = pas de limite)
+    /// </summary>
+    public DateTime? FeedbackDeadline { get; set; }
+
     public virtual UserBo User { get; set; } = null!;
     public virtual ICollection<EventRegistrationBo> EventRegistrations { get; set; } = [];
     public virtual ICollection<CalendarBo> Calendars { get; set; } = [];
+
+    /// <summary>
+    /// Collection des feedbacks soumis pour cet événement
+    /// </summary>
+    public virtual ICollection<EventFeedbackBo> Feedbacks { get; set; } = [];
 }
