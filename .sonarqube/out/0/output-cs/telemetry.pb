@@ -1,1 +1,0 @@
-FR/C:\Users\micha\Projects\ESN-WebApi\Bo\Bo.csproj¢net10.0òCSharp14

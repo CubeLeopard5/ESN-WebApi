@@ -1,217 +1,0 @@
-π
-Dal.Seeds.DatabaseSeederobjectﬂ
-aDatabaseSeeder(Dal.EsnDevContext, Microsoft.Extensions.Logging.ILogger<Dal.Seeds.DatabaseSeeder>)zDal.Seeds.DatabaseSeeder.DatabaseSeeder(Dal.EsnDevContext, Microsoft.Extensions.Logging.ILogger<Dal.Seeds.DatabaseSeeder>)3
-SeedAsync()$Dal.Seeds.DatabaseSeeder.SeedAsync();
-%Dal.UnitOfWork.Interfaces.IUnitOfWorkSystem.IDisposable&
-$Dal.Specifications.ISpecification<T>]
-/Dal.Repositories.Interfaces.ICalendarRepository*Dal.Repositories.Interfaces.IRepository<T>i
-;Dal.Repositories.Interfaces.ICalendarSubOrganizerRepository*Dal.Repositories.Interfaces.IRepository<T>f
-8Dal.Repositories.Interfaces.IEventRegistrationRepository*Dal.Repositories.Interfaces.IRepository<T>Z
-,Dal.Repositories.Interfaces.IEventRepository*Dal.Repositories.Interfaces.IRepository<T>`
-2Dal.Repositories.Interfaces.IPropositionRepository*Dal.Repositories.Interfaces.IRepository<T>ü
-Dal.EsnDevContext'Microsoft.EntityFrameworkCore.DbContextobject4
-EsnDevContext()!Dal.EsnDevContext.EsnDevContext()∂
-PEsnDevContext(Microsoft.EntityFrameworkCore.DbContextOptions<Dal.EsnDevContext>)bDal.EsnDevContext.EsnDevContext(Microsoft.EntityFrameworkCore.DbContextOptions<Dal.EsnDevContext>)å
-;OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)MDal.EsnDevContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)ö
-BOnModelCreatingPartial(Microsoft.EntityFrameworkCore.ModelBuilder)TDal.EsnDevContext.OnModelCreatingPartial(Microsoft.EntityFrameworkCore.ModelBuilder)*
-
-Admins.getDal.EsnDevContext.Admins.get*
-
-Admins.setDal.EsnDevContext.Admins.set*
-
-Events.getDal.EsnDevContext.Events.get*
-
-Events.setDal.EsnDevContext.Events.setB
-EventRegistrations.get(Dal.EsnDevContext.EventRegistrations.getB
-EventRegistrations.set(Dal.EsnDevContext.EventRegistrations.set:
-EventTemplates.get$Dal.EsnDevContext.EventTemplates.get:
-EventTemplates.set$Dal.EsnDevContext.EventTemplates.set(
-	Users.getDal.EsnDevContext.Users.get(
-	Users.setDal.EsnDevContext.Users.set(
-	Roles.getDal.EsnDevContext.Roles.get(
-	Roles.setDal.EsnDevContext.Roles.set6
-Propositions.get"Dal.EsnDevContext.Propositions.get6
-Propositions.set"Dal.EsnDevContext.Propositions.set>
-PropositionVotes.get&Dal.EsnDevContext.PropositionVotes.get>
-PropositionVotes.set&Dal.EsnDevContext.PropositionVotes.set0
-Calendars.getDal.EsnDevContext.Calendars.get0
-Calendars.setDal.EsnDevContext.Calendars.setH
-CalendarSubOrganizers.get+Dal.EsnDevContext.CalendarSubOrganizers.getH
-CalendarSubOrganizers.set+Dal.EsnDevContext.CalendarSubOrganizers.setb
-4Dal.Repositories.Interfaces.IEventTemplateRepository*Dal.Repositories.Interfaces.IRepository<T>d
-6Dal.Repositories.Interfaces.IPropositionVoteRepository*Dal.Repositories.Interfaces.IRepository<T>,
-*Dal.Repositories.Interfaces.IRepository<T>ä
-1Dal.Migrations.AddUniqueConstraintCalendarEventId2Microsoft.EntityFrameworkCore.Migrations.Migrationobject∞
-=Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)oDal.Migrations.AddUniqueConstraintCalendarEventId.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)¥
-?Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)qDal.Migrations.AddUniqueConstraintCalendarEventId.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)Æ
-<BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)nDal.Migrations.AddUniqueConstraintCalendarEventId.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)~
-$AddUniqueConstraintCalendarEventId()VDal.Migrations.AddUniqueConstraintCalendarEventId.AddUniqueConstraintCalendarEventId()Y
-+Dal.Repositories.Interfaces.IUserRepository*Dal.Repositories.Interfaces.IRepository<T>Ø
-$Dal.Migrations.SeedRolesAndAdminUser2Microsoft.EntityFrameworkCore.Migrations.Migrationobject£
-=Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)bDal.Migrations.SeedRolesAndAdminUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)ß
-?Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)dDal.Migrations.SeedRolesAndAdminUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)°
-<BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)aDal.Migrations.SeedRolesAndAdminUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)W
-SeedRolesAndAdminUser()<Dal.Migrations.SeedRolesAndAdminUser.SeedRolesAndAdminUser()Y
-+Dal.Repositories.Interfaces.IRoleRepository*Dal.Repositories.Interfaces.IRepository<T>°
-"Dal.Migrations.AddUserStatusColumn2Microsoft.EntityFrameworkCore.Migrations.Migrationobject°
-=Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)`Dal.Migrations.AddUserStatusColumn.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)•
-?Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)bDal.Migrations.AddUserStatusColumn.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)ü
-<BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)_Dal.Migrations.AddUserStatusColumn.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)Q
-AddUserStatusColumn()8Dal.Migrations.AddUserStatusColumn.AddUserStatusColumn()À
-(Dal.Migrations.AddPropositionVotesManual2Microsoft.EntityFrameworkCore.Migrations.Migrationobjectß
-=Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)fDal.Migrations.AddPropositionVotesManual.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)´
-?Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)hDal.Migrations.AddPropositionVotesManual.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)•
-<BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)eDal.Migrations.AddPropositionVotesManual.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)c
-AddPropositionVotesManual()DDal.Migrations.AddPropositionVotesManual.AddPropositionVotesManual()Ω
-&Dal.Migrations.UpdateEventUserIdColumn2Microsoft.EntityFrameworkCore.Migrations.Migrationobject•
-=Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)dDal.Migrations.UpdateEventUserIdColumn.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)©
-?Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)fDal.Migrations.UpdateEventUserIdColumn.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)£
-<BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)cDal.Migrations.UpdateEventUserIdColumn.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)]
-UpdateEventUserIdColumn()@Dal.Migrations.UpdateEventUserIdColumn.UpdateEventUserIdColumn()Ù
-)Dal.Migrations.EsnDevContextModelSnapshot:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshotobjectö
-6BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)`Dal.Migrations.EsnDevContextModelSnapshot.BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)f
-EsnDevContextModelSnapshot()FDal.Migrations.EsnDevContextModelSnapshot.EsnDevContextModelSnapshot()Ö
-EDal.Specifications.EventSpecifications.EventsWithDetailsSpecification'Dal.Specifications.BaseSpecification<T>objectä
- EventsWithDetailsSpecification()fDal.Specifications.EventSpecifications.EventsWithDetailsSpecification.EventsWithDetailsSpecification()ë
-EDal.Specifications.EventSpecifications.EventsByUserEmailSpecification'Dal.Specifications.BaseSpecification<T>objectñ
-&EventsByUserEmailSpecification(string)lDal.Specifications.EventSpecifications.EventsByUserEmailSpecification.EventsByUserEmailSpecification(string)ó
-HDal.Specifications.EventSpecifications.EventByIdWithDetailsSpecification'Dal.Specifications.BaseSpecification<T>objectô
-&EventByIdWithDetailsSpecification(int)oDal.Specifications.EventSpecifications.EventByIdWithDetailsSpecification.EventByIdWithDetailsSpecification(int)°
-HDal.Specifications.EventSpecifications.EventsWithPaginationSpecification'Dal.Specifications.BaseSpecification<T>object£
-+EventsWithPaginationSpecification(int, int)tDal.Specifications.EventSpecifications.EventsWithPaginationSpecification.EventsWithPaginationSpecification(int, int)©
-'Dal.Specifications.BaseSpecification<T>object$Dal.Specifications.ISpecification<T>ƒ
-LBaseSpecification(System.Linq.Expressions.Expression<System.Func<T, bool>>?)tDal.Specifications.BaseSpecification<T>.BaseSpecification(System.Linq.Expressions.Expression<System.Func<T, bool>>?)∏
-FAddInclude(System.Linq.Expressions.Expression<System.Func<T, object>>)nDal.Specifications.BaseSpecification<T>.AddInclude(System.Linq.Expressions.Expression<System.Func<T, object>>)P
-AddInclude(string):Dal.Specifications.BaseSpecification<T>.AddInclude(string)º
-HApplyOrderBy(System.Linq.Expressions.Expression<System.Func<T, object>>)pDal.Specifications.BaseSpecification<T>.ApplyOrderBy(System.Linq.Expressions.Expression<System.Func<T, object>>)–
-RApplyOrderByDescending(System.Linq.Expressions.Expression<System.Func<T, object>>)zDal.Specifications.BaseSpecification<T>.ApplyOrderByDescending(System.Linq.Expressions.Expression<System.Func<T, object>>)V
-ApplyPaging(int, int)=Dal.Specifications.BaseSpecification<T>.ApplyPaging(int, int)D
-Criteria.get4Dal.Specifications.BaseSpecification<T>.Criteria.getD
-Criteria.set4Dal.Specifications.BaseSpecification<T>.Criteria.setD
-Includes.get4Dal.Specifications.BaseSpecification<T>.Includes.getD
-Includes.set4Dal.Specifications.BaseSpecification<T>.Includes.setP
-IncludeStrings.get:Dal.Specifications.BaseSpecification<T>.IncludeStrings.getP
-IncludeStrings.set:Dal.Specifications.BaseSpecification<T>.IncludeStrings.setB
-OrderBy.get3Dal.Specifications.BaseSpecification<T>.OrderBy.getB
-OrderBy.set3Dal.Specifications.BaseSpecification<T>.OrderBy.setV
-OrderByDescending.get=Dal.Specifications.BaseSpecification<T>.OrderByDescending.getV
-OrderByDescending.set=Dal.Specifications.BaseSpecification<T>.OrderByDescending.set<
-Skip.get0Dal.Specifications.BaseSpecification<T>.Skip.get<
-Skip.set0Dal.Specifications.BaseSpecification<T>.Skip.set<
-Take.get0Dal.Specifications.BaseSpecification<T>.Take.get<
-Take.set0Dal.Specifications.BaseSpecification<T>.Take.setR
-IsPagingEnabled.get;Dal.Specifications.BaseSpecification<T>.IsPagingEnabled.getR
-IsPagingEnabled.set;Dal.Specifications.BaseSpecification<T>.IsPagingEnabled.setÑ
-Dal.UnitOfWork.UnitOfWorkobject%Dal.UnitOfWork.Interfaces.IUnitOfWorkX
-UnitOfWork(Dal.EsnDevContext)7Dal.UnitOfWork.UnitOfWork.UnitOfWork(Dal.EsnDevContext)B
-SaveChangesAsync(),Dal.UnitOfWork.UnitOfWork.SaveChangesAsync()L
-BeginTransactionAsync()1Dal.UnitOfWork.UnitOfWork.BeginTransactionAsync()N
-CommitTransactionAsync()2Dal.UnitOfWork.UnitOfWork.CommitTransactionAsync()R
-RollbackTransactionAsync()4Dal.UnitOfWork.UnitOfWork.RollbackTransactionAsync()0
-	Dispose()#Dal.UnitOfWork.UnitOfWork.Dispose()2
-
-Events.get$Dal.UnitOfWork.UnitOfWork.Events.get2
-
-Events.set$Dal.UnitOfWork.UnitOfWork.Events.setB
-EventTemplates.get,Dal.UnitOfWork.UnitOfWork.EventTemplates.getB
-EventTemplates.set,Dal.UnitOfWork.UnitOfWork.EventTemplates.set0
-	Users.get#Dal.UnitOfWork.UnitOfWork.Users.get0
-	Users.set#Dal.UnitOfWork.UnitOfWork.Users.set8
-Calendars.get'Dal.UnitOfWork.UnitOfWork.Calendars.get8
-Calendars.set'Dal.UnitOfWork.UnitOfWork.Calendars.set>
-Propositions.get*Dal.UnitOfWork.UnitOfWork.Propositions.get>
-Propositions.set*Dal.UnitOfWork.UnitOfWork.Propositions.setJ
-EventRegistrations.get0Dal.UnitOfWork.UnitOfWork.EventRegistrations.getJ
-EventRegistrations.set0Dal.UnitOfWork.UnitOfWork.EventRegistrations.setP
-CalendarSubOrganizers.get3Dal.UnitOfWork.UnitOfWork.CalendarSubOrganizers.getP
-CalendarSubOrganizers.set3Dal.UnitOfWork.UnitOfWork.CalendarSubOrganizers.set0
-	Roles.get#Dal.UnitOfWork.UnitOfWork.Roles.get0
-	Roles.set#Dal.UnitOfWork.UnitOfWork.Roles.setF
-PropositionVotes.get.Dal.UnitOfWork.UnitOfWork.PropositionVotes.getF
-PropositionVotes.set.Dal.UnitOfWork.UnitOfWork.PropositionVotes.setè
-(Dal.Repositories.EventTemplateRepositoryDal.Repositories.Repository<T>object4Dal.Repositories.Interfaces.IEventTemplateRepositoryÅ
-*EventTemplateRepository(Dal.EsnDevContext)SDal.Repositories.EventTemplateRepository.EventTemplateRepository(Dal.EsnDevContext)i
-GetAllTemplatesWithUserAsync()GDal.Repositories.EventTemplateRepository.GetAllTemplatesWithUserAsync()Y
-GetAllTemplatesAsync()?Dal.Repositories.EventTemplateRepository.GetAllTemplatesAsync()g
-GetTemplateWithUserAsync(int)FDal.Repositories.EventTemplateRepository.GetTemplateWithUserAsync(int)u
-$GetTemplatesByUserEmailAsync(string)MDal.Repositories.EventTemplateRepository.GetTemplatesByUserEmailAsync(string)[
-GetPagedAsync(int, int)@Dal.Repositories.EventTemplateRepository.GetPagedAsync(int, int)€
-&Dal.Repositories.PropositionRepositoryDal.Repositories.Repository<T>object2Dal.Repositories.Interfaces.IPropositionRepository{
-(PropositionRepository(Dal.EsnDevContext)ODal.Repositories.PropositionRepository.PropositionRepository(Dal.EsnDevContext)y
-'GetActivePropositionsWithDetailsAsync()NDal.Repositories.PropositionRepository.GetActivePropositionsWithDetailsAsync()s
-$GetAllPropositionsWithDetailsAsync()KDal.Repositories.PropositionRepository.GetAllPropositionsWithDetailsAsync()}
-)GetActivePropositionWithDetailsAsync(int)PDal.Repositories.PropositionRepository.GetActivePropositionWithDetailsAsync(int)q
-#GetPropositionWithDetailsAsync(int)JDal.Repositories.PropositionRepository.GetPropositionWithDetailsAsync(int){
-(SoftDeleteAsync(Bo.Models.PropositionBo)ODal.Repositories.PropositionRepository.SoftDeleteAsync(Bo.Models.PropositionBo)Y
-GetPagedAsync(int, int)>Dal.Repositories.PropositionRepository.GetPagedAsync(int, int)ù
-9GetPagedWithFilterAsync(int, int, Bo.Enums.DeletedStatus)`Dal.Repositories.PropositionRepository.GetPagedWithFilterAsync(int, int, Bo.Enums.DeletedStatus)π
-,Dal.Repositories.EventRegistrationRepositoryDal.Repositories.Repository<T>object8Dal.Repositories.Interfaces.IEventRegistrationRepositoryç
-.EventRegistrationRepository(Dal.EsnDevContext)[Dal.Repositories.EventRegistrationRepository.EventRegistrationRepository(Dal.EsnDevContext)]
-GetByEventIdAsync(int)CDal.Repositories.EventRegistrationRepository.GetByEventIdAsync(int)[
-GetByUserIdAsync(int)BDal.Repositories.EventRegistrationRepository.GetByUserIdAsync(int)o
-IsUserRegisteredAsync(int, int)LDal.Repositories.EventRegistrationRepository.IsUserRegisteredAsync(int, int)q
- GetByEventAndUserAsync(int, int)MDal.Repositories.EventRegistrationRepository.GetByEventAndUserAsync(int, int)w
-#GetByUserAndEventsAsync(int, int[])PDal.Repositories.EventRegistrationRepository.GetByUserAndEventsAsync(int, int[])Í
-Dal.Repositories.Repository<T>object*Dal.Repositories.Interfaces.IRepository<T>]
-Repository(Dal.EsnDevContext)<Dal.Repositories.Repository<T>.Repository(Dal.EsnDevContext)E
-GetByIdAsync(int)0Dal.Repositories.Repository<T>.GetByIdAsync(int)=
-GetAllAsync(),Dal.Repositories.Repository<T>.GetAllAsync()©
-CFindAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)bDal.Repositories.Repository<T>.FindAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)Ω
-MFirstOrDefaultAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)lDal.Repositories.Repository<T>.FirstOrDefaultAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)≠
-ECountAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>?)dDal.Repositories.Repository<T>.CountAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>?)ß
-BAnyAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)aDal.Repositories.Repository<T>.AnyAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)£
-@FindWithSpecificationAsync(Dal.Specifications.ISpecification<T>)_Dal.Repositories.Repository<T>.FindWithSpecificationAsync(Dal.Specifications.ISpecification<T>)∑
-JFirstOrDefaultWithSpecificationAsync(Dal.Specifications.ISpecification<T>)iDal.Repositories.Repository<T>.FirstOrDefaultWithSpecificationAsync(Dal.Specifications.ISpecification<T>)•
-ACountWithSpecificationAsync(Dal.Specifications.ISpecification<T>)`Dal.Repositories.Repository<T>.CountWithSpecificationAsync(Dal.Specifications.ISpecification<T>)9
-AddAsync(T)*Dal.Repositories.Repository<T>.AddAsync(T)ì
-8AddRangeAsync(System.Collections.Generic.IEnumerable<T>)WDal.Repositories.Repository<T>.AddRangeAsync(System.Collections.Generic.IEnumerable<T>)5
-	Update(T)(Dal.Repositories.Repository<T>.Update(T)è
-6UpdateRange(System.Collections.Generic.IEnumerable<T>)UDal.Repositories.Repository<T>.UpdateRange(System.Collections.Generic.IEnumerable<T>)5
-	Delete(T)(Dal.Repositories.Repository<T>.Delete(T)è
-6DeleteRange(System.Collections.Generic.IEnumerable<T>)UDal.Repositories.Repository<T>.DeleteRange(System.Collections.Generic.IEnumerable<T>)ú
-#Dal.Repositories.CalendarRepositoryDal.Repositories.Repository<T>object/Dal.Repositories.Interfaces.ICalendarRepositoryr
-%CalendarRepository(Dal.EsnDevContext)IDal.Repositories.CalendarRepository.CalendarRepository(Dal.EsnDevContext)j
-!GetAllCalendarsWithDetailsAsync()EDal.Repositories.CalendarRepository.GetAllCalendarsWithDetailsAsync()h
- GetCalendarWithDetailsAsync(int)DDal.Repositories.CalendarRepository.GetCalendarWithDetailsAsync(int)h
- GetCalendarsByEventIdAsync(int?)DDal.Repositories.CalendarRepository.GetCalendarsByEventIdAsync(int?)d
-GetCalendarByEventIdAsync(int)BDal.Repositories.CalendarRepository.GetCalendarByEventIdAsync(int)f
-GetCalendarsWithoutEventAsync()CDal.Repositories.CalendarRepository.GetCalendarsWithoutEventAsync()V
-GetPagedAsync(int, int);Dal.Repositories.CalendarRepository.GetPagedAsync(int, int)^
-GetCalendarSimpleAsync(int)?Dal.Repositories.CalendarRepository.GetCalendarSimpleAsync(int)b
-GetPagedSimpleAsync(int, int)ADal.Repositories.CalendarRepository.GetPagedSimpleAsync(int, int)ê
- Dal.Repositories.EventRepositoryDal.Repositories.Repository<T>object,Dal.Repositories.Interfaces.IEventRepositoryi
-"EventRepository(Dal.EsnDevContext)CDal.Repositories.EventRepository.EventRepository(Dal.EsnDevContext)a
-GetAllEventsWithDetailsAsync()?Dal.Repositories.EventRepository.GetAllEventsWithDetailsAsync()[
-GetAllEventsForAdminAsync()<Dal.Repositories.EventRepository.GetAllEventsForAdminAsync()_
-GetEventsPagedAsync(int, int)>Dal.Repositories.EventRepository.GetEventsPagedAsync(int, int)_
-GetEventWithDetailsAsync(int)>Dal.Repositories.EventRepository.GetEventWithDetailsAsync(int)g
-!GetEventsByUserEmailAsync(string)BDal.Repositories.EventRepository.GetEventsByUserEmailAsync(string)a
-GetRegistrationAsync(int, int)?Dal.Repositories.EventRepository.GetRegistrationAsync(int, int)]
-GetRegisteredCountAsync(int)=Dal.Repositories.EventRepository.GetRegisteredCountAsync(int)ÿ
-Dal.Repositories.RoleRepositoryDal.Repositories.Repository<T>object+Dal.Repositories.Interfaces.IRoleRepositoryf
-!RoleRepository(Dal.EsnDevContext)ADal.Repositories.RoleRepository.RoleRepository(Dal.EsnDevContext)P
-GetByNameAsync(string)6Dal.Repositories.RoleRepository.GetByNameAsync(string)N
-GetActiveRolesAsync()5Dal.Repositories.RoleRepository.GetActiveRolesAsync()V
-ExistsByNameAsync(string)9Dal.Repositories.RoleRepository.ExistsByNameAsync(string)Ê
-Dal.Repositories.UserRepositoryDal.Repositories.Repository<T>object+Dal.Repositories.Interfaces.IUserRepositoryf
-!UserRepository(Dal.EsnDevContext)ADal.Repositories.UserRepository.UserRepository(Dal.EsnDevContext)R
-GetByEmailAsync(string)7Dal.Repositories.UserRepository.GetByEmailAsync(string)b
-GetByEmailWithRoleAsync(string)?Dal.Repositories.UserRepository.GetByEmailWithRoleAsync(string)V
-GetUserWithRoleAsync(int)9Dal.Repositories.UserRepository.GetUserWithRoleAsync(int)L
-GetEsnMembersAsync()4Dal.Repositories.UserRepository.GetEsnMembersAsync()T
-EmailExistsAsync(string)8Dal.Repositories.UserRepository.EmailExistsAsync(string)R
-GetPagedAsync(int, int)7Dal.Repositories.UserRepository.GetPagedAsync(int, int)’
-/Dal.Repositories.CalendarSubOrganizerRepositoryDal.Repositories.Repository<T>object;Dal.Repositories.Interfaces.ICalendarSubOrganizerRepositoryñ
-1CalendarSubOrganizerRepository(Dal.EsnDevContext)aDal.Repositories.CalendarSubOrganizerRepository.CalendarSubOrganizerRepository(Dal.EsnDevContext)f
-GetByCalendarIdAsync(int)IDal.Repositories.CalendarSubOrganizerRepository.GetByCalendarIdAsync(int)^
-GetByUserIdAsync(int)EDal.Repositories.CalendarSubOrganizerRepository.GetByUserIdAsync(int)n
-IsSubOrganizerAsync(int, int)MDal.Repositories.CalendarSubOrganizerRepository.IsSubOrganizerAsync(int, int)l
-DeleteByCalendarIdAsync(int)LDal.Repositories.CalendarSubOrganizerRepository.DeleteByCalendarIdAsync(int)›
-*Dal.Repositories.PropositionVoteRepositoryDal.Repositories.Repository<T>object6Dal.Repositories.Interfaces.IPropositionVoteRepositoryá
-,PropositionVoteRepository(Dal.EsnDevContext)WDal.Repositories.PropositionVoteRepository.PropositionVoteRepository(Dal.EsnDevContext)g
-GetByPropositionIdAsync(int)GDal.Repositories.PropositionVoteRepository.GetByPropositionIdAsync(int)Y
-GetByUserIdAsync(int)@Dal.Repositories.PropositionVoteRepository.GetByUserIdAsync(int){
-&GetByPropositionAndUserAsync(int, int)QDal.Repositories.PropositionVoteRepository.GetByPropositionAndUserAsync(int, int)[
-CountUpVotesAsync(int)ADal.Repositories.PropositionVoteRepository.CountUpVotesAsync(int)_
-CountDownVotesAsync(int)CDal.Repositories.PropositionVoteRepository.CountDownVotesAsync(int)≈
-KGetUserVotesForPropositionsAsync(int, System.Collections.Generic.List<int>)vDal.Repositories.PropositionVoteRepository.GetUserVotesForPropositionsAsync(int, System.Collections.Generic.List<int>)

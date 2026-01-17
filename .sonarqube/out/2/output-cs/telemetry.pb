@@ -1,1 +1,0 @@
-HR1C:\Users\micha\Projects\ESN-WebApi\Dal\Dal.csproj¢net10.0òCSharp14

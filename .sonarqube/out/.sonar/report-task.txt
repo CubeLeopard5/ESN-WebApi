@@ -1,7 +1,0 @@
-organization=cubeleopard5
-projectKey=CubeLeopard5_ESN-WebApi
-serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.78371
-dashboardUrl=https://sonarcloud.io/dashboard?id=CubeLeopard5_ESN-WebApi
-ceTaskId=AZu98EQEGO73JMxp7mvZ
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZu98EQEGO73JMxp7mvZ

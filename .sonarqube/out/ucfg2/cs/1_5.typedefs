@@ -1,352 +1,0 @@
-≠
-Dto.Calendar.CalendarCreateDtoobjectI
-CalendarCreateDto()2Dto.Calendar.CalendarCreateDto.CalendarCreateDto()5
-	Title.get(Dto.Calendar.CalendarCreateDto.Title.get5
-	Title.set(Dto.Calendar.CalendarCreateDto.Title.set=
-EventDate.get,Dto.Calendar.CalendarCreateDto.EventDate.get=
-EventDate.set,Dto.Calendar.CalendarCreateDto.EventDate.set9
-EventId.get*Dto.Calendar.CalendarCreateDto.EventId.get9
-EventId.set*Dto.Calendar.CalendarCreateDto.EventId.setI
-MainOrganizerId.get2Dto.Calendar.CalendarCreateDto.MainOrganizerId.getI
-MainOrganizerId.set2Dto.Calendar.CalendarCreateDto.MainOrganizerId.setG
-EventManagerId.get1Dto.Calendar.CalendarCreateDto.EventManagerId.getG
-EventManagerId.set1Dto.Calendar.CalendarCreateDto.EventManagerId.setK
-ResponsableComId.get3Dto.Calendar.CalendarCreateDto.ResponsableComId.getK
-ResponsableComId.set3Dto.Calendar.CalendarCreateDto.ResponsableComId.setI
-SubOrganizerIds.get2Dto.Calendar.CalendarCreateDto.SubOrganizerIds.getI
-SubOrganizerIds.set2Dto.Calendar.CalendarCreateDto.SubOrganizerIds.setØ
-,Dto.EventTemplate.CreateEventFromTemplateDtoobjecti
-CreateEventFromTemplateDto()IDto.EventTemplate.CreateEventFromTemplateDto.CreateEventFromTemplateDto()M
-TemplateId.get;Dto.EventTemplate.CreateEventFromTemplateDto.TemplateId.getM
-TemplateId.set;Dto.EventTemplate.CreateEventFromTemplateDto.TemplateId.setC
-	Title.get6Dto.EventTemplate.CreateEventFromTemplateDto.Title.getC
-	Title.set6Dto.EventTemplate.CreateEventFromTemplateDto.Title.setO
-Description.get<Dto.EventTemplate.CreateEventFromTemplateDto.Description.getO
-Description.set<Dto.EventTemplate.CreateEventFromTemplateDto.Description.setI
-Location.get9Dto.EventTemplate.CreateEventFromTemplateDto.Location.getI
-Location.set9Dto.EventTemplate.CreateEventFromTemplateDto.Location.setK
-StartDate.get:Dto.EventTemplate.CreateEventFromTemplateDto.StartDate.getK
-StartDate.set:Dto.EventTemplate.CreateEventFromTemplateDto.StartDate.setG
-EndDate.get8Dto.EventTemplate.CreateEventFromTemplateDto.EndDate.getG
-EndDate.set8Dto.EventTemplate.CreateEventFromTemplateDto.EndDate.setW
-MaxParticipants.get@Dto.EventTemplate.CreateEventFromTemplateDto.MaxParticipants.getW
-MaxParticipants.set@Dto.EventTemplate.CreateEventFromTemplateDto.MaxParticipants.setS
-EventfrogLink.get>Dto.EventTemplate.CreateEventFromTemplateDto.EventfrogLink.getS
-EventfrogLink.set>Dto.EventTemplate.CreateEventFromTemplateDto.EventfrogLink.setQ
-SurveyJsData.get=Dto.EventTemplate.CreateEventFromTemplateDto.SurveyJsData.getQ
-SurveyJsData.set=Dto.EventTemplate.CreateEventFromTemplateDto.SurveyJsData.set˜
-Dto.Calendar.CalendarDtoobject7
-CalendarDto()&Dto.Calendar.CalendarDto.CalendarDto())
-Id.getDto.Calendar.CalendarDto.Id.get)
-Id.setDto.Calendar.CalendarDto.Id.set/
-	Title.get"Dto.Calendar.CalendarDto.Title.get/
-	Title.set"Dto.Calendar.CalendarDto.Title.set7
-EventDate.get&Dto.Calendar.CalendarDto.EventDate.get7
-EventDate.set&Dto.Calendar.CalendarDto.EventDate.set3
-EventId.get$Dto.Calendar.CalendarDto.EventId.get3
-EventId.set$Dto.Calendar.CalendarDto.EventId.set/
-	Event.get"Dto.Calendar.CalendarDto.Event.get/
-	Event.set"Dto.Calendar.CalendarDto.Event.setC
-MainOrganizerId.get,Dto.Calendar.CalendarDto.MainOrganizerId.getC
-MainOrganizerId.set,Dto.Calendar.CalendarDto.MainOrganizerId.set?
-MainOrganizer.get*Dto.Calendar.CalendarDto.MainOrganizer.get?
-MainOrganizer.set*Dto.Calendar.CalendarDto.MainOrganizer.setA
-EventManagerId.get+Dto.Calendar.CalendarDto.EventManagerId.getA
-EventManagerId.set+Dto.Calendar.CalendarDto.EventManagerId.set=
-EventManager.get)Dto.Calendar.CalendarDto.EventManager.get=
-EventManager.set)Dto.Calendar.CalendarDto.EventManager.setE
-ResponsableComId.get-Dto.Calendar.CalendarDto.ResponsableComId.getE
-ResponsableComId.set-Dto.Calendar.CalendarDto.ResponsableComId.setA
-ResponsableCom.get+Dto.Calendar.CalendarDto.ResponsableCom.getA
-ResponsableCom.set+Dto.Calendar.CalendarDto.ResponsableCom.set?
-SubOrganizers.get*Dto.Calendar.CalendarDto.SubOrganizers.get?
-SubOrganizers.set*Dto.Calendar.CalendarDto.SubOrganizers.setÀ
-(Dto.EventTemplate.CreateEventTemplateDtoobject]
-CreateEventTemplateDto()ADto.EventTemplate.CreateEventTemplateDto.CreateEventTemplateDto()?
-	Title.get2Dto.EventTemplate.CreateEventTemplateDto.Title.get?
-	Title.set2Dto.EventTemplate.CreateEventTemplateDto.Title.setK
-Description.get8Dto.EventTemplate.CreateEventTemplateDto.Description.getK
-Description.set8Dto.EventTemplate.CreateEventTemplateDto.Description.setM
-SurveyJsData.get9Dto.EventTemplate.CreateEventTemplateDto.SurveyJsData.getM
-SurveyJsData.set9Dto.EventTemplate.CreateEventTemplateDto.SurveyJsData.setˇ
-"Dto.EventTemplate.EventTemplateDtoobjectK
-EventTemplateDto()5Dto.EventTemplate.EventTemplateDto.EventTemplateDto()3
-Id.get)Dto.EventTemplate.EventTemplateDto.Id.get3
-Id.set)Dto.EventTemplate.EventTemplateDto.Id.set9
-	Title.get,Dto.EventTemplate.EventTemplateDto.Title.get9
-	Title.set,Dto.EventTemplate.EventTemplateDto.Title.setE
-Description.get2Dto.EventTemplate.EventTemplateDto.Description.getE
-Description.set2Dto.EventTemplate.EventTemplateDto.Description.setA
-CreatedAt.get0Dto.EventTemplate.EventTemplateDto.CreatedAt.getA
-CreatedAt.set0Dto.EventTemplate.EventTemplateDto.CreatedAt.setG
-SurveyJsData.get3Dto.EventTemplate.EventTemplateDto.SurveyJsData.getG
-SurveyJsData.set3Dto.EventTemplate.EventTemplateDto.SurveyJsData.set´
-Dto.PropositionDtoobject7
-PropositionDto()#Dto.PropositionDto.PropositionDto()#
-Id.getDto.PropositionDto.Id.get#
-Id.setDto.PropositionDto.Id.set)
-	Title.getDto.PropositionDto.Title.get)
-	Title.setDto.PropositionDto.Title.set5
-Description.get"Dto.PropositionDto.Description.get5
-Description.set"Dto.PropositionDto.Description.set1
-CreatedAt.get Dto.PropositionDto.CreatedAt.get1
-CreatedAt.set Dto.PropositionDto.CreatedAt.set+
-
-UserId.getDto.PropositionDto.UserId.get+
-
-UserId.setDto.PropositionDto.UserId.set'
-User.getDto.PropositionDto.User.get'
-User.setDto.PropositionDto.User.set-
-VotesUp.getDto.PropositionDto.VotesUp.get-
-VotesUp.setDto.PropositionDto.VotesUp.set1
-VotesDown.get Dto.PropositionDto.VotesDown.get1
-VotesDown.set Dto.PropositionDto.VotesDown.set7
-UserVoteType.get#Dto.PropositionDto.UserVoteType.get7
-UserVoteType.set#Dto.PropositionDto.UserVoteType.setá	
-Dto.Event.CreateEventDtoobject=
-CreateEventDto())Dto.Event.CreateEventDto.CreateEventDto()/
-	Title.get"Dto.Event.CreateEventDto.Title.get/
-	Title.set"Dto.Event.CreateEventDto.Title.set;
-Description.get(Dto.Event.CreateEventDto.Description.get;
-Description.set(Dto.Event.CreateEventDto.Description.set5
-Location.get%Dto.Event.CreateEventDto.Location.get5
-Location.set%Dto.Event.CreateEventDto.Location.set7
-StartDate.get&Dto.Event.CreateEventDto.StartDate.get7
-StartDate.set&Dto.Event.CreateEventDto.StartDate.set3
-EndDate.get$Dto.Event.CreateEventDto.EndDate.get3
-EndDate.set$Dto.Event.CreateEventDto.EndDate.setC
-MaxParticipants.get,Dto.Event.CreateEventDto.MaxParticipants.getC
-MaxParticipants.set,Dto.Event.CreateEventDto.MaxParticipants.set?
-EventfrogLink.get*Dto.Event.CreateEventDto.EventfrogLink.get?
-EventfrogLink.set*Dto.Event.CreateEventDto.EventfrogLink.set=
-SurveyJsData.get)Dto.Event.CreateEventDto.SurveyJsData.get=
-SurveyJsData.set)Dto.Event.CreateEventDto.SurveyJsData.set9
-CalendarId.get'Dto.Event.CreateEventDto.CalendarId.get9
-CalendarId.set'Dto.Event.CreateEventDto.CalendarId.set˚
-Dto.Event.EventDtoobject+
-
-EventDto()Dto.Event.EventDto.EventDto()#
-Id.getDto.Event.EventDto.Id.get#
-Id.setDto.Event.EventDto.Id.set)
-	Title.getDto.Event.EventDto.Title.get)
-	Title.setDto.Event.EventDto.Title.set5
-Description.get"Dto.Event.EventDto.Description.get5
-Description.set"Dto.Event.EventDto.Description.set/
-Location.getDto.Event.EventDto.Location.get/
-Location.setDto.Event.EventDto.Location.set1
-StartDate.get Dto.Event.EventDto.StartDate.get1
-StartDate.set Dto.Event.EventDto.StartDate.set-
-EndDate.getDto.Event.EventDto.EndDate.get-
-EndDate.setDto.Event.EventDto.EndDate.set=
-MaxParticipants.get&Dto.Event.EventDto.MaxParticipants.get=
-MaxParticipants.set&Dto.Event.EventDto.MaxParticipants.set9
-EventfrogLink.get$Dto.Event.EventDto.EventfrogLink.get9
-EventfrogLink.set$Dto.Event.EventDto.EventfrogLink.set7
-SurveyJsData.get#Dto.Event.EventDto.SurveyJsData.get7
-SurveyJsData.set#Dto.Event.EventDto.SurveyJsData.set3
-CalendarId.get!Dto.Event.EventDto.CalendarId.get3
-CalendarId.set!Dto.Event.EventDto.CalendarId.set+
-
-UserId.getDto.Event.EventDto.UserId.get+
-
-UserId.setDto.Event.EventDto.UserId.set1
-CreatedAt.get Dto.Event.EventDto.CreatedAt.get1
-CreatedAt.set Dto.Event.EventDto.CreatedAt.set=
-RegisteredCount.get&Dto.Event.EventDto.RegisteredCount.get=
-RegisteredCount.set&Dto.Event.EventDto.RegisteredCount.setM
-IsCurrentUserRegistered.get.Dto.Event.EventDto.IsCurrentUserRegistered.getM
-IsCurrentUserRegistered.set.Dto.Event.EventDto.IsCurrentUserRegistered.set'
-User.getDto.Event.EventDto.User.get'
-User.setDto.Event.EventDto.User.setÉ
-$Dto.Proposition.PropositionFilterDtoobjectU
-PropositionFilterDto();Dto.Proposition.PropositionFilterDto.PropositionFilterDto()=
-
-Status.get/Dto.Proposition.PropositionFilterDto.Status.get=
-
-Status.set/Dto.Proposition.PropositionFilterDto.Status.setΩ
-Dto.User.RejectUserDtoobject9
-RejectUserDto()&Dto.User.RejectUserDto.RejectUserDto()/
-
-Reason.get!Dto.User.RejectUserDto.Reason.get/
-
-Reason.set!Dto.User.RejectUserDto.Reason.set≠
-Dto.Calendar.CalendarUpdateDtoobjectI
-CalendarUpdateDto()2Dto.Calendar.CalendarUpdateDto.CalendarUpdateDto()5
-	Title.get(Dto.Calendar.CalendarUpdateDto.Title.get5
-	Title.set(Dto.Calendar.CalendarUpdateDto.Title.set=
-EventDate.get,Dto.Calendar.CalendarUpdateDto.EventDate.get=
-EventDate.set,Dto.Calendar.CalendarUpdateDto.EventDate.set9
-EventId.get*Dto.Calendar.CalendarUpdateDto.EventId.get9
-EventId.set*Dto.Calendar.CalendarUpdateDto.EventId.setI
-MainOrganizerId.get2Dto.Calendar.CalendarUpdateDto.MainOrganizerId.getI
-MainOrganizerId.set2Dto.Calendar.CalendarUpdateDto.MainOrganizerId.setG
-EventManagerId.get1Dto.Calendar.CalendarUpdateDto.EventManagerId.getG
-EventManagerId.set1Dto.Calendar.CalendarUpdateDto.EventManagerId.setK
-ResponsableComId.get3Dto.Calendar.CalendarUpdateDto.ResponsableComId.getK
-ResponsableComId.set3Dto.Calendar.CalendarUpdateDto.ResponsableComId.setI
-SubOrganizerIds.get2Dto.Calendar.CalendarUpdateDto.SubOrganizerIds.getI
-SubOrganizerIds.set2Dto.Calendar.CalendarUpdateDto.SubOrganizerIds.setÀ
-Dto.Event.EventRegistrationDtoobjectO
-EventRegistrationDto()5Dto.Event.EventRegistrationDto.EventRegistrationDto()/
-Id.get%Dto.Event.EventRegistrationDto.Id.get/
-Id.set%Dto.Event.EventRegistrationDto.Id.setC
-RegisteredAt.get/Dto.Event.EventRegistrationDto.RegisteredAt.getC
-RegisteredAt.set/Dto.Event.EventRegistrationDto.RegisteredAt.set7
-
-Status.get)Dto.Event.EventRegistrationDto.Status.get7
-
-Status.set)Dto.Event.EventRegistrationDto.Status.setC
-SurveyJsData.get/Dto.Event.EventRegistrationDto.SurveyJsData.getC
-SurveyJsData.set/Dto.Event.EventRegistrationDto.SurveyJsData.set3
-User.get'Dto.Event.EventRegistrationDto.User.get3
-User.set'Dto.Event.EventRegistrationDto.User.set’
-Dto.User.UserCreateDtoobject9
-UserCreateDto()&Dto.User.UserCreateDto.UserCreateDto()-
-	Email.get Dto.User.UserCreateDto.Email.get-
-	Email.set Dto.User.UserCreateDto.Email.set3
-Password.get#Dto.User.UserCreateDto.Password.get3
-Password.set#Dto.User.UserCreateDto.Password.set5
-FirstName.get$Dto.User.UserCreateDto.FirstName.get5
-FirstName.set$Dto.User.UserCreateDto.FirstName.set3
-LastName.get#Dto.User.UserCreateDto.LastName.get3
-LastName.set#Dto.User.UserCreateDto.LastName.set5
-BirthDate.get$Dto.User.UserCreateDto.BirthDate.get5
-BirthDate.set$Dto.User.UserCreateDto.BirthDate.set9
-PhoneNumber.get&Dto.User.UserCreateDto.PhoneNumber.get9
-PhoneNumber.set&Dto.User.UserCreateDto.PhoneNumber.set9
-StudentType.get&Dto.User.UserCreateDto.StudentType.get9
-StudentType.set&Dto.User.UserCreateDto.StudentType.setø
-Dto.Common.PaginationParamsobjectD
-PaginationParams().Dto.Common.PaginationParams.PaginationParams()<
-PageNumber.get*Dto.Common.PaginationParams.PageNumber.get<
-PageNumber.set*Dto.Common.PaginationParams.PageNumber.set8
-PageSize.get(Dto.Common.PaginationParams.PageSize.get8
-PageSize.set(Dto.Common.PaginationParams.PageSize.set0
-Skip.get$Dto.Common.PaginationParams.Skip.get0
-Skip.set$Dto.Common.PaginationParams.Skip.set°
-#Dto.Event.EventWithRegistrationsDtoobject^
-EventWithRegistrationsDto()?Dto.Event.EventWithRegistrationsDto.EventWithRegistrationsDto()4
-Id.get*Dto.Event.EventWithRegistrationsDto.Id.get4
-Id.set*Dto.Event.EventWithRegistrationsDto.Id.set:
-	Title.get-Dto.Event.EventWithRegistrationsDto.Title.get:
-	Title.set-Dto.Event.EventWithRegistrationsDto.Title.setF
-Description.get3Dto.Event.EventWithRegistrationsDto.Description.getF
-Description.set3Dto.Event.EventWithRegistrationsDto.Description.set@
-Location.get0Dto.Event.EventWithRegistrationsDto.Location.get@
-Location.set0Dto.Event.EventWithRegistrationsDto.Location.setB
-StartDate.get1Dto.Event.EventWithRegistrationsDto.StartDate.getB
-StartDate.set1Dto.Event.EventWithRegistrationsDto.StartDate.set>
-EndDate.get/Dto.Event.EventWithRegistrationsDto.EndDate.get>
-EndDate.set/Dto.Event.EventWithRegistrationsDto.EndDate.setN
-MaxParticipants.get7Dto.Event.EventWithRegistrationsDto.MaxParticipants.getN
-MaxParticipants.set7Dto.Event.EventWithRegistrationsDto.MaxParticipants.setJ
-EventfrogLink.get5Dto.Event.EventWithRegistrationsDto.EventfrogLink.getJ
-EventfrogLink.set5Dto.Event.EventWithRegistrationsDto.EventfrogLink.setH
-SurveyJsData.get4Dto.Event.EventWithRegistrationsDto.SurveyJsData.getH
-SurveyJsData.set4Dto.Event.EventWithRegistrationsDto.SurveyJsData.setB
-CreatedAt.get1Dto.Event.EventWithRegistrationsDto.CreatedAt.getB
-CreatedAt.set1Dto.Event.EventWithRegistrationsDto.CreatedAt.setB
-Organizer.get1Dto.Event.EventWithRegistrationsDto.Organizer.getB
-Organizer.set1Dto.Event.EventWithRegistrationsDto.Organizer.setJ
-Registrations.get5Dto.Event.EventWithRegistrationsDto.Registrations.getJ
-Registrations.set5Dto.Event.EventWithRegistrationsDto.Registrations.setN
-TotalRegistered.get7Dto.Event.EventWithRegistrationsDto.TotalRegistered.getN
-TotalRegistered.set7Dto.Event.EventWithRegistrationsDto.TotalRegistered.setõ
-Dto.User.UserLoginDtoobject6
-UserLoginDto()$Dto.User.UserLoginDto.UserLoginDto(),
-	Email.getDto.User.UserLoginDto.Email.get,
-	Email.setDto.User.UserLoginDto.Email.set2
-Password.get"Dto.User.UserLoginDto.Password.get2
-Password.set"Dto.User.UserLoginDto.Password.setÅ	
-Dto.User.UserDtoobject'
-	UserDto()Dto.User.UserDto.UserDto()!
-Id.getDto.User.UserDto.Id.get!
-Id.setDto.User.UserDto.Id.set'
-	Email.getDto.User.UserDto.Email.get'
-	Email.setDto.User.UserDto.Email.set/
-FirstName.getDto.User.UserDto.FirstName.get/
-FirstName.setDto.User.UserDto.FirstName.set-
-LastName.getDto.User.UserDto.LastName.get-
-LastName.setDto.User.UserDto.LastName.set/
-BirthDate.getDto.User.UserDto.BirthDate.get/
-BirthDate.setDto.User.UserDto.BirthDate.set3
-PhoneNumber.get Dto.User.UserDto.PhoneNumber.get3
-PhoneNumber.set Dto.User.UserDto.PhoneNumber.set7
-EsnCardNumber.get"Dto.User.UserDto.EsnCardNumber.get7
-EsnCardNumber.set"Dto.User.UserDto.EsnCardNumber.set9
-UniversityName.get#Dto.User.UserDto.UniversityName.get9
-UniversityName.set#Dto.User.UserDto.UniversityName.set3
-StudentType.get Dto.User.UserDto.StudentType.get3
-StudentType.set Dto.User.UserDto.StudentType.set7
-TransportPass.get"Dto.User.UserDto.TransportPass.get7
-TransportPass.set"Dto.User.UserDto.TransportPass.set)
-
-Status.getDto.User.UserDto.Status.get)
-
-Status.setDto.User.UserDto.Status.setÀ
-Dto.User.UserLoginResponseDtoobjectN
-UserLoginResponseDto()4Dto.User.UserLoginResponseDto.UserLoginResponseDto()4
-	Token.get'Dto.User.UserLoginResponseDto.Token.get4
-	Token.set'Dto.User.UserLoginResponseDto.Token.set2
-User.get&Dto.User.UserLoginResponseDto.User.get2
-User.set&Dto.User.UserLoginResponseDto.User.setÎ
-Dto.Event.RegisterEventDtoobjectC
-RegisterEventDto()-Dto.Event.RegisterEventDto.RegisterEventDto()?
-SurveyJsData.get+Dto.Event.RegisterEventDto.SurveyJsData.get?
-SurveyJsData.set+Dto.Event.RegisterEventDto.SurveyJsData.setá
-Dto.User.UserPasswordChangeDtoobjectQ
-UserPasswordChangeDto()6Dto.User.UserPasswordChangeDto.UserPasswordChangeDto()A
-OldPassword.get.Dto.User.UserPasswordChangeDto.OldPassword.getA
-OldPassword.set.Dto.User.UserPasswordChangeDto.OldPassword.setA
-NewPassword.get.Dto.User.UserPasswordChangeDto.NewPassword.getA
-NewPassword.set.Dto.User.UserPasswordChangeDto.NewPassword.setÛ
-Dto.User.UserUpdateDtoobject9
-UserUpdateDto()&Dto.User.UserUpdateDto.UserUpdateDto()-
-	Email.get Dto.User.UserUpdateDto.Email.get-
-	Email.set Dto.User.UserUpdateDto.Email.set5
-FirstName.get$Dto.User.UserUpdateDto.FirstName.get5
-FirstName.set$Dto.User.UserUpdateDto.FirstName.set3
-LastName.get#Dto.User.UserUpdateDto.LastName.get3
-LastName.set#Dto.User.UserUpdateDto.LastName.set5
-BirthDate.get$Dto.User.UserUpdateDto.BirthDate.get5
-BirthDate.set$Dto.User.UserUpdateDto.BirthDate.set9
-PhoneNumber.get&Dto.User.UserUpdateDto.PhoneNumber.get9
-PhoneNumber.set&Dto.User.UserUpdateDto.PhoneNumber.set=
-EsnCardNumber.get(Dto.User.UserUpdateDto.EsnCardNumber.get=
-EsnCardNumber.set(Dto.User.UserUpdateDto.EsnCardNumber.set?
-UniversityName.get)Dto.User.UserUpdateDto.UniversityName.get?
-UniversityName.set)Dto.User.UserUpdateDto.UniversityName.set=
-TransportPass.get(Dto.User.UserUpdateDto.TransportPass.get=
-TransportPass.set(Dto.User.UserUpdateDto.TransportPass.setÏ
-Dto.Common.ErrorResponseobject;
-ErrorResponse()(Dto.Common.ErrorResponse.ErrorResponse()c
-#ErrorResponse(int, string, string?)<Dto.Common.ErrorResponse.ErrorResponse(int, string, string?)9
-StatusCode.get'Dto.Common.ErrorResponse.StatusCode.get9
-StatusCode.set'Dto.Common.ErrorResponse.StatusCode.set3
-Message.get$Dto.Common.ErrorResponse.Message.get3
-Message.set$Dto.Common.ErrorResponse.Message.set3
-Details.get$Dto.Common.ErrorResponse.Details.get3
-Details.set$Dto.Common.ErrorResponse.Details.set7
-Timestamp.get&Dto.Common.ErrorResponse.Timestamp.get7
-Timestamp.set&Dto.Common.ErrorResponse.Timestamp.set-
-Path.get!Dto.Common.ErrorResponse.Path.get-
-Path.set!Dto.Common.ErrorResponse.Path.setE
-ValidationErrors.get-Dto.Common.ErrorResponse.ValidationErrors.getE
-ValidationErrors.set-Dto.Common.ErrorResponse.ValidationErrors.setû
-Dto.Common.PagedResult<T>objectö
->PagedResult(System.Collections.Generic.List<T>, int, int, int)XDto.Common.PagedResult<T>.PagedResult(System.Collections.Generic.List<T>, int, int, int)8
-PagedResult()'Dto.Common.PagedResult<T>.PagedResult()0
-	Items.get#Dto.Common.PagedResult<T>.Items.get0
-	Items.set#Dto.Common.PagedResult<T>.Items.set:
-PageNumber.get(Dto.Common.PagedResult<T>.PageNumber.get:
-PageNumber.set(Dto.Common.PagedResult<T>.PageNumber.set6
-PageSize.get&Dto.Common.PagedResult<T>.PageSize.get6
-PageSize.set&Dto.Common.PagedResult<T>.PageSize.set:
-TotalCount.get(Dto.Common.PagedResult<T>.TotalCount.get:
-TotalCount.set(Dto.Common.PagedResult<T>.TotalCount.set:
-TotalPages.get(Dto.Common.PagedResult<T>.TotalPages.get:
-TotalPages.set(Dto.Common.PagedResult<T>.TotalPages.set<
-HasPrevious.get)Dto.Common.PagedResult<T>.HasPrevious.get<
-HasPrevious.set)Dto.Common.PagedResult<T>.HasPrevious.set4
-HasNext.get%Dto.Common.PagedResult<T>.HasNext.get4
-HasNext.set%Dto.Common.PagedResult<T>.HasNext.set

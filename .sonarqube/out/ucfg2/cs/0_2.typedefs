@@ -1,245 +1,0 @@
-z
-Bo.Enums.DeletedStatusSystem.EnumSystem.ValueTypeobject9
-DeletedStatus()&Bo.Enums.DeletedStatus.DeletedStatus()n
-Bo.Enums.UserStatusSystem.EnumSystem.ValueTypeobject0
-UserStatus() Bo.Enums.UserStatus.UserStatus()r
-Bo.Enums.StudentTypeSystem.EnumSystem.ValueTypeobject3
-StudentType()"Bo.Enums.StudentType.StudentType()≈
-
-Bo.Models.PropositionBoobject:
-PropositionBo()'Bo.Models.PropositionBo.PropositionBo()(
-Id.getBo.Models.PropositionBo.Id.get(
-Id.setBo.Models.PropositionBo.Id.set.
-	Title.get!Bo.Models.PropositionBo.Title.get.
-	Title.set!Bo.Models.PropositionBo.Title.set:
-Description.get'Bo.Models.PropositionBo.Description.get:
-Description.set'Bo.Models.PropositionBo.Description.set0
-
-UserId.get"Bo.Models.PropositionBo.UserId.get0
-
-UserId.set"Bo.Models.PropositionBo.UserId.set6
-CreatedAt.get%Bo.Models.PropositionBo.CreatedAt.get6
-CreatedAt.set%Bo.Models.PropositionBo.CreatedAt.set8
-ModifiedAt.get&Bo.Models.PropositionBo.ModifiedAt.get8
-ModifiedAt.set&Bo.Models.PropositionBo.ModifiedAt.set6
-DeletedAt.get%Bo.Models.PropositionBo.DeletedAt.get6
-DeletedAt.set%Bo.Models.PropositionBo.DeletedAt.set2
-VotesUp.get#Bo.Models.PropositionBo.VotesUp.get2
-VotesUp.set#Bo.Models.PropositionBo.VotesUp.set6
-VotesDown.get%Bo.Models.PropositionBo.VotesDown.get6
-VotesDown.set%Bo.Models.PropositionBo.VotesDown.set6
-IsDeleted.get%Bo.Models.PropositionBo.IsDeleted.get6
-IsDeleted.set%Bo.Models.PropositionBo.IsDeleted.set,
-User.get Bo.Models.PropositionBo.User.get,
-User.set Bo.Models.PropositionBo.User.set.
-	Votes.get!Bo.Models.PropositionBo.Votes.get.
-	Votes.set!Bo.Models.PropositionBo.Votes.set≠
-Bo.Models.CalendarBoobject1
-CalendarBo()!Bo.Models.CalendarBo.CalendarBo()%
-Id.getBo.Models.CalendarBo.Id.get%
-Id.setBo.Models.CalendarBo.Id.set+
-	Title.getBo.Models.CalendarBo.Title.get+
-	Title.setBo.Models.CalendarBo.Title.set3
-EventDate.get"Bo.Models.CalendarBo.EventDate.get3
-EventDate.set"Bo.Models.CalendarBo.EventDate.set/
-EventId.get Bo.Models.CalendarBo.EventId.get/
-EventId.set Bo.Models.CalendarBo.EventId.set?
-MainOrganizerId.get(Bo.Models.CalendarBo.MainOrganizerId.get?
-MainOrganizerId.set(Bo.Models.CalendarBo.MainOrganizerId.set=
-EventManagerId.get'Bo.Models.CalendarBo.EventManagerId.get=
-EventManagerId.set'Bo.Models.CalendarBo.EventManagerId.setA
-ResponsableComId.get)Bo.Models.CalendarBo.ResponsableComId.getA
-ResponsableComId.set)Bo.Models.CalendarBo.ResponsableComId.set+
-	Event.getBo.Models.CalendarBo.Event.get+
-	Event.setBo.Models.CalendarBo.Event.set;
-MainOrganizer.get&Bo.Models.CalendarBo.MainOrganizer.get;
-MainOrganizer.set&Bo.Models.CalendarBo.MainOrganizer.set9
-EventManager.get%Bo.Models.CalendarBo.EventManager.get9
-EventManager.set%Bo.Models.CalendarBo.EventManager.set=
-ResponsableCom.get'Bo.Models.CalendarBo.ResponsableCom.get=
-ResponsableCom.set'Bo.Models.CalendarBo.ResponsableCom.setK
-CalendarSubOrganizers.get.Bo.Models.CalendarBo.CalendarSubOrganizers.getK
-CalendarSubOrganizers.set.Bo.Models.CalendarBo.CalendarSubOrganizers.setç
-Bo.Models.EventRegistrationBoobjectL
-EventRegistrationBo()3Bo.Models.EventRegistrationBo.EventRegistrationBo().
-Id.get$Bo.Models.EventRegistrationBo.Id.get.
-Id.set$Bo.Models.EventRegistrationBo.Id.set6
-
-UserId.get(Bo.Models.EventRegistrationBo.UserId.get6
-
-UserId.set(Bo.Models.EventRegistrationBo.UserId.set8
-EventId.get)Bo.Models.EventRegistrationBo.EventId.get8
-EventId.set)Bo.Models.EventRegistrationBo.EventId.setB
-SurveyJsData.get.Bo.Models.EventRegistrationBo.SurveyJsData.getB
-SurveyJsData.set.Bo.Models.EventRegistrationBo.SurveyJsData.setB
-RegisteredAt.get.Bo.Models.EventRegistrationBo.RegisteredAt.getB
-RegisteredAt.set.Bo.Models.EventRegistrationBo.RegisteredAt.set6
-
-Status.get(Bo.Models.EventRegistrationBo.Status.get6
-
-Status.set(Bo.Models.EventRegistrationBo.Status.set4
-	Event.get'Bo.Models.EventRegistrationBo.Event.get4
-	Event.set'Bo.Models.EventRegistrationBo.Event.set2
-User.get&Bo.Models.EventRegistrationBo.User.get2
-User.set&Bo.Models.EventRegistrationBo.User.setÈ
- Bo.Models.CalendarSubOrganizerBoobjectU
-CalendarSubOrganizerBo()9Bo.Models.CalendarSubOrganizerBo.CalendarSubOrganizerBo()A
-CalendarId.get/Bo.Models.CalendarSubOrganizerBo.CalendarId.getA
-CalendarId.set/Bo.Models.CalendarSubOrganizerBo.CalendarId.set9
-
-UserId.get+Bo.Models.CalendarSubOrganizerBo.UserId.get9
-
-UserId.set+Bo.Models.CalendarSubOrganizerBo.UserId.set=
-Calendar.get-Bo.Models.CalendarSubOrganizerBo.Calendar.get=
-Calendar.set-Bo.Models.CalendarSubOrganizerBo.Calendar.set5
-User.get)Bo.Models.CalendarSubOrganizerBo.User.get5
-User.set)Bo.Models.CalendarSubOrganizerBo.User.setë
-Bo.Models.EventTemplateBoobject@
-EventTemplateBo()+Bo.Models.EventTemplateBo.EventTemplateBo()*
-Id.get Bo.Models.EventTemplateBo.Id.get*
-Id.set Bo.Models.EventTemplateBo.Id.set0
-	Title.get#Bo.Models.EventTemplateBo.Title.get0
-	Title.set#Bo.Models.EventTemplateBo.Title.set<
-Description.get)Bo.Models.EventTemplateBo.Description.get<
-Description.set)Bo.Models.EventTemplateBo.Description.set8
-CreatedAt.get'Bo.Models.EventTemplateBo.CreatedAt.get8
-CreatedAt.set'Bo.Models.EventTemplateBo.CreatedAt.set>
-SurveyJsData.get*Bo.Models.EventTemplateBo.SurveyJsData.get>
-SurveyJsData.set*Bo.Models.EventTemplateBo.SurveyJsData.setÂ
-Bo.Models.AdminBoobject(
-	AdminBo()Bo.Models.AdminBo.AdminBo()"
-Id.getBo.Models.AdminBo.Id.get"
-Id.setBo.Models.AdminBo.Id.set(
-	Email.getBo.Models.AdminBo.Email.get(
-	Email.setBo.Models.AdminBo.Email.set6
-PasswordHash.get"Bo.Models.AdminBo.PasswordHash.get6
-PasswordHash.set"Bo.Models.AdminBo.PasswordHash.set0
-FirstName.getBo.Models.AdminBo.FirstName.get0
-FirstName.setBo.Models.AdminBo.FirstName.set.
-LastName.getBo.Models.AdminBo.LastName.get.
-LastName.setBo.Models.AdminBo.LastName.set0
-CreatedAt.getBo.Models.AdminBo.CreatedAt.get0
-CreatedAt.setBo.Models.AdminBo.CreatedAt.set4
-LastLoginAt.get!Bo.Models.AdminBo.LastLoginAt.get4
-LastLoginAt.set!Bo.Models.AdminBo.LastLoginAt.set≈
-Bo.Models.EventBoobject(
-	EventBo()Bo.Models.EventBo.EventBo()"
-Id.getBo.Models.EventBo.Id.get"
-Id.setBo.Models.EventBo.Id.set(
-	Title.getBo.Models.EventBo.Title.get(
-	Title.setBo.Models.EventBo.Title.set4
-Description.get!Bo.Models.EventBo.Description.get4
-Description.set!Bo.Models.EventBo.Description.set.
-Location.getBo.Models.EventBo.Location.get.
-Location.setBo.Models.EventBo.Location.set0
-StartDate.getBo.Models.EventBo.StartDate.get0
-StartDate.setBo.Models.EventBo.StartDate.set,
-EndDate.getBo.Models.EventBo.EndDate.get,
-EndDate.setBo.Models.EventBo.EndDate.set<
-MaxParticipants.get%Bo.Models.EventBo.MaxParticipants.get<
-MaxParticipants.set%Bo.Models.EventBo.MaxParticipants.set8
-EventfrogLink.get#Bo.Models.EventBo.EventfrogLink.get8
-EventfrogLink.set#Bo.Models.EventBo.EventfrogLink.set*
-
-UserId.getBo.Models.EventBo.UserId.get*
-
-UserId.setBo.Models.EventBo.UserId.set0
-CreatedAt.getBo.Models.EventBo.CreatedAt.get0
-CreatedAt.setBo.Models.EventBo.CreatedAt.set6
-SurveyJsData.get"Bo.Models.EventBo.SurveyJsData.get6
-SurveyJsData.set"Bo.Models.EventBo.SurveyJsData.set&
-User.getBo.Models.EventBo.User.get&
-User.setBo.Models.EventBo.User.setB
-EventRegistrations.get(Bo.Models.EventBo.EventRegistrations.getB
-EventRegistrations.set(Bo.Models.EventBo.EventRegistrations.set0
-Calendars.getBo.Models.EventBo.Calendars.get0
-Calendars.setBo.Models.EventBo.Calendars.setÖ
-Bo.Models.PropositionVoteBoobjectF
-PropositionVoteBo()/Bo.Models.PropositionVoteBo.PropositionVoteBo(),
-Id.get"Bo.Models.PropositionVoteBo.Id.get,
-Id.set"Bo.Models.PropositionVoteBo.Id.setB
-PropositionId.get-Bo.Models.PropositionVoteBo.PropositionId.getB
-PropositionId.set-Bo.Models.PropositionVoteBo.PropositionId.set4
-
-UserId.get&Bo.Models.PropositionVoteBo.UserId.get4
-
-UserId.set&Bo.Models.PropositionVoteBo.UserId.set8
-VoteType.get(Bo.Models.PropositionVoteBo.VoteType.get8
-VoteType.set(Bo.Models.PropositionVoteBo.VoteType.set:
-CreatedAt.get)Bo.Models.PropositionVoteBo.CreatedAt.get:
-CreatedAt.set)Bo.Models.PropositionVoteBo.CreatedAt.set:
-UpdatedAt.get)Bo.Models.PropositionVoteBo.UpdatedAt.get:
-UpdatedAt.set)Bo.Models.PropositionVoteBo.UpdatedAt.set>
-Proposition.get+Bo.Models.PropositionVoteBo.Proposition.get>
-Proposition.set+Bo.Models.PropositionVoteBo.Proposition.set0
-User.get$Bo.Models.PropositionVoteBo.User.get0
-User.set$Bo.Models.PropositionVoteBo.User.seth
-Bo.Models.VoteTypeSystem.EnumSystem.ValueTypeobject+
-
-VoteType()Bo.Models.VoteType.VoteType()˜
-Bo.Models.RoleBoobject%
-RoleBo()Bo.Models.RoleBo.RoleBo()!
-Id.getBo.Models.RoleBo.Id.get!
-Id.setBo.Models.RoleBo.Id.set%
-Name.getBo.Models.RoleBo.Name.get%
-Name.setBo.Models.RoleBo.Name.set;
-CanCreateEvents.get$Bo.Models.RoleBo.CanCreateEvents.get;
-CanCreateEvents.set$Bo.Models.RoleBo.CanCreateEvents.set;
-CanModifyEvents.get$Bo.Models.RoleBo.CanModifyEvents.get;
-CanModifyEvents.set$Bo.Models.RoleBo.CanModifyEvents.set;
-CanDeleteEvents.get$Bo.Models.RoleBo.CanDeleteEvents.get;
-CanDeleteEvents.set$Bo.Models.RoleBo.CanDeleteEvents.set9
-CanCreateUsers.get#Bo.Models.RoleBo.CanCreateUsers.get9
-CanCreateUsers.set#Bo.Models.RoleBo.CanCreateUsers.set9
-CanModifyUsers.get#Bo.Models.RoleBo.CanModifyUsers.get9
-CanModifyUsers.set#Bo.Models.RoleBo.CanModifyUsers.set9
-CanDeleteUsers.get#Bo.Models.RoleBo.CanDeleteUsers.get9
-CanDeleteUsers.set#Bo.Models.RoleBo.CanDeleteUsers.set'
-	Users.getBo.Models.RoleBo.Users.get'
-	Users.setBo.Models.RoleBo.Users.setß
-Bo.Models.UserBoobject%
-UserBo()Bo.Models.UserBo.UserBo()!
-Id.getBo.Models.UserBo.Id.get!
-Id.setBo.Models.UserBo.Id.set'
-	Email.getBo.Models.UserBo.Email.get'
-	Email.setBo.Models.UserBo.Email.set5
-PasswordHash.get!Bo.Models.UserBo.PasswordHash.get5
-PasswordHash.set!Bo.Models.UserBo.PasswordHash.set/
-FirstName.getBo.Models.UserBo.FirstName.get/
-FirstName.setBo.Models.UserBo.FirstName.set-
-LastName.getBo.Models.UserBo.LastName.get-
-LastName.setBo.Models.UserBo.LastName.set/
-BirthDate.getBo.Models.UserBo.BirthDate.get/
-BirthDate.setBo.Models.UserBo.BirthDate.set3
-PhoneNumber.get Bo.Models.UserBo.PhoneNumber.get3
-PhoneNumber.set Bo.Models.UserBo.PhoneNumber.set7
-EsnCardNumber.get"Bo.Models.UserBo.EsnCardNumber.get7
-EsnCardNumber.set"Bo.Models.UserBo.EsnCardNumber.set9
-UniversityName.get#Bo.Models.UserBo.UniversityName.get9
-UniversityName.set#Bo.Models.UserBo.UniversityName.set3
-StudentType.get Bo.Models.UserBo.StudentType.get3
-StudentType.set Bo.Models.UserBo.StudentType.set7
-TransportPass.get"Bo.Models.UserBo.TransportPass.get7
-TransportPass.set"Bo.Models.UserBo.TransportPass.set/
-CreatedAt.getBo.Models.UserBo.CreatedAt.get/
-CreatedAt.setBo.Models.UserBo.CreatedAt.set3
-LastLoginAt.get Bo.Models.UserBo.LastLoginAt.get3
-LastLoginAt.set Bo.Models.UserBo.LastLoginAt.set)
-
-Status.getBo.Models.UserBo.Status.get)
-
-Status.setBo.Models.UserBo.Status.set)
-
-RoleId.getBo.Models.UserBo.RoleId.get)
-
-RoleId.setBo.Models.UserBo.RoleId.set%
-Role.getBo.Models.UserBo.Role.get%
-Role.setBo.Models.UserBo.Role.setA
-EventRegistrations.get'Bo.Models.UserBo.EventRegistrations.getA
-EventRegistrations.set'Bo.Models.UserBo.EventRegistrations.set5
-Propositions.get!Bo.Models.UserBo.Propositions.get5
-Propositions.set!Bo.Models.UserBo.Propositions.set)
-
-Events.getBo.Models.UserBo.Events.get)
-
-Events.setBo.Models.UserBo.Events.set
