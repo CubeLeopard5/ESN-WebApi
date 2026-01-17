@@ -49,12 +49,19 @@ public class RequestLoggingMiddlewareTests
         };
         var identity = new ClaimsIdentity(claims, "TestAuth");
         _httpContext.User = new ClaimsPrincipal(identity);
+        var completed = false;
 
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            completed = true;
+            return Task.CompletedTask;
+        });
 
-        // Act & Assert - should not throw
+        // Act
         await middleware.Invoke(_httpContext);
-        Assert.IsTrue(true);
+
+        // Assert
+        Assert.IsTrue(completed, "Middleware should complete without throwing");
     }
 
     [TestMethod]
@@ -62,23 +69,38 @@ public class RequestLoggingMiddlewareTests
     {
         // Arrange
         _httpContext.User = new ClaimsPrincipal();
+        var completed = false;
 
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            completed = true;
+            return Task.CompletedTask;
+        });
 
-        // Act & Assert - should not throw
+        // Act
         await middleware.Invoke(_httpContext);
-        Assert.IsTrue(true);
+
+        // Assert
+        Assert.IsTrue(completed, "Middleware should complete without throwing");
     }
 
     [TestMethod]
     public async Task Invoke_WithNoUser_ShouldNotThrow()
     {
         // Arrange
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var completed = false;
 
-        // Act & Assert - should not throw
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            completed = true;
+            return Task.CompletedTask;
+        });
+
+        // Act
         await middleware.Invoke(_httpContext);
-        Assert.IsTrue(true);
+
+        // Assert
+        Assert.IsTrue(completed, "Middleware should complete without throwing");
     }
 
     [TestMethod]
@@ -91,12 +113,19 @@ public class RequestLoggingMiddlewareTests
         };
         var identity = new ClaimsIdentity(claims, "TestAuth");
         _httpContext.User = new ClaimsPrincipal(identity);
+        var completed = false;
 
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            completed = true;
+            return Task.CompletedTask;
+        });
 
-        // Act & Assert - should not throw
+        // Act
         await middleware.Invoke(_httpContext);
-        Assert.IsTrue(true);
+
+        // Assert
+        Assert.IsTrue(completed, "Middleware should complete without throwing");
     }
 
     [TestMethod]
@@ -109,12 +138,19 @@ public class RequestLoggingMiddlewareTests
         };
         var identity = new ClaimsIdentity(claims, "TestAuth");
         _httpContext.User = new ClaimsPrincipal(identity);
+        var completed = false;
 
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            completed = true;
+            return Task.CompletedTask;
+        });
 
-        // Act & Assert - should not throw
+        // Act
         await middleware.Invoke(_httpContext);
-        Assert.IsTrue(true);
+
+        // Assert
+        Assert.IsTrue(completed, "Middleware should complete without throwing");
     }
 
     [TestMethod]
@@ -140,17 +176,22 @@ public class RequestLoggingMiddlewareTests
     {
         // Arrange
         var methods = new[] { "GET", "POST", "PUT", "DELETE", "PATCH" };
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var invokeCount = 0;
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            invokeCount++;
+            return Task.CompletedTask;
+        });
 
+        // Act
         foreach (var method in methods)
         {
             _httpContext.Request.Method = method;
-
-            // Act & Assert - should not throw
             await middleware.Invoke(_httpContext);
         }
 
-        Assert.IsTrue(true);
+        // Assert
+        Assert.AreEqual(methods.Length, invokeCount, "Middleware should be invoked for each HTTP method");
     }
 
     [TestMethod]
@@ -158,17 +199,22 @@ public class RequestLoggingMiddlewareTests
     {
         // Arrange
         var paths = new[] { "/api/users", "/api/events/123", "/health", "/" };
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var invokeCount = 0;
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            invokeCount++;
+            return Task.CompletedTask;
+        });
 
+        // Act
         foreach (var path in paths)
         {
             _httpContext.Request.Path = path;
-
-            // Act & Assert - should not throw
             await middleware.Invoke(_httpContext);
         }
 
-        Assert.IsTrue(true);
+        // Assert
+        Assert.AreEqual(paths.Length, invokeCount, "Middleware should be invoked for each path");
     }
 
     [TestMethod]
@@ -176,10 +222,17 @@ public class RequestLoggingMiddlewareTests
     {
         // Arrange
         _httpContext.Connection.RemoteIpAddress = System.Net.IPAddress.Parse("127.0.0.1");
-        var middleware = new RequestLoggingMiddleware(context => Task.CompletedTask);
+        var completed = false;
+        var middleware = new RequestLoggingMiddleware(context =>
+        {
+            completed = true;
+            return Task.CompletedTask;
+        });
 
-        // Act & Assert - should not throw
+        // Act
         await middleware.Invoke(_httpContext);
-        Assert.IsTrue(true);
+
+        // Assert
+        Assert.IsTrue(completed, "Middleware should complete without throwing");
     }
 }

@@ -157,8 +157,8 @@ public class UnitOfWorkTests
         // Act
         await _unitOfWork.BeginTransactionAsync();
 
-        // Assert - no exception should be thrown
-        Assert.IsTrue(true);
+        // Assert - verify we can commit without error (transaction was started)
+        await _unitOfWork.CommitTransactionAsync();
     }
 
     [TestMethod]
@@ -219,27 +219,34 @@ public class UnitOfWorkTests
     [TestMethod]
     public async Task CommitTransactionAsync_WithoutTransaction_ShouldNotThrow()
     {
-        // Act & Assert - should not throw
+        // Act - should not throw even without a transaction
         await _unitOfWork.CommitTransactionAsync();
-        Assert.IsTrue(true);
+
+        // Assert - verify unit of work is still functional after commit without transaction
+        var repository = _unitOfWork.Users;
+        Assert.IsNotNull(repository);
     }
 
     [TestMethod]
     public async Task RollbackTransactionAsync_WithoutTransaction_ShouldNotThrow()
     {
-        // Act & Assert - should not throw
+        // Act - should not throw even without a transaction
         await _unitOfWork.RollbackTransactionAsync();
-        Assert.IsTrue(true);
+
+        // Assert - verify unit of work is still functional after rollback without transaction
+        var repository = _unitOfWork.Users;
+        Assert.IsNotNull(repository);
     }
 
     [TestMethod]
-    public void Dispose_ShouldDisposeContext()
+    public void Dispose_ShouldBeIdempotent()
     {
-        // Act
+        // Act - call Dispose multiple times
+        _unitOfWork.Dispose();
         _unitOfWork.Dispose();
 
-        // Assert - should not throw when calling Dispose again (idempotent)
-        _unitOfWork.Dispose();
-        Assert.IsTrue(true, "Dispose should be idempotent and not throw on multiple calls");
+        // Assert - second dispose should not throw, proving idempotency
+        // If we got here without exception, the test passes
+        Assert.IsNotNull(_unitOfWork);
     }
 }

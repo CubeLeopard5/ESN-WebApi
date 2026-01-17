@@ -20,61 +20,66 @@ public class ValidateIdMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        // Vérifier si la route contient un paramètre "id"
-        if (context.Request.RouteValues.TryGetValue("id", out var idValue))
-        {
-            // Tenter de convertir en int
-            if (int.TryParse(idValue?.ToString(), out var id))
-            {
-                if (id <= 0)
-                {
-                    _logger.LogWarning("Invalid ID {Id} rejected for path {Path}", id, context.Request.Path);
+        // Valider le paramètre "id" principal
+        if (await TryRejectInvalidIdAsync(context, "id"))
+            return;
 
-                    context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                    context.Response.ContentType = "application/json";
-
-                    var errorResponse = new
-                    {
-                        error = "Invalid ID",
-                        message = "The ID must be a positive integer greater than zero.",
-                        id = id
-                    };
-
-                    await context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
-                    return;
-                }
-            }
-        }
-
-        // Vérifier d'autres paramètres d'ID courants (eventId, userId, calendarId, etc.)
-        foreach (var routeKey in context.Request.RouteValues.Keys)
-        {
-            if (routeKey.EndsWith("Id", StringComparison.OrdinalIgnoreCase) && routeKey != "id")
-            {
-                if (context.Request.RouteValues.TryGetValue(routeKey, out var value))
-                {
-                    if (int.TryParse(value?.ToString(), out var paramId) && paramId <= 0)
-                    {
-                        _logger.LogWarning("Invalid {ParameterName} {Id} rejected for path {Path}",
-                            routeKey, paramId, context.Request.Path);
-
-                        context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                        context.Response.ContentType = "application/json";
-
-                        var errorResponse = new
-                        {
-                            error = $"Invalid {routeKey}",
-                            message = $"The {routeKey} must be a positive integer greater than zero.",
-                            value = paramId
-                        };
-
-                        await context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
-                        return;
-                    }
-                }
-            }
-        }
+        // Valider les autres paramètres d'ID (eventId, userId, calendarId, etc.)
+        if (await TryRejectInvalidIdParametersAsync(context))
+            return;
 
         await _next(context);
+    }
+
+    private async Task<bool> TryRejectInvalidIdAsync(HttpContext context, string parameterName)
+    {
+        if (!context.Request.RouteValues.TryGetValue(parameterName, out var idValue))
+            return false;
+
+        if (!int.TryParse(idValue?.ToString(), out var id))
+            return false;
+
+        if (id > 0)
+            return false;
+
+        await WriteInvalidIdResponseAsync(context, parameterName, id);
+        return true;
+    }
+
+    private async Task<bool> TryRejectInvalidIdParametersAsync(HttpContext context)
+    {
+        foreach (var routeKey in context.Request.RouteValues.Keys)
+        {
+            if (!IsIdParameter(routeKey))
+                continue;
+
+            if (await TryRejectInvalidIdAsync(context, routeKey))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool IsIdParameter(string routeKey)
+    {
+        return routeKey.EndsWith("Id", StringComparison.OrdinalIgnoreCase) && routeKey != "id";
+    }
+
+    private async Task WriteInvalidIdResponseAsync(HttpContext context, string parameterName, int id)
+    {
+        _logger.LogWarning("Invalid {ParameterName} {Id} rejected for path {Path}",
+            parameterName, id, context.Request.Path);
+
+        context.Response.StatusCode = StatusCodes.Status400BadRequest;
+        context.Response.ContentType = "application/json";
+
+        var errorResponse = new
+        {
+            error = $"Invalid {parameterName}",
+            message = $"The {parameterName} must be a positive integer greater than zero.",
+            value = id
+        };
+
+        await context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
     }
 }

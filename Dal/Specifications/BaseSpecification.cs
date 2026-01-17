@@ -27,7 +27,7 @@ public abstract class BaseSpecification<T>(Expression<Func<T, bool>>? criteria =
     /// <summary>
     /// Ajoute un include
     /// </summary>
-    protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
+    protected void AddInclude(Expression<Func<T, object>> includeExpression)
     {
         Includes.Add(includeExpression);
     }
@@ -35,7 +35,7 @@ public abstract class BaseSpecification<T>(Expression<Func<T, bool>>? criteria =
     /// <summary>
     /// Ajoute un include sous forme de chaîne
     /// </summary>
-    protected virtual void AddInclude(string includeString)
+    protected void AddInclude(string includeString)
     {
         IncludeStrings.Add(includeString);
     }
@@ -43,7 +43,7 @@ public abstract class BaseSpecification<T>(Expression<Func<T, bool>>? criteria =
     /// <summary>
     /// Ajoute un tri ascendant
     /// </summary>
-    protected virtual void ApplyOrderBy(Expression<Func<T, object>> orderByExpression)
+    protected void ApplyOrderBy(Expression<Func<T, object>> orderByExpression)
     {
         OrderBy = orderByExpression;
     }
@@ -51,7 +51,7 @@ public abstract class BaseSpecification<T>(Expression<Func<T, bool>>? criteria =
     /// <summary>
     /// Ajoute un tri descendant
     /// </summary>
-    protected virtual void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
+    protected void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
     {
         OrderByDescending = orderByDescendingExpression;
     }
@@ -59,7 +59,7 @@ public abstract class BaseSpecification<T>(Expression<Func<T, bool>>? criteria =
     /// <summary>
     /// Active la pagination
     /// </summary>
-    protected virtual void ApplyPaging(int skip, int take)
+    protected void ApplyPaging(int skip, int take)
     {
         Skip = skip;
         Take = take;

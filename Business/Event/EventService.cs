@@ -228,78 +228,20 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
             id, eventDto.Title, userEmail);
 
         var existing = await unitOfWork.Events.GetEventWithDetailsAsync(id);
-
         if (existing == null)
         {
             logger.LogWarning("EventService.UpdateEventAsync - Event {Id} not found", id);
             return null;
         }
 
-        // Check if the current user is the event creator or an esn_member
-        var currentUser = await unitOfWork.Users.GetByEmailAsync(userEmail);
-        if (currentUser == null || (existing.UserId != currentUser.Id && currentUser.StudentType != Bo.Constants.StudentType.EsnMember))
-        {
-            logger.LogWarning("EventService.UpdateEventAsync - Unauthorized update attempt for EventId {Id} by {Email}",
-                id, userEmail);
-            throw new UnauthorizedAccessException($"User {userEmail} is not authorized to update this event");
-        }
+        await ValidateUserCanModifyEventAsync(existing, userEmail, "update");
 
-        // Map only editable fields
-        existing.Title = eventDto.Title;
-        existing.Description = eventDto.Description;
-        existing.Location = eventDto.Location;
-        existing.StartDate = eventDto.StartDate;
-        existing.EndDate = eventDto.EndDate;
-        existing.MaxParticipants = eventDto.MaxParticipants;
-        existing.EventfrogLink = eventDto.EventfrogLink;
-        existing.SurveyJsData = eventDto.SurveyJsData;
-
+        UpdateEventFields(existing, eventDto);
         unitOfWork.Events.Update(existing);
 
         try
         {
-            // Get current calendar linked to this event
-            var currentCalendar = await unitOfWork.Calendars.GetCalendarByEventIdAsync(id);
-            var currentCalendarId = currentCalendar?.Id;
-
-            // Handle calendar update if changed
-            if (eventDto.CalendarId != currentCalendarId)
-            {
-                // Detach old calendar if exists
-                if (currentCalendar != null)
-                {
-                    currentCalendar.EventId = null;
-                    unitOfWork.Calendars.Update(currentCalendar);
-                    logger.LogInformation("EventService.UpdateEventAsync - Detached Calendar {CalendarId} from Event {EventId}",
-                        currentCalendar.Id, id);
-                }
-
-                // Attach new calendar if provided
-                if (eventDto.CalendarId.HasValue)
-                {
-                    var newCalendar = await unitOfWork.Calendars.GetByIdAsync(eventDto.CalendarId.Value);
-                    if (newCalendar == null)
-                    {
-                        logger.LogError("EventService.UpdateEventAsync - Calendar {CalendarId} not found",
-                            eventDto.CalendarId.Value);
-                        throw new ArgumentException($"Calendar not found: {eventDto.CalendarId.Value}");
-                    }
-
-                    if (newCalendar.EventId.HasValue && newCalendar.EventId.Value != id)
-                    {
-                        logger.LogError("EventService.UpdateEventAsync - Calendar {CalendarId} already linked to Event {EventId}",
-                            newCalendar.Id, newCalendar.EventId.Value);
-                        throw new InvalidOperationException(
-                            $"Calendar '{newCalendar.Title}' is already linked to another event");
-                    }
-
-                    newCalendar.EventId = id;
-                    unitOfWork.Calendars.Update(newCalendar);
-                    logger.LogInformation("EventService.UpdateEventAsync - Linked Calendar {CalendarId} to Event {EventId}",
-                        newCalendar.Id, id);
-                }
-            }
-
+            await HandleCalendarUpdateAsync(id, eventDto.CalendarId);
             await unitOfWork.SaveChangesAsync();
             logger.LogInformation("EventService.UpdateEventAsync - Event {Id} updated successfully", id);
         }
@@ -318,7 +260,6 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
         responseDto.RegisteredCount = existing.EventRegistrations.Count(r => r.Status == RegistrationStatus.Registered);
 
         logger.LogInformation("EventService.UpdateEventAsync completed for EventId {Id}", id);
-
         return responseDto;
     }
 
@@ -363,82 +304,13 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
         await unitOfWork.BeginTransactionAsync();
         try
         {
-            var user = await unitOfWork.Users.GetByEmailAsync(userEmail);
-            if (user == null)
-            {
-                logger.LogError("EventService.RegisterForEventAsync failed - user not found for {Email}", userEmail);
-                throw new UnauthorizedAccessException($"User not found: {userEmail}");
-            }
+            var user = await GetUserOrThrowAsync(userEmail);
+            var evt = await GetEventOrThrowAsync(eventId);
 
-            var evt = await unitOfWork.Events.GetEventWithDetailsAsync(eventId);
+            ValidateRegistrationPeriod(evt, eventId);
 
-            if (evt == null)
-            {
-                logger.LogWarning("EventService.RegisterForEventAsync - Event {Id} not found", eventId);
-                throw new KeyNotFoundException($"Event not found: {eventId}");
-            }
-
-            // Check if registration period is open
-            var now = DateTime.UtcNow;
-            if (now < evt.StartDate)
-            {
-                logger.LogInformation("EventService.RegisterForEventAsync - Registration not yet open for EventId {Id}", eventId);
-                throw new InvalidOperationException("Registration period has not started yet");
-            }
-
-            if (evt.EndDate.HasValue && now > evt.EndDate.Value)
-            {
-                logger.LogInformation("EventService.RegisterForEventAsync - Registration closed for EventId {Id}", eventId);
-                throw new InvalidOperationException("Registration period has ended");
-            }
-
-            // Check if already registered
             var existingRegistration = await unitOfWork.Events.GetRegistrationAsync(eventId, user.Id);
-
-            if (existingRegistration != null)
-            {
-                if (existingRegistration.Status == RegistrationStatus.Registered)
-                {
-                    logger.LogInformation("EventService.RegisterForEventAsync - User {Email} already registered for EventId {Id}",
-                        userEmail, eventId);
-                    throw new InvalidOperationException("Already registered for this event");
-                }
-                else
-                {
-                    // Reactivate cancelled registration
-                    logger.LogInformation("EventService.RegisterForEventAsync - Reactivating cancelled registration for User {Email}, EventId {Id}",
-                        userEmail, eventId);
-                    existingRegistration.Status = RegistrationStatus.Registered;
-                    existingRegistration.RegisteredAt = DateTime.UtcNow;
-                    unitOfWork.EventRegistrations.Update(existingRegistration);
-                }
-            }
-            else
-            {
-                // Check max participants - transaction garantit l'atomicité
-                if (evt.MaxParticipants.HasValue)
-                {
-                    var currentCount = await unitOfWork.Events.GetRegisteredCountAsync(eventId);
-                    if (currentCount >= evt.MaxParticipants.Value)
-                    {
-                        logger.LogInformation("EventService.RegisterForEventAsync - Event {Id} is full", eventId);
-                        throw new InvalidOperationException("Event is full");
-                    }
-                }
-
-                var registration = new EventRegistrationBo
-                {
-                    UserId = user.Id,
-                    EventId = eventId,
-                    RegisteredAt = DateTime.UtcNow,
-                    SurveyJsData = surveyJsData,
-                    Status = RegistrationStatus.Registered
-                };
-
-                await unitOfWork.EventRegistrations.AddAsync(registration);
-                logger.LogInformation("EventService.RegisterForEventAsync - Creating new registration for User {Email}, EventId {Id}",
-                    userEmail, eventId);
-            }
+            await ProcessRegistrationAsync(existingRegistration, user.Id, eventId, surveyJsData, userEmail, evt.MaxParticipants);
 
             await unitOfWork.SaveChangesAsync();
             await unitOfWork.CommitTransactionAsync();
@@ -508,4 +380,184 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
 
         return result;
     }
+
+    #region Private Helper Methods
+
+    private async Task ValidateUserCanModifyEventAsync(EventBo evt, string userEmail, string action)
+    {
+        var currentUser = await unitOfWork.Users.GetByEmailAsync(userEmail);
+        var isAuthorized = currentUser != null &&
+                          (evt.UserId == currentUser.Id || currentUser.StudentType == Bo.Constants.StudentType.EsnMember);
+
+        if (!isAuthorized)
+        {
+            logger.LogWarning("EventService - Unauthorized {Action} attempt for EventId {Id} by {Email}",
+                action, evt.Id, userEmail);
+            throw new UnauthorizedAccessException($"User {userEmail} is not authorized to {action} this event");
+        }
+    }
+
+    private static void UpdateEventFields(EventBo existing, EventDto eventDto)
+    {
+        existing.Title = eventDto.Title;
+        existing.Description = eventDto.Description;
+        existing.Location = eventDto.Location;
+        existing.StartDate = eventDto.StartDate;
+        existing.EndDate = eventDto.EndDate;
+        existing.MaxParticipants = eventDto.MaxParticipants;
+        existing.EventfrogLink = eventDto.EventfrogLink;
+        existing.SurveyJsData = eventDto.SurveyJsData;
+    }
+
+    private async Task HandleCalendarUpdateAsync(int eventId, int? newCalendarId)
+    {
+        var currentCalendar = await unitOfWork.Calendars.GetCalendarByEventIdAsync(eventId);
+        var currentCalendarId = currentCalendar?.Id;
+
+        if (newCalendarId == currentCalendarId)
+            return;
+
+        DetachCurrentCalendar(currentCalendar, eventId);
+
+        if (newCalendarId.HasValue)
+            await AttachNewCalendarAsync(newCalendarId.Value, eventId);
+    }
+
+    private void DetachCurrentCalendar(CalendarBo? currentCalendar, int eventId)
+    {
+        if (currentCalendar == null)
+            return;
+
+        currentCalendar.EventId = null;
+        unitOfWork.Calendars.Update(currentCalendar);
+        logger.LogInformation("EventService - Detached Calendar {CalendarId} from Event {EventId}",
+            currentCalendar.Id, eventId);
+    }
+
+    private async Task AttachNewCalendarAsync(int calendarId, int eventId)
+    {
+        var newCalendar = await unitOfWork.Calendars.GetByIdAsync(calendarId);
+        if (newCalendar == null)
+        {
+            logger.LogError("EventService - Calendar {CalendarId} not found", calendarId);
+            throw new ArgumentException($"Calendar not found: {calendarId}");
+        }
+
+        if (newCalendar.EventId.HasValue && newCalendar.EventId.Value != eventId)
+        {
+            logger.LogError("EventService - Calendar {CalendarId} already linked to Event {EventId}",
+                newCalendar.Id, newCalendar.EventId.Value);
+            throw new InvalidOperationException($"Calendar '{newCalendar.Title}' is already linked to another event");
+        }
+
+        newCalendar.EventId = eventId;
+        unitOfWork.Calendars.Update(newCalendar);
+        logger.LogInformation("EventService - Linked Calendar {CalendarId} to Event {EventId}",
+            newCalendar.Id, eventId);
+    }
+
+    private async Task<UserBo> GetUserOrThrowAsync(string userEmail)
+    {
+        var user = await unitOfWork.Users.GetByEmailAsync(userEmail);
+        if (user == null)
+        {
+            logger.LogError("EventService - User not found for {Email}", userEmail);
+            throw new UnauthorizedAccessException($"User not found: {userEmail}");
+        }
+        return user;
+    }
+
+    private async Task<EventBo> GetEventOrThrowAsync(int eventId)
+    {
+        var evt = await unitOfWork.Events.GetEventWithDetailsAsync(eventId);
+        if (evt == null)
+        {
+            logger.LogWarning("EventService - Event {Id} not found", eventId);
+            throw new KeyNotFoundException($"Event not found: {eventId}");
+        }
+        return evt;
+    }
+
+    private void ValidateRegistrationPeriod(EventBo evt, int eventId)
+    {
+        var now = DateTime.UtcNow;
+
+        if (now < evt.StartDate)
+        {
+            logger.LogInformation("EventService - Registration not yet open for EventId {Id}", eventId);
+            throw new InvalidOperationException("Registration period has not started yet");
+        }
+
+        if (evt.EndDate.HasValue && now > evt.EndDate.Value)
+        {
+            logger.LogInformation("EventService - Registration closed for EventId {Id}", eventId);
+            throw new InvalidOperationException("Registration period has ended");
+        }
+    }
+
+    private async Task ProcessRegistrationAsync(
+        EventRegistrationBo? existingRegistration,
+        int userId,
+        int eventId,
+        string? surveyJsData,
+        string userEmail,
+        int? maxParticipants)
+    {
+        if (existingRegistration != null)
+        {
+            HandleExistingRegistration(existingRegistration, userEmail, eventId);
+            return;
+        }
+
+        await CreateNewRegistrationAsync(userId, eventId, surveyJsData, userEmail, maxParticipants);
+    }
+
+    private void HandleExistingRegistration(EventRegistrationBo registration, string userEmail, int eventId)
+    {
+        if (registration.Status == RegistrationStatus.Registered)
+        {
+            logger.LogInformation("EventService - User {Email} already registered for EventId {Id}",
+                userEmail, eventId);
+            throw new InvalidOperationException("Already registered for this event");
+        }
+
+        logger.LogInformation("EventService - Reactivating cancelled registration for User {Email}, EventId {Id}",
+            userEmail, eventId);
+        registration.Status = RegistrationStatus.Registered;
+        registration.RegisteredAt = DateTime.UtcNow;
+        unitOfWork.EventRegistrations.Update(registration);
+    }
+
+    private async Task CreateNewRegistrationAsync(
+        int userId,
+        int eventId,
+        string? surveyJsData,
+        string userEmail,
+        int? maxParticipants)
+    {
+        if (maxParticipants.HasValue)
+        {
+            var currentCount = await unitOfWork.Events.GetRegisteredCountAsync(eventId);
+            if (currentCount >= maxParticipants.Value)
+            {
+                logger.LogInformation("EventService - Event {Id} is full", eventId);
+                throw new InvalidOperationException("Event is full");
+            }
+        }
+
+        var registration = new EventRegistrationBo
+        {
+            UserId = userId,
+            EventId = eventId,
+            RegisteredAt = DateTime.UtcNow,
+            SurveyJsData = surveyJsData,
+            Status = RegistrationStatus.Registered
+        };
+
+        await unitOfWork.EventRegistrations.AddAsync(registration);
+        logger.LogInformation("EventService - Creating new registration for User {Email}, EventId {Id}",
+            userEmail, eventId);
+    }
+
+    #endregion
 }
