@@ -458,7 +458,7 @@ public class EventFeedbackServiceTests
 
         // Assert
         Assert.IsTrue(exceptionThrown);
-        Assert.IsTrue(exceptionMessage.Contains("already submitted"));
+        StringAssert.Contains(exceptionMessage, "already submitted");
     }
 
     #endregion
@@ -547,7 +547,7 @@ public class EventFeedbackServiceTests
 
         // Assert
         Assert.IsTrue(exceptionThrown);
-        Assert.IsTrue(exceptionMessage.Contains("deadline passed"));
+        StringAssert.Contains(exceptionMessage, "deadline passed");
     }
 
     #endregion

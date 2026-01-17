@@ -159,6 +159,10 @@ public class UnitOfWorkTests
 
         // Assert - verify we can commit without error (transaction was started)
         await _unitOfWork.CommitTransactionAsync();
+
+        // Verify unit of work is still functional after transaction
+        var repository = _unitOfWork.Users;
+        Assert.IsNotNull(repository, "UnitOfWork should remain functional after transaction");
     }
 
     [TestMethod]
