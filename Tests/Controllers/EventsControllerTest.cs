@@ -14,7 +14,6 @@ namespace Tests.Controllers
     public class EventsControllerTests
     {
         private Mock<IEventService> _mockEventService = null!;
-        private Mock<IEventTemplateService> _mockEventTemplateService = null!;
         private Mock<ILogger<EventsController>> _mockLogger = null!;
         private EventsController _controller = null!;
         private const string TestUserEmail = "test@example.com";
@@ -23,9 +22,8 @@ namespace Tests.Controllers
         public void Setup()
         {
             _mockEventService = new Mock<IEventService>();
-            _mockEventTemplateService = new Mock<IEventTemplateService>();
             _mockLogger = new Mock<ILogger<EventsController>>();
-            _controller = new EventsController(_mockEventService.Object, _mockEventTemplateService.Object, _mockLogger.Object);
+            _controller = new EventsController(_mockEventService.Object, _mockLogger.Object);
 
             // Mock authenticated user
             SetupAuthenticatedUser(TestUserEmail);
