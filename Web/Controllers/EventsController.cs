@@ -1,4 +1,5 @@
-﻿using Dto.Common;
+﻿using Bo.Enums;
+using Dto.Common;
 using Dto.Event;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,13 +17,15 @@ public class EventsController(Business.Interfaces.IEventService eventService, IL
 {
     [HttpGet]
     [ProducesResponseType(typeof(PagedResult<EventDto>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PagedResult<EventDto>>> GetEvents([FromQuery] PaginationParams pagination)
+    public async Task<ActionResult<PagedResult<EventDto>>> GetEvents(
+        [FromQuery] PaginationParams pagination,
+        [FromQuery] EventTimeFilter timeFilter = EventTimeFilter.Future)
     {
-        logger.LogInformation("GetEvents request received - Page {PageNumber}, Size {PageSize}",
-            pagination.PageNumber, pagination.PageSize);
+        logger.LogInformation("GetEvents request received - Page {PageNumber}, Size {PageSize}, TimeFilter {TimeFilter}",
+            pagination.PageNumber, pagination.PageSize, timeFilter);
 
         var userEmail = User.GetUserEmail(); // Nullable, retourne null si non authentifié
-        var events = await eventService.GetAllEventsAsync(pagination, userEmail);
+        var events = await eventService.GetAllEventsAsync(pagination, userEmail, timeFilter);
 
         logger.LogInformation("GetEvents successful - Returned {Count} of {TotalCount} events for user {Email}",
             events.Items.Count, events.TotalCount, userEmail ?? "anonymous");

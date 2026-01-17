@@ -1,5 +1,6 @@
 using AutoMapper;
 using Bo.Constants;
+using Bo.Enums;
 using Bo.Models;
 using Business.Interfaces;
 using Dal.UnitOfWork.Interfaces;
@@ -55,15 +56,16 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
     }
 
     /// <inheritdoc />
-    public async Task<PagedResult<EventDto>> GetAllEventsAsync(PaginationParams pagination, string? userEmail = null)
+    public async Task<PagedResult<EventDto>> GetAllEventsAsync(PaginationParams pagination, string? userEmail = null, EventTimeFilter timeFilter = EventTimeFilter.Future)
     {
-        logger.LogInformation("EventService.GetAllEventsAsync (paginated) called - Page {PageNumber}, Size {PageSize}, UserEmail {UserEmail}",
-            pagination.PageNumber, pagination.PageSize, userEmail ?? "anonymous");
+        logger.LogInformation("EventService.GetAllEventsAsync (paginated) called - Page {PageNumber}, Size {PageSize}, UserEmail {UserEmail}, TimeFilter {TimeFilter}",
+            pagination.PageNumber, pagination.PageSize, userEmail ?? "anonymous", timeFilter);
 
         // Récupération paginée optimisée - évite le problème N+1
         var (events, totalCount) = await unitOfWork.Events.GetEventsPagedAsync(
             pagination.Skip,
-            pagination.PageSize);
+            pagination.PageSize,
+            timeFilter);
 
         // Mapping avec calcul du RegisteredCount
         var eventDtos = events.Select(e =>

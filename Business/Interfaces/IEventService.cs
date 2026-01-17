@@ -1,3 +1,4 @@
+using Bo.Enums;
 using Dto.Common;
 using Dto.Event;
 
@@ -29,18 +30,20 @@ public interface IEventService
     Task<IEnumerable<EventDto>> GetAllEventsForAdminAsync();
 
     /// <summary>
-    /// Récupère tous les événements avec pagination
+    /// Récupère tous les événements avec pagination et filtre temporel
     /// </summary>
     /// <param name="pagination">Paramètres de pagination (numéro de page, taille de page)</param>
     /// <param name="userEmail">Email de l'utilisateur authentifié (optionnel, pour calculer isCurrentUserRegistered)</param>
+    /// <param name="timeFilter">Filtre temporel: Future (défaut), Past, ou All</param>
     /// <returns>Résultat paginé contenant les événements et métadonnées de pagination</returns>
     /// <remarks>
     /// Méthode recommandée pour récupérer les événements.
+    /// Seuls les événements liés à un calendrier sont retournés.
     /// Pagination par défaut : 10 éléments par page
     /// Pagination maximale : 100 éléments par page
     /// Si userEmail fourni, chaque EventDto aura IsCurrentUserRegistered renseigné
     /// </remarks>
-    Task<PagedResult<EventDto>> GetAllEventsAsync(PaginationParams pagination, string? userEmail = null);
+    Task<PagedResult<EventDto>> GetAllEventsAsync(PaginationParams pagination, string? userEmail = null, EventTimeFilter timeFilter = EventTimeFilter.Future);
 
     /// <summary>
     /// Récupère un événement par son identifiant

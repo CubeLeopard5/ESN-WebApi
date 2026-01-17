@@ -1,3 +1,4 @@
+using Bo.Enums;
 using Bo.Models;
 
 namespace Dal.Repositories.Interfaces;
@@ -20,7 +21,10 @@ public interface IEventRepository : IRepository<EventBo>
     /// <summary>
     /// Récupère les événements paginés avec projection optimisée (évite N+1)
     /// </summary>
-    Task<(List<EventBo> Events, int TotalCount)> GetEventsPagedAsync(int skip, int take);
+    /// <param name="skip">Nombre d'éléments à sauter</param>
+    /// <param name="take">Nombre d'éléments à prendre</param>
+    /// <param name="timeFilter">Filtre temporel (Future, Past, All)</param>
+    Task<(List<EventBo> Events, int TotalCount)> GetEventsPagedAsync(int skip, int take, EventTimeFilter timeFilter = EventTimeFilter.Future);
 
     /// <summary>
     /// Récupère un événement par ID avec tous ses détails

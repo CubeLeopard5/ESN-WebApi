@@ -1,4 +1,5 @@
 using Bo.Constants;
+using Bo.Enums;
 using Bo.Models;
 using Dal.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +11,21 @@ namespace Dal.Repositories;
 /// </summary>
 public class EventRepository(EsnDevContext context) : Repository<EventBo>(context), IEventRepository
 {
+    /// <inheritdoc />
     public async Task<IEnumerable<EventBo>> GetAllEventsWithDetailsAsync()
     {
         var now = DateTime.UtcNow;
 
         return await _dbSet
             .Include(e => e.Calendars)
-            .Where(e => !e.Calendars.Any() || e.Calendars.Any(c => c.EventDate >= now))
+            .Where(e => e.Calendars.Any(c => c.EventDate >= now))
             .Include(e => e.EventRegistrations)
             .Include(e => e.User)
             .OrderByDescending(e => e.CreatedAt)
             .ToListAsync();
     }
 
+    /// <inheritdoc />
     public async Task<IEnumerable<EventBo>> GetAllEventsForAdminAsync()
     {
         return await _dbSet
@@ -32,23 +35,33 @@ public class EventRepository(EsnDevContext context) : Repository<EventBo>(contex
             .ToListAsync();
     }
 
-    public async Task<(List<EventBo> Events, int TotalCount)> GetEventsPagedAsync(int skip, int take)
+    /// <inheritdoc />
+    public async Task<(List<EventBo> Events, int TotalCount)> GetEventsPagedAsync(int skip, int take, EventTimeFilter timeFilter = EventTimeFilter.Future)
     {
         var now = DateTime.UtcNow;
 
-        // Filtrer les événements passés (basé sur la date du calendrier lié)
+        // Base query: only events with linked calendars
         var query = _dbSet
             .Include(e => e.Calendars)
-            .Where(e => !e.Calendars.Any() || e.Calendars.Any(c => c.EventDate >= now));
+            .Where(e => e.Calendars.Any());
 
-        // Compte total avec filtre
+        // Apply time filter based on Calendar.EventDate
+        query = timeFilter switch
+        {
+            EventTimeFilter.Future => query.Where(e => e.Calendars.Any(c => c.EventDate >= now)),
+            EventTimeFilter.Past => query.Where(e => e.Calendars.All(c => c.EventDate < now)),
+            EventTimeFilter.All => query,
+            _ => query.Where(e => e.Calendars.Any(c => c.EventDate >= now))
+        };
+
+        // Total count with filter
         var totalCount = await query.CountAsync();
 
-        // Charge uniquement la page demandée avec projection pour éviter N+1
+        // Order by calendar event date for better UX
         var events = await query
             .Include(e => e.User)
-            .Include(e => e.EventRegistrations) // Nécessaire pour le mapping
-            .OrderByDescending(e => e.CreatedAt)
+            .Include(e => e.EventRegistrations)
+            .OrderBy(e => e.Calendars.Min(c => c.EventDate))
             .Skip(skip)
             .Take(take)
             .ToListAsync();
