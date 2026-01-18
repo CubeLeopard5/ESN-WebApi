@@ -13,4 +13,10 @@ public class CreateEventTemplateDto
 
     [Required]
     public string SurveyJsData { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Notes internes pour les organisateurs
+    /// </summary>
+    [MaxLength(10000)]
+    public string? OrganizerNotes { get; set; }
 }

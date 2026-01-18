@@ -20,6 +20,7 @@ public class CalendarRepository(EsnDevContext context)
             .Include(c => c.ResponsableCom)
             .Include(c => c.CalendarSubOrganizers)
                 .ThenInclude(cso => cso.User)
+            .AsSplitQuery()
             .ToListAsync();
     }
 
@@ -34,6 +35,7 @@ public class CalendarRepository(EsnDevContext context)
             .Include(c => c.ResponsableCom)
             .Include(c => c.CalendarSubOrganizers)
                 .ThenInclude(cso => cso.User)
+            .AsSplitQuery()
             .FirstOrDefaultAsync(c => c.Id == calendarId);
     }
 
@@ -48,6 +50,7 @@ public class CalendarRepository(EsnDevContext context)
             .Include(c => c.ResponsableCom)
             .Include(c => c.CalendarSubOrganizers)
                 .ThenInclude(cso => cso.User)
+            .AsSplitQuery()
             .AsQueryable();
 
         if (eventId.HasValue)
@@ -93,6 +96,7 @@ public class CalendarRepository(EsnDevContext context)
             .OrderByDescending(c => c.Id)
             .Skip(skip)
             .Take(take)
+            .AsSplitQuery()
             .ToListAsync();
 
         return (items, totalCount);

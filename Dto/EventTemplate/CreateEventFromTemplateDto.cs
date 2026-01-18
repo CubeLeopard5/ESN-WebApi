@@ -25,4 +25,10 @@ public class CreateEventFromTemplateDto
     public string? EventfrogLink { get; set; }
 
     public string? SurveyJsData { get; set; }
+
+    /// <summary>
+    /// Notes internes pour les organisateurs (utilise les notes du template si null)
+    /// </summary>
+    [MaxLength(10000)]
+    public string? OrganizerNotes { get; set; }
 }

@@ -56,6 +56,12 @@ namespace Dto.Event
         /// </summary>
         public DateTime? FeedbackDeadline { get; set; }
 
+        /// <summary>
+        /// Notes internes pour les organisateurs (non visible par les participants)
+        /// </summary>
+        [MaxLength(10000)]
+        public string? OrganizerNotes { get; set; }
+
         // Navigation properties (for GET responses)
         public UserDto? User { get; set; }
     }

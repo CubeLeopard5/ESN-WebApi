@@ -53,26 +53,42 @@ public class EventRepositoryTests
             Title = "Event 1",
             Description = "Description 1",
             Location = "Location 1",
-            StartDate = DateTime.Now,
-            EndDate = DateTime.Now.AddHours(2),
+            StartDate = DateTime.UtcNow,
+            EndDate = DateTime.UtcNow.AddHours(2),
             MaxParticipants = 10,
             EventfrogLink = "link",
             UserId = _testUser.Id,
-            CreatedAt = DateTime.Now.AddDays(-1)
+            CreatedAt = DateTime.UtcNow.AddDays(-1)
         };
         var event2 = new EventBo
         {
             Title = "Event 2",
             Description = "Description 2",
             Location = "Location 2",
-            StartDate = DateTime.Now,
-            EndDate = DateTime.Now.AddHours(2),
+            StartDate = DateTime.UtcNow,
+            EndDate = DateTime.UtcNow.AddHours(2),
             MaxParticipants = 20,
             EventfrogLink = "link",
             UserId = _testUser.Id,
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.UtcNow
         };
         await _context.Events.AddRangeAsync(event1, event2);
+        await _context.SaveChangesAsync();
+
+        // Add calendars linked to events (required by GetAllEventsWithDetailsAsync)
+        var calendar1 = new CalendarBo
+        {
+            Title = "Calendar 1",
+            EventDate = DateTime.UtcNow.AddDays(1), // Future date
+            EventId = event1.Id
+        };
+        var calendar2 = new CalendarBo
+        {
+            Title = "Calendar 2",
+            EventDate = DateTime.UtcNow.AddDays(2), // Future date
+            EventId = event2.Id
+        };
+        await _context.Calendars.AddRangeAsync(calendar1, calendar2);
         await _context.SaveChangesAsync();
 
         // Act
@@ -87,19 +103,34 @@ public class EventRepositoryTests
     public async Task GetEventsPagedAsync_ShouldReturnCorrectPageSize()
     {
         // Arrange
+        var eventsList = new List<EventBo>();
         for (int i = 1; i <= 15; i++)
         {
-            await _context.Events.AddAsync(new EventBo
+            var evt = new EventBo
             {
                 Title = $"Event {i}",
                 Description = "Description",
                 Location = "Location",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddHours(2),
+                StartDate = DateTime.UtcNow,
+                EndDate = DateTime.UtcNow.AddHours(2),
                 MaxParticipants = 10,
                 EventfrogLink = "link",
                 UserId = _testUser.Id,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.UtcNow
+            };
+            eventsList.Add(evt);
+            await _context.Events.AddAsync(evt);
+        }
+        await _context.SaveChangesAsync();
+
+        // Add calendars linked to events (required by GetEventsPagedAsync)
+        foreach (var evt in eventsList)
+        {
+            await _context.Calendars.AddAsync(new CalendarBo
+            {
+                Title = $"Calendar for {evt.Title}",
+                EventDate = DateTime.UtcNow.AddDays(1), // Future date
+                EventId = evt.Id
             });
         }
         await _context.SaveChangesAsync();

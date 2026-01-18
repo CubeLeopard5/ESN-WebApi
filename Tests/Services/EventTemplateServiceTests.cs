@@ -422,6 +422,110 @@ namespace Tests.Services
             Assert.IsTrue(exceptionThrown, "Expected ArgumentException was not thrown");
         }
 
+        [TestMethod]
+        public async Task CreateEventFromTemplateAsync_WithoutOrganizerNotes_CopiesFromTemplate()
+        {
+            // Arrange
+            var userEmail = "test@example.com";
+            var createDto = new CreateEventFromTemplateDto
+            {
+                TemplateId = 1,
+                Title = "Event from Template",
+                Location = "Test Location",
+                StartDate = DateTime.Now.AddDays(1),
+                OrganizerNotes = null // Not providing notes, should copy from template
+            };
+
+            var user = new UserBo
+            {
+                Id = 1,
+                Email = userEmail,
+                FirstName = "Test",
+                LastName = "User",
+                BirthDate = DateTime.Now.AddYears(-25),
+                StudentType = Bo.Constants.StudentType.International
+            };
+
+            var template = new EventTemplateBo
+            {
+                Id = 1,
+                Title = "Template",
+                Description = "Template Description",
+                SurveyJsData = "{}",
+                OrganizerNotes = "Template organizer notes"
+            };
+
+            EventBo? capturedEvent = null;
+            _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+                .ReturnsAsync(user);
+            _mockEventTemplateRepository.Setup(r => r.GetByIdAsync(createDto.TemplateId))
+                .ReturnsAsync(template);
+            _mockEventRepository.Setup(r => r.AddAsync(It.IsAny<EventBo>()))
+                .Callback<EventBo>(e => capturedEvent = e)
+                .ReturnsAsync((EventBo e) => e);
+            _mockMapper.Setup(m => m.Map<EventDto>(It.IsAny<EventBo>()))
+                .Returns(new EventDto { Id = 1, Title = createDto.Title });
+
+            // Act
+            await _eventTemplateService.CreateEventFromTemplateAsync(createDto, userEmail);
+
+            // Assert
+            Assert.IsNotNull(capturedEvent);
+            Assert.AreEqual("Template organizer notes", capturedEvent.OrganizerNotes);
+        }
+
+        [TestMethod]
+        public async Task CreateEventFromTemplateAsync_WithOrganizerNotes_UsesProvidedNotes()
+        {
+            // Arrange
+            var userEmail = "test@example.com";
+            var createDto = new CreateEventFromTemplateDto
+            {
+                TemplateId = 1,
+                Title = "Event from Template",
+                Location = "Test Location",
+                StartDate = DateTime.Now.AddDays(1),
+                OrganizerNotes = "Custom organizer notes" // Providing custom notes
+            };
+
+            var user = new UserBo
+            {
+                Id = 1,
+                Email = userEmail,
+                FirstName = "Test",
+                LastName = "User",
+                BirthDate = DateTime.Now.AddYears(-25),
+                StudentType = Bo.Constants.StudentType.International
+            };
+
+            var template = new EventTemplateBo
+            {
+                Id = 1,
+                Title = "Template",
+                Description = "Template Description",
+                SurveyJsData = "{}",
+                OrganizerNotes = "Template organizer notes"
+            };
+
+            EventBo? capturedEvent = null;
+            _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+                .ReturnsAsync(user);
+            _mockEventTemplateRepository.Setup(r => r.GetByIdAsync(createDto.TemplateId))
+                .ReturnsAsync(template);
+            _mockEventRepository.Setup(r => r.AddAsync(It.IsAny<EventBo>()))
+                .Callback<EventBo>(e => capturedEvent = e)
+                .ReturnsAsync((EventBo e) => e);
+            _mockMapper.Setup(m => m.Map<EventDto>(It.IsAny<EventBo>()))
+                .Returns(new EventDto { Id = 1, Title = createDto.Title });
+
+            // Act
+            await _eventTemplateService.CreateEventFromTemplateAsync(createDto, userEmail);
+
+            // Assert
+            Assert.IsNotNull(capturedEvent);
+            Assert.AreEqual("Custom organizer notes", capturedEvent.OrganizerNotes);
+        }
+
         #endregion
 
         #region SaveEventAsTemplate Tests
@@ -482,6 +586,79 @@ namespace Tests.Services
                 exceptionThrown = true;
             }
             Assert.IsTrue(exceptionThrown, "Expected ArgumentException was not thrown");
+        }
+
+        [TestMethod]
+        public async Task SaveEventAsTemplateAsync_WithOrganizerNotes_CopiesNotesToTemplate()
+        {
+            // Arrange
+            var eventId = 1;
+            var eventBo = new EventBo
+            {
+                Id = eventId,
+                Title = "Test Event",
+                Description = "Test Description",
+                SurveyJsData = "{}",
+                OrganizerNotes = "Event organizer notes",
+                UserId = 1,
+                StartDate = DateTime.Now.AddDays(1)
+            };
+
+            EventTemplateBo? capturedTemplate = null;
+            _mockEventRepository.Setup(r => r.GetByIdAsync(eventId))
+                .ReturnsAsync(eventBo);
+            _mockEventTemplateRepository.Setup(r => r.AddAsync(It.IsAny<EventTemplateBo>()))
+                .Callback<EventTemplateBo>(t => capturedTemplate = t)
+                .ReturnsAsync((EventTemplateBo t) => t);
+            _mockMapper.Setup(m => m.Map<EventTemplateDto>(It.IsAny<EventTemplateBo>()))
+                .Returns(new EventTemplateDto { Id = 1, Title = eventBo.Title });
+
+            // Act
+            await _eventTemplateService.SaveEventAsTemplateAsync(eventId);
+
+            // Assert
+            Assert.IsNotNull(capturedTemplate);
+            Assert.AreEqual("Event organizer notes", capturedTemplate.OrganizerNotes);
+        }
+
+        #endregion
+
+        #region UpdateTemplate OrganizerNotes Tests
+
+        [TestMethod]
+        public async Task UpdateTemplateAsync_WithOrganizerNotes_UpdatesNotes()
+        {
+            // Arrange
+            var templateId = 1;
+            var updateDto = new EventTemplateDto
+            {
+                Id = templateId,
+                Title = "Updated Template",
+                Description = "Updated Description",
+                SurveyJsData = "{}",
+                OrganizerNotes = "Updated organizer notes"
+            };
+
+            var existingTemplate = new EventTemplateBo
+            {
+                Id = templateId,
+                Title = "Old Template",
+                Description = "Old Description",
+                SurveyJsData = "{}",
+                OrganizerNotes = "Old organizer notes"
+            };
+
+            _mockEventTemplateRepository.Setup(r => r.GetByIdAsync(templateId))
+                .ReturnsAsync(existingTemplate);
+            _mockMapper.Setup(m => m.Map<EventTemplateDto>(existingTemplate))
+                .Returns(updateDto);
+
+            // Act
+            await _eventTemplateService.UpdateTemplateAsync(templateId, updateDto);
+
+            // Assert
+            Assert.AreEqual("Updated organizer notes", existingTemplate.OrganizerNotes);
+            _mockEventTemplateRepository.Verify(r => r.Update(existingTemplate), Times.Once);
         }
 
         #endregion

@@ -11,7 +11,7 @@ public class EventTemplateRepository(EsnDevContext context)
 {
     public async Task<IEnumerable<EventTemplateBo>> GetAllTemplatesWithUserAsync()
     {
-        return await _dbSet.ToListAsync();
+        return await _dbSet.AsNoTracking().ToListAsync();
     }
 
     public async Task<IEnumerable<EventTemplateBo>> GetAllTemplatesAsync()
@@ -21,13 +21,13 @@ public class EventTemplateRepository(EsnDevContext context)
 
     public async Task<EventTemplateBo?> GetTemplateWithUserAsync(int templateId)
     {
-        return await _dbSet.FirstOrDefaultAsync(et => et.Id == templateId);
+        return await _dbSet.AsNoTracking().FirstOrDefaultAsync(et => et.Id == templateId);
     }
 
     public async Task<IEnumerable<EventTemplateBo>> GetTemplatesByUserEmailAsync(string userEmail)
     {
         // EventTemplate n'a pas de navigation User, retourner tous les templates
-        return await _dbSet.ToListAsync();
+        return await _dbSet.AsNoTracking().ToListAsync();
     }
 
     public async Task<(List<EventTemplateBo> Items, int TotalCount)> GetPagedAsync(int skip, int take)
@@ -38,6 +38,7 @@ public class EventTemplateRepository(EsnDevContext context)
             .OrderByDescending(et => et.Id)
             .Skip(skip)
             .Take(take)
+            .AsNoTracking()
             .ToListAsync();
 
         return (items, totalCount);

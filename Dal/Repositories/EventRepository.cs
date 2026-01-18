@@ -22,6 +22,7 @@ public class EventRepository(EsnDevContext context) : Repository<EventBo>(contex
             .Include(e => e.EventRegistrations)
             .Include(e => e.User)
             .OrderByDescending(e => e.CreatedAt)
+            .AsSplitQuery()
             .ToListAsync();
     }
 
@@ -64,6 +65,7 @@ public class EventRepository(EsnDevContext context) : Repository<EventBo>(contex
             .OrderBy(e => e.Calendars.Min(c => c.EventDate))
             .Skip(skip)
             .Take(take)
+            .AsSplitQuery()
             .ToListAsync();
 
         return (events, totalCount);
@@ -75,6 +77,7 @@ public class EventRepository(EsnDevContext context) : Repository<EventBo>(contex
             .Include(e => e.EventRegistrations)
                 .ThenInclude(er => er.User)
             .Include(e => e.User)
+            .AsSplitQuery()
             .FirstOrDefaultAsync(e => e.Id == eventId);
     }
 

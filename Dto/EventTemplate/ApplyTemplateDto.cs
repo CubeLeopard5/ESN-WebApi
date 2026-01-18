@@ -50,4 +50,10 @@ public class ApplyTemplateDto
     /// Optional SurveyJS form data override (uses template form if null)
     /// </summary>
     public string? SurveyJsData { get; set; }
+
+    /// <summary>
+    /// Optional organizer notes override (uses template notes if null)
+    /// </summary>
+    [MaxLength(10000)]
+    public string? OrganizerNotes { get; set; }
 }

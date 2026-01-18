@@ -11,4 +11,10 @@ public partial class EventTemplateBo
 
     [MaxLength(100000)]
     public string SurveyJsData { get; set; } = null!;
+
+    /// <summary>
+    /// Notes internes à l'attention des organisateurs (copiées lors de la création d'événement)
+    /// </summary>
+    [MaxLength(10000)]
+    public string? OrganizerNotes { get; set; }
 }

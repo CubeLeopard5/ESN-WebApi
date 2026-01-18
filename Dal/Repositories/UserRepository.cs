@@ -14,6 +14,7 @@ public class UserRepository(EsnDevContext context)
     public async Task<UserBo?> GetByEmailAsync(string email)
     {
         return await _dbSet
+            .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Email == email);
     }
 
@@ -21,6 +22,7 @@ public class UserRepository(EsnDevContext context)
     {
         return await _dbSet
             .Include(u => u.Role)
+            .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Email == email);
     }
 
@@ -28,6 +30,7 @@ public class UserRepository(EsnDevContext context)
     {
         return await _dbSet
             .Include(u => u.Role)
+            .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Id == userId);
     }
 
@@ -35,6 +38,7 @@ public class UserRepository(EsnDevContext context)
     {
         return await _dbSet
             .Where(u => u.StudentType == StudentType.EsnMember)
+            .AsNoTracking()
             .ToListAsync();
     }
 
@@ -52,6 +56,7 @@ public class UserRepository(EsnDevContext context)
             .OrderByDescending(u => u.Id)
             .Skip(skip)
             .Take(take)
+            .AsNoTracking()
             .ToListAsync();
 
         return (items, totalCount);

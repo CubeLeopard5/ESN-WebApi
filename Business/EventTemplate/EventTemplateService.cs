@@ -102,6 +102,7 @@ public class EventTemplateService(IUnitOfWork unitOfWork, IMapper mapper, ILogge
         template.Title = templateDto.Title;
         template.Description = templateDto.Description;
         template.SurveyJsData = templateDto.SurveyJsData;
+        template.OrganizerNotes = templateDto.OrganizerNotes;
 
         unitOfWork.EventTemplates.Update(template);
         await unitOfWork.SaveChangesAsync();
@@ -165,6 +166,7 @@ public class EventTemplateService(IUnitOfWork unitOfWork, IMapper mapper, ILogge
             MaxParticipants = createEventFromTemplateDto.MaxParticipants,
             EventfrogLink = createEventFromTemplateDto.EventfrogLink,
             SurveyJsData = createEventFromTemplateDto.SurveyJsData ?? template.SurveyJsData,
+            OrganizerNotes = createEventFromTemplateDto.OrganizerNotes ?? template.OrganizerNotes,
             UserId = user.Id
         };
 
@@ -195,7 +197,8 @@ public class EventTemplateService(IUnitOfWork unitOfWork, IMapper mapper, ILogge
         {
             Title = evt.Title,
             Description = evt.Description ?? string.Empty,
-            SurveyJsData = evt.SurveyJsData ?? string.Empty
+            SurveyJsData = evt.SurveyJsData ?? string.Empty,
+            OrganizerNotes = evt.OrganizerNotes
         };
 
         await unitOfWork.EventTemplates.AddAsync(template);

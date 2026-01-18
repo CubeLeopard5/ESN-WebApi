@@ -24,4 +24,10 @@ public class CreateEventDto
     public string? SurveyJsData { get; set; }
 
     public int? CalendarId { get; set; }
+
+    /// <summary>
+    /// Notes internes pour les organisateurs
+    /// </summary>
+    [MaxLength(10000)]
+    public string? OrganizerNotes { get; set; }
 }

@@ -75,12 +75,16 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
             return dto;
         }).ToList();
 
-        // Optimisation N+1: récupérer toutes les inscriptions de l'utilisateur en une seule requête
+        // Vérifier si l'utilisateur peut voir les notes organisateurs
+        UserBo? user = null;
+        var isEsnMember = false;
         if (!string.IsNullOrEmpty(userEmail))
         {
-            var user = await unitOfWork.Users.GetByEmailAsync(userEmail);
+            user = await unitOfWork.Users.GetByEmailAsync(userEmail);
             if (user != null)
             {
+                isEsnMember = user.StudentType == Bo.Constants.StudentType.EsnMember;
+
                 var eventIds = eventDtos.Select(e => e.Id).ToArray();
 
                 // UNE SEULE requête pour toutes les inscriptions de l'utilisateur
@@ -100,6 +104,17 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
 
                 logger.LogInformation("EventService.GetAllEventsAsync - User {Email} has {Count} registrations in this page",
                     userEmail, registrationDict.Count);
+            }
+        }
+
+        // Masquer les notes organisateurs pour les utilisateurs non autorisés
+        // Seuls les créateurs d'événements ou les ESN members peuvent voir les notes
+        foreach (var eventDto in eventDtos)
+        {
+            var canSeeNotes = user != null && (isEsnMember || eventDto.UserId == user.Id);
+            if (!canSeeNotes)
+            {
+                eventDto.OrganizerNotes = null;
             }
         }
 
@@ -126,7 +141,8 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
         var eventDto = mapper.Map<EventDto>(evt);
         eventDto.RegisteredCount = evt.EventRegistrations.Count(r => r.Status == RegistrationStatus.Registered);
 
-        // Vérifier si l'utilisateur est inscrit à cet événement
+        // Vérifier si l'utilisateur est inscrit à cet événement et s'il peut voir les notes organisateurs
+        var canSeeOrganizerNotes = false;
         if (!string.IsNullOrEmpty(userEmail))
         {
             var user = await unitOfWork.Users.GetByEmailAsync(userEmail);
@@ -135,9 +151,18 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
                 var registration = await unitOfWork.Events.GetRegistrationAsync(id, user.Id);
                 eventDto.IsCurrentUserRegistered = registration?.Status == RegistrationStatus.Registered;
 
+                // L'utilisateur peut voir les notes s'il est le créateur ou un ESN member
+                canSeeOrganizerNotes = evt.UserId == user.Id || user.StudentType == Bo.Constants.StudentType.EsnMember;
+
                 logger.LogInformation("EventService.GetEventByIdAsync - User {Email} registration status for EventId {Id}: {IsRegistered}",
                     userEmail, id, eventDto.IsCurrentUserRegistered);
             }
+        }
+
+        // Masquer les notes organisateurs si l'utilisateur n'est pas autorisé
+        if (!canSeeOrganizerNotes)
+        {
+            eventDto.OrganizerNotes = null;
         }
 
         logger.LogInformation("EventService.GetEventByIdAsync completed for EventId {Id}", id);
@@ -409,6 +434,7 @@ public class EventService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<EventS
         existing.MaxParticipants = eventDto.MaxParticipants;
         existing.EventfrogLink = eventDto.EventfrogLink;
         existing.SurveyJsData = eventDto.SurveyJsData;
+        existing.OrganizerNotes = eventDto.OrganizerNotes;
     }
 
     private async Task HandleCalendarUpdateAsync(int eventId, int? newCalendarId)

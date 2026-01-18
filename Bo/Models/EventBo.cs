@@ -29,6 +29,12 @@ public partial class EventBo
     /// </summary>
     public DateTime? FeedbackDeadline { get; set; }
 
+    /// <summary>
+    /// Notes internes à l'attention des organisateurs (non visible par les participants)
+    /// </summary>
+    [MaxLength(10000)]
+    public string? OrganizerNotes { get; set; }
+
     public virtual UserBo User { get; set; } = null!;
     public virtual ICollection<EventRegistrationBo> EventRegistrations { get; set; } = [];
     public virtual ICollection<CalendarBo> Calendars { get; set; } = [];
