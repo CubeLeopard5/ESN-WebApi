@@ -48,5 +48,10 @@ namespace Dto.User
         /// </summary>
         [Required]
         public UserStatus Status { get; set; } = UserStatus.Pending;
+
+        /// <summary>
+        /// Nom du rôle de l'utilisateur (User, Admin, etc.)
+        /// </summary>
+        public string? RoleName { get; set; }
     }
 }

@@ -387,4 +387,37 @@ public class UsersController(Business.Interfaces.IUserService userService, ILogg
             return NotFound(new { message = $"User {id} not found" });
         }
     }
+
+    /// <summary>
+    /// Révoque le statut d'un utilisateur (remet en Pending)
+    /// </summary>
+    /// <param name="id">ID de l'utilisateur à révoquer</param>
+    /// <response code="204">Statut de l'utilisateur révoqué avec succès</response>
+    /// <response code="401">Non authentifié</response>
+    /// <response code="403">Pas de rôle Admin</response>
+    /// <response code="404">Utilisateur non trouvé</response>
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}/revoke")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> RevokeUser(int id)
+    {
+        logger.LogInformation("RevokeUser called for UserId {UserId}", id);
+
+        try
+        {
+            await userService.RevokeUserAsync(id);
+
+            logger.LogInformation("RevokeUser completed - User {UserId} status set to Pending", id);
+
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            logger.LogWarning(ex, "RevokeUser - User {UserId} not found", id);
+            return NotFound(new { message = $"User {id} not found" });
+        }
+    }
 }

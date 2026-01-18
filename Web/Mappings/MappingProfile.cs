@@ -14,7 +14,9 @@ namespace Web.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<UserBo, UserDto>().ReverseMap();
+            CreateMap<UserBo, UserDto>()
+                .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Role != null ? src.Role.Name : null));
+            CreateMap<UserDto, UserBo>();
 
             CreateMap<UserCreateDto, UserBo>()
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore());

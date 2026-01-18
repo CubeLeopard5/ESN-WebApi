@@ -417,6 +417,25 @@ public class UserService(
             userId, reason ?? "No reason provided");
     }
 
+    /// <inheritdoc />
+    public async Task RevokeUserAsync(int userId)
+    {
+        logger.LogInformation("UserService.RevokeUserAsync called for UserId {UserId}", userId);
+
+        var user = await unitOfWork.Users.GetByIdAsync(userId);
+        if (user == null)
+        {
+            logger.LogWarning("UserService.RevokeUserAsync - User {UserId} not found", userId);
+            throw new KeyNotFoundException($"User {userId} not found");
+        }
+
+        user.Status = UserStatus.Pending;
+        unitOfWork.Users.Update(user);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("UserService.RevokeUserAsync completed - User {UserId} status set to Pending", userId);
+    }
+
     /// <summary>
     /// Génère un token JWT pour un utilisateur authentifié
     /// </summary>

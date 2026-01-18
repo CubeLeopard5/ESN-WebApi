@@ -48,6 +48,7 @@ public class UserRepository(EsnDevContext context)
         var totalCount = await _dbSet.CountAsync();
 
         var items = await _dbSet
+            .Include(u => u.Role)
             .OrderByDescending(u => u.Id)
             .Skip(skip)
             .Take(take)

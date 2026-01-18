@@ -178,6 +178,19 @@ public interface IUserService
     Task RejectUserAsync(int userId, string? reason = null);
 
     /// <summary>
+    /// Révoque le statut d'un utilisateur (remet en Pending)
+    /// </summary>
+    /// <param name="userId">Identifiant de l'utilisateur à révoquer</param>
+    /// <exception cref="KeyNotFoundException">Utilisateur non trouvé</exception>
+    /// <remarks>
+    /// Change le statut de l'utilisateur à Pending.
+    /// L'utilisateur devra être à nouveau approuvé pour pouvoir se connecter.
+    /// Autorisation requise : rôle Admin uniquement
+    /// Log : Information avec ID admin et ID utilisateur
+    /// </remarks>
+    Task RevokeUserAsync(int userId);
+
+    /// <summary>
     /// Supprime définitivement un compte utilisateur
     /// </summary>
     /// <param name="id">Identifiant de l'utilisateur à supprimer</param>
