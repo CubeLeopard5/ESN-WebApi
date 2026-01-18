@@ -45,14 +45,18 @@ public class PropositionRepository(EsnDevContext context)
         return Task.CompletedTask;
     }
 
-    public async Task<(List<PropositionBo> Items, int TotalCount)> GetPagedAsync(int skip, int take)
+    /// <inheritdoc />
+    public async Task<(List<PropositionBo> Items, int TotalCount)> GetPagedAsync(int skip, int take, string? sortBy = null, string? sortOrder = "desc")
     {
         var totalCount = await _dbSet.Where(p => !p.IsDeleted).CountAsync();
 
-        var items = await _dbSet
+        var query = _dbSet
             .Where(p => !p.IsDeleted)
-            .Include(p => p.User)
-            .OrderByDescending(p => p.CreatedAt)
+            .Include(p => p.User);
+
+        var orderedQuery = ApplySorting(query, sortBy, sortOrder);
+
+        var items = await orderedQuery
             .Skip(skip)
             .Take(take)
             .AsNoTracking()
@@ -61,8 +65,27 @@ public class PropositionRepository(EsnDevContext context)
         return (items, totalCount);
     }
 
+    /// <summary>
+    /// Applique le tri dynamique sur la requête
+    /// </summary>
+    private static IOrderedQueryable<PropositionBo> ApplySorting(IQueryable<PropositionBo> query, string? sortBy, string? sortOrder)
+    {
+        var isDescending = string.Equals(sortOrder, "desc", StringComparison.OrdinalIgnoreCase);
+
+        return (sortBy?.ToLowerInvariant(), isDescending) switch
+        {
+            ("votesup", true) => query.OrderByDescending(p => p.VotesUp),
+            ("votesup", false) => query.OrderBy(p => p.VotesUp),
+            ("score", true) => query.OrderByDescending(p => p.VotesUp - p.VotesDown),
+            ("score", false) => query.OrderBy(p => p.VotesUp - p.VotesDown),
+            ("createdat", false) => query.OrderBy(p => p.CreatedAt),
+            // Default: createdAt DESC (most recent first)
+            _ => query.OrderByDescending(p => p.CreatedAt)
+        };
+    }
+
     /// <inheritdoc />
-    public async Task<(List<PropositionBo> Items, int TotalCount)> GetPagedWithFilterAsync(int skip, int take, Bo.Enums.DeletedStatus deletedStatus)
+    public async Task<(List<PropositionBo> Items, int TotalCount)> GetPagedWithFilterAsync(int skip, int take, Bo.Enums.DeletedStatus deletedStatus, string? sortBy = null, string? sortOrder = "desc")
     {
         var query = _dbSet.AsQueryable();
 
@@ -77,9 +100,10 @@ public class PropositionRepository(EsnDevContext context)
 
         var totalCount = await query.CountAsync();
 
-        var items = await query
-            .Include(p => p.User)
-            .OrderByDescending(p => p.CreatedAt)
+        var queryWithIncludes = query.Include(p => p.User);
+        var orderedQuery = ApplySorting(queryWithIncludes, sortBy, sortOrder);
+
+        var items = await orderedQuery
             .Skip(skip)
             .Take(take)
             .AsNoTracking()

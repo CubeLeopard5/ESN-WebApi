@@ -374,6 +374,7 @@ pwsh -File run-coverage.ps1
    → TypeScript strict
    → Composables pour API calls
    → Suivre les patterns existants du projet ESN-Nuxt
+   → **Nuxt UI** : Utiliser `:items` (et non `:options`) pour les composants USelect
    ↓
 8. Notification Utilisateur
    → Dire explicitement : "✅ Implémentation terminée, prêt pour test manuel"

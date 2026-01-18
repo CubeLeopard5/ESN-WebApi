@@ -1107,5 +1107,159 @@ namespace Tests.Services
         }
 
         #endregion
+
+        #region GetAllPropositions Paginated Tests
+
+        [TestMethod]
+        public async Task GetAllPropositionsAsync_WithPagination_ReturnsPagedResult()
+        {
+            // Arrange
+            var pagination = new Dto.Common.PaginationParams
+            {
+                PageNumber = 1,
+                PageSize = 10
+            };
+
+            var propositionsBo = new List<PropositionBo>
+            {
+                new() { Id = 1, Title = "Proposition 1", IsDeleted = false },
+                new() { Id = 2, Title = "Proposition 2", IsDeleted = false }
+            };
+
+            var propositionDtos = new List<PropositionDto>
+            {
+                new() { Id = 1, Title = "Proposition 1" },
+                new() { Id = 2, Title = "Proposition 2" }
+            };
+
+            _mockPropositionRepository.Setup(r => r.GetPagedAsync(0, 10, null, "desc"))
+                .ReturnsAsync((propositionsBo, 2));
+            _mockMapper.Setup(m => m.Map<List<PropositionDto>>(propositionsBo))
+                .Returns(propositionDtos);
+
+            // Act
+            var result = await _propositionService.GetAllPropositionsAsync(pagination);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Items.Count);
+            Assert.AreEqual(2, result.TotalCount);
+            Assert.AreEqual(1, result.PageNumber);
+            Assert.AreEqual(10, result.PageSize);
+        }
+
+        [TestMethod]
+        public async Task GetAllPropositionsAsync_WithSortByVotesUp_PassesSortingToRepository()
+        {
+            // Arrange
+            var pagination = new Dto.Common.PaginationParams
+            {
+                PageNumber = 1,
+                PageSize = 10,
+                SortBy = "votesUp",
+                SortOrder = "desc"
+            };
+
+            var propositionsBo = new List<PropositionBo>
+            {
+                new() { Id = 1, Title = "Most Voted", VotesUp = 100, IsDeleted = false },
+                new() { Id = 2, Title = "Less Voted", VotesUp = 10, IsDeleted = false }
+            };
+
+            var propositionDtos = new List<PropositionDto>
+            {
+                new() { Id = 1, Title = "Most Voted", VotesUp = 100 },
+                new() { Id = 2, Title = "Less Voted", VotesUp = 10 }
+            };
+
+            _mockPropositionRepository.Setup(r => r.GetPagedAsync(0, 10, "votesUp", "desc"))
+                .ReturnsAsync((propositionsBo, 2));
+            _mockMapper.Setup(m => m.Map<List<PropositionDto>>(propositionsBo))
+                .Returns(propositionDtos);
+
+            // Act
+            var result = await _propositionService.GetAllPropositionsAsync(pagination);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Items.Count);
+            _mockPropositionRepository.Verify(r => r.GetPagedAsync(0, 10, "votesUp", "desc"), Times.Once);
+        }
+
+        [TestMethod]
+        public async Task GetAllPropositionsAsync_WithSortByScore_PassesSortingToRepository()
+        {
+            // Arrange
+            var pagination = new Dto.Common.PaginationParams
+            {
+                PageNumber = 1,
+                PageSize = 10,
+                SortBy = "score",
+                SortOrder = "desc"
+            };
+
+            var propositionsBo = new List<PropositionBo>
+            {
+                new() { Id = 1, Title = "Best Score", VotesUp = 100, VotesDown = 10, IsDeleted = false },
+                new() { Id = 2, Title = "Lower Score", VotesUp = 50, VotesDown = 40, IsDeleted = false }
+            };
+
+            var propositionDtos = new List<PropositionDto>
+            {
+                new() { Id = 1, Title = "Best Score", VotesUp = 100, VotesDown = 10 },
+                new() { Id = 2, Title = "Lower Score", VotesUp = 50, VotesDown = 40 }
+            };
+
+            _mockPropositionRepository.Setup(r => r.GetPagedAsync(0, 10, "score", "desc"))
+                .ReturnsAsync((propositionsBo, 2));
+            _mockMapper.Setup(m => m.Map<List<PropositionDto>>(propositionsBo))
+                .Returns(propositionDtos);
+
+            // Act
+            var result = await _propositionService.GetAllPropositionsAsync(pagination);
+
+            // Assert
+            Assert.IsNotNull(result);
+            _mockPropositionRepository.Verify(r => r.GetPagedAsync(0, 10, "score", "desc"), Times.Once);
+        }
+
+        [TestMethod]
+        public async Task GetAllPropositionsAsync_WithSortOrderAsc_PassesSortingToRepository()
+        {
+            // Arrange
+            var pagination = new Dto.Common.PaginationParams
+            {
+                PageNumber = 1,
+                PageSize = 10,
+                SortBy = "createdAt",
+                SortOrder = "asc"
+            };
+
+            var propositionsBo = new List<PropositionBo>
+            {
+                new() { Id = 1, Title = "Oldest", CreatedAt = DateTime.UtcNow.AddDays(-10), IsDeleted = false },
+                new() { Id = 2, Title = "Newest", CreatedAt = DateTime.UtcNow, IsDeleted = false }
+            };
+
+            var propositionDtos = new List<PropositionDto>
+            {
+                new() { Id = 1, Title = "Oldest" },
+                new() { Id = 2, Title = "Newest" }
+            };
+
+            _mockPropositionRepository.Setup(r => r.GetPagedAsync(0, 10, "createdAt", "asc"))
+                .ReturnsAsync((propositionsBo, 2));
+            _mockMapper.Setup(m => m.Map<List<PropositionDto>>(propositionsBo))
+                .Returns(propositionDtos);
+
+            // Act
+            var result = await _propositionService.GetAllPropositionsAsync(pagination);
+
+            // Assert
+            Assert.IsNotNull(result);
+            _mockPropositionRepository.Verify(r => r.GetPagedAsync(0, 10, "createdAt", "asc"), Times.Once);
+        }
+
+        #endregion
     }
 }

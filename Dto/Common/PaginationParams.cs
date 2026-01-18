@@ -23,6 +23,16 @@ public class PaginationParams
     }
 
     /// <summary>
+    /// Champ de tri (ex: "createdAt", "votesUp", "score")
+    /// </summary>
+    public string? SortBy { get; set; }
+
+    /// <summary>
+    /// Ordre de tri ("asc" ou "desc", défaut: "desc")
+    /// </summary>
+    public string? SortOrder { get; set; } = "desc";
+
+    /// <summary>
     /// Calcule le nombre d'éléments à sauter
     /// </summary>
     public int Skip => (PageNumber - 1) * PageSize;

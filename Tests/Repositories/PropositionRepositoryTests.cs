@@ -245,6 +245,225 @@ public class PropositionRepositoryTests
         Assert.AreEqual("Oldest", items.Last().Title);
     }
 
+    #region GetPagedAsync Sorting Tests
+
+    [TestMethod]
+    public async Task GetPagedAsync_SortByVotesUpDesc_ReturnsPropositionsOrderedByVotesUpDescending()
+    {
+        // Arrange
+        var prop1 = new PropositionBo
+        {
+            Title = "Low Votes",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 5,
+            CreatedAt = DateTime.Now
+        };
+        var prop2 = new PropositionBo
+        {
+            Title = "High Votes",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 100,
+            CreatedAt = DateTime.Now.AddDays(-1)
+        };
+        var prop3 = new PropositionBo
+        {
+            Title = "Medium Votes",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 50,
+            CreatedAt = DateTime.Now.AddDays(-2)
+        };
+        await _context.Propositions.AddRangeAsync(prop1, prop2, prop3);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, _) = await _repository.GetPagedAsync(0, 10, "votesUp", "desc");
+
+        // Assert
+        Assert.AreEqual("High Votes", items[0].Title);
+        Assert.AreEqual("Medium Votes", items[1].Title);
+        Assert.AreEqual("Low Votes", items[2].Title);
+    }
+
+    [TestMethod]
+    public async Task GetPagedAsync_SortByVotesUpAsc_ReturnsPropositionsOrderedByVotesUpAscending()
+    {
+        // Arrange
+        var prop1 = new PropositionBo
+        {
+            Title = "Low Votes",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 5,
+            CreatedAt = DateTime.Now
+        };
+        var prop2 = new PropositionBo
+        {
+            Title = "High Votes",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 100,
+            CreatedAt = DateTime.Now.AddDays(-1)
+        };
+        await _context.Propositions.AddRangeAsync(prop1, prop2);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, _) = await _repository.GetPagedAsync(0, 10, "votesUp", "asc");
+
+        // Assert
+        Assert.AreEqual("Low Votes", items[0].Title);
+        Assert.AreEqual("High Votes", items[1].Title);
+    }
+
+    [TestMethod]
+    public async Task GetPagedAsync_SortByScoreDesc_ReturnsPropositionsOrderedByNetScoreDescending()
+    {
+        // Arrange
+        var prop1 = new PropositionBo
+        {
+            Title = "Low Score",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 10,
+            VotesDown = 8,  // Score: 2
+            CreatedAt = DateTime.Now
+        };
+        var prop2 = new PropositionBo
+        {
+            Title = "High Score",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 50,
+            VotesDown = 5,  // Score: 45
+            CreatedAt = DateTime.Now.AddDays(-1)
+        };
+        var prop3 = new PropositionBo
+        {
+            Title = "Negative Score",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 5,
+            VotesDown = 20,  // Score: -15
+            CreatedAt = DateTime.Now.AddDays(-2)
+        };
+        await _context.Propositions.AddRangeAsync(prop1, prop2, prop3);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, _) = await _repository.GetPagedAsync(0, 10, "score", "desc");
+
+        // Assert
+        Assert.AreEqual("High Score", items[0].Title);      // Score: 45
+        Assert.AreEqual("Low Score", items[1].Title);       // Score: 2
+        Assert.AreEqual("Negative Score", items[2].Title);  // Score: -15
+    }
+
+    [TestMethod]
+    public async Task GetPagedAsync_SortByCreatedAtAsc_ReturnsPropositionsOrderedByCreatedAtAscending()
+    {
+        // Arrange
+        var prop1 = new PropositionBo
+        {
+            Title = "Newest",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now
+        };
+        var prop2 = new PropositionBo
+        {
+            Title = "Oldest",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now.AddDays(-5)
+        };
+        await _context.Propositions.AddRangeAsync(prop1, prop2);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, _) = await _repository.GetPagedAsync(0, 10, "createdAt", "asc");
+
+        // Assert
+        Assert.AreEqual("Oldest", items[0].Title);
+        Assert.AreEqual("Newest", items[1].Title);
+    }
+
+    [TestMethod]
+    public async Task GetPagedAsync_NullSortBy_DefaultsToCreatedAtDescending()
+    {
+        // Arrange
+        var prop1 = new PropositionBo
+        {
+            Title = "Oldest",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now.AddDays(-2)
+        };
+        var prop2 = new PropositionBo
+        {
+            Title = "Newest",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now
+        };
+        await _context.Propositions.AddRangeAsync(prop1, prop2);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, _) = await _repository.GetPagedAsync(0, 10, null, null);
+
+        // Assert - Should default to newest first
+        Assert.AreEqual("Newest", items[0].Title);
+        Assert.AreEqual("Oldest", items[1].Title);
+    }
+
+    [TestMethod]
+    public async Task GetPagedAsync_InvalidSortBy_DefaultsToCreatedAtDescending()
+    {
+        // Arrange
+        var prop1 = new PropositionBo
+        {
+            Title = "Oldest",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now.AddDays(-2)
+        };
+        var prop2 = new PropositionBo
+        {
+            Title = "Newest",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now
+        };
+        await _context.Propositions.AddRangeAsync(prop1, prop2);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, _) = await _repository.GetPagedAsync(0, 10, "invalidField", "desc");
+
+        // Assert - Should default to newest first
+        Assert.AreEqual("Newest", items[0].Title);
+        Assert.AreEqual("Oldest", items[1].Title);
+    }
+
+    #endregion
+
     #region GetPagedWithFilterAsync Tests
 
     [TestMethod]
@@ -369,6 +588,40 @@ public class PropositionRepositoryTests
         Assert.AreEqual(2, items.Count);
         Assert.IsTrue(items.Any(p => p.Title == "Active" && !p.IsDeleted));
         Assert.IsTrue(items.Any(p => p.Title == "Deleted" && p.IsDeleted));
+    }
+
+    [TestMethod]
+    public async Task GetPagedWithFilterAsync_WithSortByVotesUp_ReturnsSortedPropositions()
+    {
+        // Arrange
+        var prop1 = new PropositionBo
+        {
+            Title = "Low Votes",
+            Description = "Test",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 10,
+            CreatedAt = DateTime.Now
+        };
+        var prop2 = new PropositionBo
+        {
+            Title = "High Votes",
+            Description = "Test",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            VotesUp = 100,
+            CreatedAt = DateTime.Now.AddDays(-1)
+        };
+
+        await _context.Propositions.AddRangeAsync(prop1, prop2);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, _) = await _repository.GetPagedWithFilterAsync(0, 10, Bo.Enums.DeletedStatus.Active, "votesUp", "desc");
+
+        // Assert
+        Assert.AreEqual("High Votes", items[0].Title);
+        Assert.AreEqual("Low Votes", items[1].Title);
     }
 
     #endregion

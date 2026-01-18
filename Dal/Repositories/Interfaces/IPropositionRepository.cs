@@ -35,7 +35,12 @@ public interface IPropositionRepository : IRepository<PropositionBo>
     /// <summary>
     /// Récupère les propositions non supprimées paginées avec User
     /// </summary>
-    Task<(List<PropositionBo> Items, int TotalCount)> GetPagedAsync(int skip, int take);
+    /// <param name="skip">Nombre d'éléments à sauter</param>
+    /// <param name="take">Nombre d'éléments à prendre</param>
+    /// <param name="sortBy">Champ de tri (createdAt, votesUp, score). Par défaut: createdAt</param>
+    /// <param name="sortOrder">Ordre de tri (asc, desc). Par défaut: desc</param>
+    /// <returns>Tuple contenant la liste de propositions avec User et le nombre total</returns>
+    Task<(List<PropositionBo> Items, int TotalCount)> GetPagedAsync(int skip, int take, string? sortBy = null, string? sortOrder = "desc");
 
     /// <summary>
     /// Récupère les propositions paginées avec filtre sur le statut de suppression
@@ -43,6 +48,8 @@ public interface IPropositionRepository : IRepository<PropositionBo>
     /// <param name="skip">Nombre d'éléments à sauter</param>
     /// <param name="take">Nombre d'éléments à prendre</param>
     /// <param name="deletedStatus">Filtre sur le statut de suppression (All, Active, Deleted)</param>
+    /// <param name="sortBy">Champ de tri (createdAt, votesUp, score). Par défaut: createdAt</param>
+    /// <param name="sortOrder">Ordre de tri (asc, desc). Par défaut: desc</param>
     /// <returns>Tuple contenant la liste de propositions avec User et le nombre total</returns>
     /// <remarks>
     /// Permet de récupérer les propositions selon leur statut de suppression :
@@ -50,5 +57,5 @@ public interface IPropositionRepository : IRepository<PropositionBo>
     /// - Deleted : uniquement les propositions supprimées (IsDeleted = true)
     /// - All : toutes les propositions
     /// </remarks>
-    Task<(List<PropositionBo> Items, int TotalCount)> GetPagedWithFilterAsync(int skip, int take, Bo.Enums.DeletedStatus deletedStatus);
+    Task<(List<PropositionBo> Items, int TotalCount)> GetPagedWithFilterAsync(int skip, int take, Bo.Enums.DeletedStatus deletedStatus, string? sortBy = null, string? sortOrder = "desc");
 }

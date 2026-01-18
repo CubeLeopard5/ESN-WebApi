@@ -30,12 +30,14 @@ public class PropositionService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<
     /// <inheritdoc />
     public async Task<PagedResult<PropositionDto>> GetAllPropositionsAsync(PaginationParams pagination, string? userEmail = null)
     {
-        logger.LogInformation("PropositionService.GetAllPropositionsAsync (paginated) called - Page {PageNumber}, Size {PageSize}, UserEmail: {UserEmail}",
-            pagination.PageNumber, pagination.PageSize, userEmail ?? "anonymous");
+        logger.LogInformation("PropositionService.GetAllPropositionsAsync (paginated) called - Page {PageNumber}, Size {PageSize}, SortBy: {SortBy}, SortOrder: {SortOrder}, UserEmail: {UserEmail}",
+            pagination.PageNumber, pagination.PageSize, pagination.SortBy ?? "createdAt", pagination.SortOrder ?? "desc", userEmail ?? "anonymous");
 
         var (items, totalCount) = await unitOfWork.Propositions.GetPagedAsync(
             pagination.Skip,
-            pagination.PageSize);
+            pagination.PageSize,
+            pagination.SortBy,
+            pagination.SortOrder);
 
         var dtos = mapper.Map<List<PropositionDto>>(items);
 
@@ -323,14 +325,16 @@ public class PropositionService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<
         Dto.Proposition.PropositionFilterDto filter,
         string? userEmail = null)
     {
-        logger.LogInformation("PropositionService.GetAllPropositionsForAdminAsync called with filter {Status}", filter.Status);
+        logger.LogInformation("PropositionService.GetAllPropositionsForAdminAsync called with filter {Status}, SortBy: {SortBy}, SortOrder: {SortOrder}",
+            filter.Status, pagination.SortBy ?? "createdAt", pagination.SortOrder ?? "desc");
 
         // Calculate skip and take for pagination
         var skip = (pagination.PageNumber - 1) * pagination.PageSize;
         var take = pagination.PageSize;
 
-        // Get propositions with filter
-        var (propositions, totalCount) = await unitOfWork.Propositions.GetPagedWithFilterAsync(skip, take, filter.Status);
+        // Get propositions with filter and sorting
+        var (propositions, totalCount) = await unitOfWork.Propositions.GetPagedWithFilterAsync(
+            skip, take, filter.Status, pagination.SortBy, pagination.SortOrder);
 
         // Map to DTOs
         var propositionDtos = mapper.Map<IEnumerable<PropositionDto>>(propositions).ToList();
