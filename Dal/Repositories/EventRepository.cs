@@ -97,4 +97,25 @@ public class EventRepository(EsnDevContext context) : Repository<EventBo>(contex
         return await _context.EventRegistrations
             .CountAsync(er => er.EventId == eventId && er.Status == RegistrationStatus.Registered);
     }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<EventBo>> GetEventsCreatedAfterAsync(DateTime date)
+    {
+        return await _dbSet
+            .AsNoTracking()
+            .Where(e => e.CreatedAt >= date)
+            .OrderBy(e => e.CreatedAt)
+            .ToListAsync();
+    }
+
+    /// <inheritdoc />
+    public async Task<List<EventBo>> GetEventsWithRegistrationCountAsync(int count)
+    {
+        return await _dbSet
+            .AsNoTracking()
+            .Include(e => e.EventRegistrations.Where(er => er.Status == RegistrationStatus.Registered))
+            .OrderByDescending(e => e.EventRegistrations.Count(er => er.Status == RegistrationStatus.Registered))
+            .Take(count)
+            .ToListAsync();
+    }
 }

@@ -45,4 +45,18 @@ public interface IEventRepository : IRepository<EventBo>
     /// Compte le nombre d'inscrits pour un événement (status = registered)
     /// </summary>
     Task<int> GetRegisteredCountAsync(int eventId);
+
+    /// <summary>
+    /// Récupère les événements créés après une date donnée
+    /// </summary>
+    /// <param name="date">Date de début</param>
+    /// <returns>Liste des événements créés après la date</returns>
+    Task<IEnumerable<EventBo>> GetEventsCreatedAfterAsync(DateTime date);
+
+    /// <summary>
+    /// Récupère les top événements par nombre d'inscriptions
+    /// </summary>
+    /// <param name="count">Nombre d'événements à retourner</param>
+    /// <returns>Liste des événements triés par nombre d'inscriptions décroissant</returns>
+    Task<List<EventBo>> GetEventsWithRegistrationCountAsync(int count);
 }

@@ -63,4 +63,23 @@ public interface IEventRegistrationRepository : IRepository<EventRegistrationBo>
     /// <param name="registrationIds">Liste des IDs d'inscriptions</param>
     /// <returns>Dictionnaire id -> inscription</returns>
     Task<Dictionary<int, EventRegistrationBo>> GetByIdsAsync(IEnumerable<int> registrationIds);
+
+    /// <summary>
+    /// Récupère toutes les inscriptions avec leur statut de présence
+    /// </summary>
+    /// <returns>Liste des inscriptions avec AttendanceStatus</returns>
+    Task<IEnumerable<EventRegistrationBo>> GetAllWithAttendanceAsync();
+
+    /// <summary>
+    /// Récupère les inscriptions créées après une date donnée
+    /// </summary>
+    /// <param name="date">Date de début</param>
+    /// <returns>Liste des inscriptions créées après la date</returns>
+    Task<IEnumerable<EventRegistrationBo>> GetRegistrationsAfterAsync(DateTime date);
+
+    /// <summary>
+    /// Calcule le taux de présence moyen sur toutes les inscriptions validées
+    /// </summary>
+    /// <returns>Taux de présence moyen en pourcentage</returns>
+    Task<decimal> GetAverageAttendanceRateAsync();
 }

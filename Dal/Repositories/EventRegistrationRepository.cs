@@ -97,4 +97,38 @@ public class EventRegistrationRepository(EsnDevContext context) : Repository<Eve
             .Where(er => idList.Contains(er.Id))
             .ToDictionaryAsync(er => er.Id, er => er);
     }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<EventRegistrationBo>> GetAllWithAttendanceAsync()
+    {
+        return await context.EventRegistrations
+            .AsNoTracking()
+            .Where(er => er.Status == RegistrationStatus.Registered)
+            .ToListAsync();
+    }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<EventRegistrationBo>> GetRegistrationsAfterAsync(DateTime date)
+    {
+        return await context.EventRegistrations
+            .AsNoTracking()
+            .Where(er => er.RegisteredAt >= date && er.Status == RegistrationStatus.Registered)
+            .OrderBy(er => er.RegisteredAt)
+            .ToListAsync();
+    }
+
+    /// <inheritdoc />
+    public async Task<decimal> GetAverageAttendanceRateAsync()
+    {
+        var validatedRegistrations = await context.EventRegistrations
+            .AsNoTracking()
+            .Where(er => er.Status == RegistrationStatus.Registered && er.AttendanceStatus != null)
+            .ToListAsync();
+
+        if (validatedRegistrations.Count == 0)
+            return 0m;
+
+        var presentCount = validatedRegistrations.Count(er => er.AttendanceStatus == AttendanceStatus.Present);
+        return Math.Round((decimal)presentCount / validatedRegistrations.Count * 100, 2);
+    }
 }

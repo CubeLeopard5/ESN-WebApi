@@ -3,6 +3,7 @@ using Business.Calendar;
 using Business.Event;
 using Business.EventTemplate;
 using Business.Proposition;
+using Business.Statistics;
 using Business.User;
 using Dal.UnitOfWork;
 using FluentValidation;
@@ -139,6 +140,7 @@ builder.Services.AddScoped<Business.Interfaces.IPropositionService, PropositionS
 builder.Services.AddScoped<Business.Interfaces.IUserService, UserService>();
 builder.Services.AddScoped<Business.Interfaces.IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<Business.Interfaces.IEventFeedbackService, Business.EventFeedback.EventFeedbackService>();
+builder.Services.AddScoped<Business.Interfaces.IStatisticsService, StatisticsService>();
 builder.Services.AddScoped<Dal.Seeds.DatabaseSeeder>();
 
 // Configure Rate Limiting
