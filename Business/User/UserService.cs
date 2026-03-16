@@ -58,13 +58,13 @@ public class UserService(
         if (user.Status == UserStatus.Pending)
         {
             logger.LogWarning("UserService.LoginAsync - User {UserId} attempted login with Pending status", user.Id);
-            throw new ForbiddenAccessException("Votre compte est en attente de validation par un administrateur");
+            throw new ForbiddenAccessException("Your account is pending approval by an administrator.");
         }
 
         if (user.Status == UserStatus.Rejected)
         {
             logger.LogWarning("UserService.LoginAsync - User {UserId} attempted login with Rejected status", user.Id);
-            throw new ForbiddenAccessException("Votre compte a été refusé. Contactez l'administrateur.");
+            throw new ForbiddenAccessException("Your account has been rejected. Please contact the administrator.");
         }
 
         var token = jwtTokenService.GenerateToken(user);

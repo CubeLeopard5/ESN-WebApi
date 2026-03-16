@@ -107,7 +107,7 @@ namespace Tests.Controllers
             // Arrange
             var loginDto = new UserLoginDto { Email = TestUserEmail, Password = "password" };
             _mockUserService.Setup(s => s.LoginAsync(loginDto))
-                .ThrowsAsync(new ForbiddenAccessException("Votre compte est en attente de validation par un administrateur"));
+                .ThrowsAsync(new ForbiddenAccessException("Your account is pending approval by an administrator."));
 
             // Act
             var result = await _controller.Login(loginDto);
@@ -125,7 +125,7 @@ namespace Tests.Controllers
             // Arrange
             var loginDto = new UserLoginDto { Email = TestUserEmail, Password = "password" };
             _mockUserService.Setup(s => s.LoginAsync(loginDto))
-                .ThrowsAsync(new ForbiddenAccessException("Votre compte a été refusé. Contactez l'administrateur."));
+                .ThrowsAsync(new ForbiddenAccessException("Your account has been rejected. Please contact the administrator."));
 
             // Act
             var result = await _controller.Login(loginDto);

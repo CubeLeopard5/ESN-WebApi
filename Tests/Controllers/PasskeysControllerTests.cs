@@ -188,7 +188,7 @@ namespace Tests.Controllers
                 AssertionResponse = "{}"
             };
             _mockPasskeyService.Setup(s => s.CompleteLoginAsync(dto))
-                .ThrowsAsync(new ForbiddenAccessException("Votre compte est en attente"));
+                .ThrowsAsync(new ForbiddenAccessException("Your account is pending approval by an administrator."));
 
             // Act
             var result = await _controller.CompleteLogin(dto);

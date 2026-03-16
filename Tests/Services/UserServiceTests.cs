@@ -537,7 +537,7 @@ namespace Tests.Services
             catch (Business.Exceptions.ForbiddenAccessException ex)
             {
                 exceptionThrown = true;
-                Assert.IsTrue(ex.Message.Contains("attente"));
+                Assert.IsTrue(ex.Message.Contains("pending"));
             }
 
             Assert.IsTrue(exceptionThrown, "Expected ForbiddenAccessException was not thrown");
@@ -577,7 +577,7 @@ namespace Tests.Services
             catch (Business.Exceptions.ForbiddenAccessException ex)
             {
                 exceptionThrown = true;
-                Assert.IsTrue(ex.Message.Contains("refusé"));
+                Assert.IsTrue(ex.Message.Contains("rejected"));
             }
 
             Assert.IsTrue(exceptionThrown, "Expected ForbiddenAccessException was not thrown");
