@@ -3,12 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bo.Models;
 
+/// <summary>
+/// Entité représentant une passkey WebAuthn/FIDO2 associée à un utilisateur.
+/// Stocke les informations du credential nécessaires à la vérification des assertions.
+/// </summary>
 [Table("UserPasskeys")]
 public class UserPasskeyBo
 {
+    /// <summary>
+    /// Identifiant unique de la passkey
+    /// </summary>
     [Key]
     public int Id { get; set; }
 
+    /// <summary>
+    /// Identifiant de l'utilisateur propriétaire de cette passkey
+    /// </summary>
     [Required]
     public int UserId { get; set; }
 
@@ -48,10 +58,18 @@ public class UserPasskeyBo
     [StringLength(255)]
     public string? DisplayName { get; set; }
 
+    /// <summary>
+    /// Date de création de la passkey
+    /// </summary>
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+    /// <summary>
+    /// Date de dernière utilisation de la passkey pour une authentification
+    /// </summary>
     public DateTime? LastUsedAt { get; set; }
 
-    // Navigation
+    /// <summary>
+    /// Utilisateur propriétaire de cette passkey
+    /// </summary>
     public virtual UserBo User { get; set; } = null!;
 }

@@ -10,6 +10,11 @@ using Web.Middlewares;
 
 namespace Web.Controllers;
 
+/// <summary>
+/// Contrôleur WebAuthn/FIDO2 pour la gestion des passkeys.
+/// Fournit les endpoints d'enregistrement et d'authentification par passkey,
+/// ainsi que la gestion (liste, renommage, suppression) des passkeys utilisateur.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 [ServiceFilter(typeof(RequestLoggingActionFilter))]
