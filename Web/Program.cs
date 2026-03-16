@@ -24,6 +24,7 @@ using Web.Middlewares;
 using Web.Validators;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Fido2NetLib;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +73,9 @@ builder.Services.AddSwaggerGen(c =>
         [new OpenApiSecuritySchemeReference("Bearer", document)] = []
     });
 });
+
+// Add Memory Cache (used for WebAuthn challenges)
+builder.Services.AddMemoryCache();
 
 // Add AutoMapper
 builder.Services.AddAutoMapper(cfg => {
@@ -132,12 +136,24 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// Add FIDO2/WebAuthn
+builder.Services.AddFido2(options =>
+{
+    var fido2Config = builder.Configuration.GetSection("Fido2");
+    options.ServerDomain = fido2Config["ServerDomain"] ?? "localhost";
+    options.ServerName = fido2Config["ServerName"] ?? "ESN";
+    options.Origins = fido2Config.GetSection("Origins").Get<HashSet<string>>()
+        ?? new HashSet<string> { "https://localhost:3000", "http://localhost:3000" };
+});
+
 builder.Services.AddScoped<RequestLoggingActionFilter>();
 builder.Services.AddScoped<Business.Interfaces.IEventService, EventService>();
 builder.Services.AddScoped<Business.Interfaces.IEventTemplateService, EventTemplateService>();
 builder.Services.AddScoped<Business.Interfaces.ICalendarService, CalendarService>();
 builder.Services.AddScoped<Business.Interfaces.IPropositionService, PropositionService>();
+builder.Services.AddScoped<Business.Interfaces.IJwtTokenService, Business.Auth.JwtTokenService>();
 builder.Services.AddScoped<Business.Interfaces.IUserService, UserService>();
+builder.Services.AddScoped<Business.Interfaces.IPasskeyService, Business.Passkey.PasskeyService>();
 builder.Services.AddScoped<Business.Interfaces.IAttendanceService, AttendanceService>();
 builder.Services.AddScoped<Business.Interfaces.IEventFeedbackService, Business.EventFeedback.EventFeedbackService>();
 builder.Services.AddScoped<Business.Interfaces.IStatisticsService, StatisticsService>();

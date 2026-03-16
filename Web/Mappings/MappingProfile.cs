@@ -5,6 +5,7 @@ using Dto.Attendance;
 using Dto.Calendar;
 using Dto.Event;
 using Dto.EventTemplate;
+using Dto.Passkey;
 using Dto.User;
 using Bo.Models;
 
@@ -78,6 +79,9 @@ namespace Web.Mappings
             CreateMap<CreateEventTemplateDto, EventTemplateBo>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.Ignore());
+
+            // Passkey mappings
+            CreateMap<UserPasskeyBo, PasskeyDto>();
 
             // Attendance mappings
             CreateMap<EventRegistrationBo, AttendanceDto>()

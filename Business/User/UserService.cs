@@ -22,7 +22,8 @@ public class UserService(
     IUnitOfWork unitOfWork,
     IMapper mapper,
     ILogger<UserService> logger,
-    IConfiguration configuration)
+    IConfiguration configuration,
+    IJwtTokenService jwtTokenService)
     : IUserService
 {
     /// <inheritdoc />
@@ -66,7 +67,7 @@ public class UserService(
             throw new ForbiddenAccessException("Votre compte a été refusé. Contactez l'administrateur.");
         }
 
-        var token = GenerateJwtToken(user);
+        var token = jwtTokenService.GenerateToken(user);
 
         logger.LogInformation("UserService.LoginAsync completed successfully for {Email}", loginDto.Email);
 
@@ -138,7 +139,7 @@ public class UserService(
             }
 
             // Generate new token
-            var newToken = GenerateJwtToken(user);
+            var newToken = jwtTokenService.GenerateToken(user);
 
             logger.LogInformation("UserService.RefreshTokenAsync completed successfully for {Email}", user.Email);
 
@@ -434,67 +435,6 @@ public class UserService(
         await unitOfWork.SaveChangesAsync();
 
         logger.LogInformation("UserService.RevokeUserAsync completed - User {UserId} status set to Pending", userId);
-    }
-
-    /// <summary>
-    /// Génère un token JWT pour un utilisateur authentifié
-    /// </summary>
-    /// <param name="user">Utilisateur pour lequel générer le token</param>
-    /// <returns>Token JWT signé et encodé</returns>
-    /// <remarks>
-    /// Le token contient les claims suivants :
-    /// - sub : Email de l'utilisateur
-    /// - userId : Identifiant unique
-    /// - name : Prénom et nom
-    /// - studentType : Type d'étudiant
-    /// - role : Rôle (Admin, User)
-    /// - Permissions : CanCreateEvents, CanModifyEvents, etc.
-    ///
-    /// Configuration :
-    /// - Algorithme : HMAC-SHA256
-    /// - Durée : 30 minutes (configurable)
-    /// - Issuer et Audience : configurés dans appsettings.json
-    /// </remarks>
-    private string GenerateJwtToken(Bo.Models.UserBo user)
-    {
-        logger.LogInformation("UserService.GenerateJwtToken called for {Email}", user.Email);
-
-        var jwtConfig = configuration.GetSection("Jwt");
-        var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? jwtConfig["Key"]!;
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-        var claims = new List<Claim>
-        {
-            new(JwtRegisteredClaimNames.Sub, user.Email),
-            new("userId", user.Id.ToString()),
-            new("name", $"{user.FirstName} {user.LastName}"),
-            new("studentType", user.StudentType)
-        };
-
-        if (user.Role != null)
-        {
-            claims.Add(new Claim(ClaimTypes.Role, user.Role.Name));
-
-            // Add role permissions as claims
-            claims.Add(new Claim("CanCreateEvents", user.Role.CanCreateEvents.ToString()));
-            claims.Add(new Claim("CanModifyEvents", user.Role.CanModifyEvents.ToString()));
-            claims.Add(new Claim("CanDeleteEvents", user.Role.CanDeleteEvents.ToString()));
-
-            claims.Add(new Claim("CanCreateUsers", user.Role.CanCreateUsers.ToString()));
-            claims.Add(new Claim("CanModifyUsers", user.Role.CanModifyUsers.ToString()));
-            claims.Add(new Claim("CanDeleteUsers", user.Role.CanDeleteUsers.ToString()));
-        }
-
-        var token = new JwtSecurityToken(
-            issuer: jwtConfig["Issuer"],
-            audience: jwtConfig["Audience"],
-            claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(jwtConfig["ExpireMinutes"])),
-            signingCredentials: creds
-        );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
 }

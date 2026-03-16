@@ -21,6 +21,7 @@ namespace Tests.Services
         private Mock<ILogger<UserService>> _mockLogger = null!;
         private Mock<IConfiguration> _mockConfiguration = null!;
         private Mock<IUserRepository> _mockUserRepository = null!;
+        private Mock<Business.Interfaces.IJwtTokenService> _mockJwtTokenService = null!;
         private UserService _userService = null!;
 
         [TestInitialize]
@@ -31,6 +32,7 @@ namespace Tests.Services
             _mockLogger = new Mock<ILogger<UserService>>();
             _mockConfiguration = new Mock<IConfiguration>();
             _mockUserRepository = new Mock<IUserRepository>();
+            _mockJwtTokenService = new Mock<Business.Interfaces.IJwtTokenService>();
 
             _mockUnitOfWork.Setup(u => u.Users).Returns(_mockUserRepository.Object);
 
@@ -42,11 +44,15 @@ namespace Tests.Services
             jwtSection.Setup(x => x["ExpiresInMinutes"]).Returns("60");
             _mockConfiguration.Setup(c => c.GetSection("Jwt")).Returns(jwtSection.Object);
 
+            // Setup JWT token generation mock
+            _mockJwtTokenService.Setup(j => j.GenerateToken(It.IsAny<UserBo>())).Returns("test-jwt-token");
+
             _userService = new UserService(
                 _mockUnitOfWork.Object,
                 _mockMapper.Object,
                 _mockLogger.Object,
-                _mockConfiguration.Object
+                _mockConfiguration.Object,
+                _mockJwtTokenService.Object
             );
         }
 

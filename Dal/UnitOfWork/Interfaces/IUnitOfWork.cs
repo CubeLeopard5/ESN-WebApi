@@ -19,6 +19,7 @@ public interface IUnitOfWork : IDisposable
     IRoleRepository Roles { get; }
     IPropositionVoteRepository PropositionVotes { get; }
     IEventFeedbackRepository EventFeedbacks { get; }
+    IPasskeyRepository Passkeys { get; }
 
     /// <summary>
     /// Sauvegarde tous les changements en une seule transaction

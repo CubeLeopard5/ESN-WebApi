@@ -43,6 +43,9 @@ public class UnitOfWork(EsnDevContext context) : Interfaces.IUnitOfWork
     public IEventFeedbackRepository EventFeedbacks =>
         field ??= new EventFeedbackRepository(context);
 
+    public IPasskeyRepository Passkeys =>
+        field ??= new PasskeyRepository(context);
+
     public async Task<int> SaveChangesAsync()
     {
         return await context.SaveChangesAsync();

@@ -25,6 +25,7 @@ public partial class EsnDevContext : DbContext
     public virtual DbSet<CalendarBo> Calendars { get; set; }
     public virtual DbSet<CalendarSubOrganizerBo> CalendarSubOrganizers { get; set; }
     public virtual DbSet<EventFeedbackBo> EventFeedbacks { get; set; }
+    public virtual DbSet<UserPasskeyBo> UserPasskeys { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -321,6 +322,45 @@ public partial class EsnDevContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_EventFeedback_Users");
+        });
+
+        modelBuilder.Entity<UserPasskeyBo>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__UserPasskeys__3214EC07");
+
+            entity.HasIndex(e => e.CredentialId, "UQ_UserPasskeys_CredentialId").IsUnique();
+
+            entity.Property(e => e.CredentialId)
+                .HasMaxLength(512)
+                .IsUnicode(false)
+                .IsRequired();
+
+            entity.Property(e => e.PublicKey)
+                .IsRequired();
+
+            entity.Property(e => e.SignCount)
+                .IsRequired();
+
+            entity.Property(e => e.CredentialType)
+                .HasMaxLength(32)
+                .IsUnicode(false);
+
+            entity.Property(e => e.DisplayName)
+                .HasMaxLength(255);
+
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getutcdate())")
+                .IsRequired();
+
+            entity.Property(e => e.LastUsedAt)
+                .HasColumnType("datetime");
+
+            entity.HasOne(d => d.User)
+                .WithMany(p => p.Passkeys)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_UserPasskeys_Users");
         });
 
         // Note: Initial data seeding is handled by Dal/Seeds/DatabaseSeeder.cs
