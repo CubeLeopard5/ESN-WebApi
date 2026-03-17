@@ -151,6 +151,8 @@ builder.Services.AddScoped<Business.Interfaces.IEventService, EventService>();
 builder.Services.AddScoped<Business.Interfaces.IEventTemplateService, EventTemplateService>();
 builder.Services.AddScoped<Business.Interfaces.ICalendarService, CalendarService>();
 builder.Services.AddScoped<Business.Interfaces.IPropositionService, PropositionService>();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<Business.Interfaces.IRecaptchaService, Business.Auth.RecaptchaService>();
 builder.Services.AddScoped<Business.Interfaces.IJwtTokenService, Business.Auth.JwtTokenService>();
 builder.Services.AddScoped<Business.Interfaces.IUserService, UserService>();
 builder.Services.AddScoped<Business.Interfaces.IPasskeyService, Business.Passkey.PasskeyService>();
@@ -176,14 +178,26 @@ builder.Services.AddRateLimiter(options =>
                 QueueLimit = 0
             }));
 
-    // Strict limit for login: 5 attempts per 5 minutes per IP
+    // Strict limit for login: 3 attempts per 15 minutes per IP
     options.AddPolicy("login", context =>
         RateLimitPartition.GetFixedWindowLimiter(
             partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
             factory: _ => new FixedWindowRateLimiterOptions
             {
-                PermitLimit = 5,
-                Window = TimeSpan.FromMinutes(5),
+                PermitLimit = 3,
+                Window = TimeSpan.FromMinutes(15),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
+
+    // Limit for token refresh: 10 per 10 minutes per IP
+    options.AddPolicy("refresh", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 10,
+                Window = TimeSpan.FromMinutes(10),
                 QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
                 QueueLimit = 0
             }));

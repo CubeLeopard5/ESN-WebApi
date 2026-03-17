@@ -121,6 +121,8 @@ public partial class EsnDevContext : DbContext
             entity.Property(e => e.TransportPass).HasMaxLength(100).IsUnicode(false);
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
             entity.Property(e => e.LastLoginAt).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
+            entity.Property(e => e.FailedLoginAttempts).HasDefaultValue(0);
+            entity.Property(e => e.LockoutEndTime).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<RoleBo>(entity =>

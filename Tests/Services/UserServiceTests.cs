@@ -22,6 +22,7 @@ namespace Tests.Services
         private Mock<IConfiguration> _mockConfiguration = null!;
         private Mock<IUserRepository> _mockUserRepository = null!;
         private Mock<Business.Interfaces.IJwtTokenService> _mockJwtTokenService = null!;
+        private Microsoft.Extensions.Caching.Memory.IMemoryCache _memoryCache = null!;
         private UserService _userService = null!;
 
         [TestInitialize]
@@ -33,6 +34,8 @@ namespace Tests.Services
             _mockConfiguration = new Mock<IConfiguration>();
             _mockUserRepository = new Mock<IUserRepository>();
             _mockJwtTokenService = new Mock<Business.Interfaces.IJwtTokenService>();
+            _memoryCache = new Microsoft.Extensions.Caching.Memory.MemoryCache(
+                new Microsoft.Extensions.Caching.Memory.MemoryCacheOptions());
 
             _mockUnitOfWork.Setup(u => u.Users).Returns(_mockUserRepository.Object);
 
@@ -52,8 +55,15 @@ namespace Tests.Services
                 _mockMapper.Object,
                 _mockLogger.Object,
                 _mockConfiguration.Object,
-                _mockJwtTokenService.Object
+                _mockJwtTokenService.Object,
+                _memoryCache
             );
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _memoryCache.Dispose();
         }
 
         #region Login Tests

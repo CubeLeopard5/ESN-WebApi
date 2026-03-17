@@ -11,6 +11,11 @@ namespace Dto.User
         [Required]
         [StringLength(255)]
         public string Password { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Google reCAPTCHA v3 token (optional in dev, required in production)
+        /// </summary>
+        public string? RecaptchaToken { get; set; }
     }
 
 }

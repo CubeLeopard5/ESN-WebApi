@@ -17,6 +17,7 @@ namespace Tests.Controllers
     public class UsersControllerTests
     {
         private Mock<IUserService> _mockUserService = null!;
+        private Mock<Business.Interfaces.IRecaptchaService> _mockRecaptchaService = null!;
         private Mock<ILogger<UsersController>> _mockLogger = null!;
         private UsersController _controller = null!;
         private const string TestUserEmail = "test@example.com";
@@ -25,8 +26,14 @@ namespace Tests.Controllers
         public void Setup()
         {
             _mockUserService = new Mock<IUserService>();
+            _mockRecaptchaService = new Mock<Business.Interfaces.IRecaptchaService>();
             _mockLogger = new Mock<ILogger<UsersController>>();
-            _controller = new UsersController(_mockUserService.Object, _mockLogger.Object);
+
+            // reCAPTCHA always passes in tests
+            _mockRecaptchaService.Setup(r => r.VerifyAsync(It.IsAny<string>(), It.IsAny<string>()))
+                .ReturnsAsync(true);
+
+            _controller = new UsersController(_mockUserService.Object, _mockRecaptchaService.Object, _mockLogger.Object);
 
             SetupAuthenticatedUser(TestUserEmail);
         }

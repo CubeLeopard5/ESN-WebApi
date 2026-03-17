@@ -13,7 +13,10 @@ namespace Web.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [ServiceFilter(typeof(RequestLoggingActionFilter))]
-public class UsersController(Business.Interfaces.IUserService userService, ILogger<UsersController> logger) : ControllerBase
+public class UsersController(
+    Business.Interfaces.IUserService userService,
+    Business.Interfaces.IRecaptchaService recaptchaService,
+    ILogger<UsersController> logger) : ControllerBase
 {
     [HttpPost("login")]
     [EnableRateLimiting("login")]
@@ -24,6 +27,13 @@ public class UsersController(Business.Interfaces.IUserService userService, ILogg
     public async Task<ActionResult<string>> Login(UserLoginDto loginDto)
     {
         logger.LogInformation("Login request received for {Email}", loginDto.Email);
+
+        // Verify reCAPTCHA
+        if (!await recaptchaService.VerifyAsync(loginDto.RecaptchaToken ?? "", "login"))
+        {
+            logger.LogWarning("Login - reCAPTCHA verification failed for {Email}", loginDto.Email);
+            return BadRequest(new { message = "reCAPTCHA verification failed." });
+        }
 
         try
         {
@@ -46,9 +56,11 @@ public class UsersController(Business.Interfaces.IUserService userService, ILogg
     }
 
     [HttpPost("refresh")]
+    [EnableRateLimiting("refresh")]
     [ProducesResponseType(typeof(UserLoginResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status429TooManyRequests)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<UserLoginResponseDto>> RefreshToken()
     {
@@ -179,6 +191,13 @@ public class UsersController(Business.Interfaces.IUserService userService, ILogg
     public async Task<ActionResult<UserDto>> PostUser(UserCreateDto createDto)
     {
         logger.LogInformation("PostUser request received for {Email}", createDto.Email);
+
+        // Verify reCAPTCHA
+        if (!await recaptchaService.VerifyAsync(createDto.RecaptchaToken ?? "", "register"))
+        {
+            logger.LogWarning("PostUser - reCAPTCHA verification failed for {Email}", createDto.Email);
+            return BadRequest(new { message = "reCAPTCHA verification failed." });
+        }
 
         try
         {

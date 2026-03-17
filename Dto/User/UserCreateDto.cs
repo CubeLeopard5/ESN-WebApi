@@ -33,5 +33,10 @@ namespace Dto.User
         [RegularExpression("exchange|local|esn_member", ErrorMessage = "Le type d'étudiant doit être 'exchange', 'local' ou 'esn_member'.")]
         [StringLength(50)]
         public string StudentType { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Google reCAPTCHA v3 token (optional in dev, required in production)
+        /// </summary>
+        public string? RecaptchaToken { get; set; }
     }
 }

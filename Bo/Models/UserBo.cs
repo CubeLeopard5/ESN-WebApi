@@ -54,6 +54,16 @@ public partial class UserBo
     public DateTime? LastLoginAt { get; set; }
 
     /// <summary>
+    /// Number of consecutive failed login attempts
+    /// </summary>
+    public int FailedLoginAttempts { get; set; } = 0;
+
+    /// <summary>
+    /// Account lockout end time (null if not locked)
+    /// </summary>
+    public DateTime? LockoutEndTime { get; set; }
+
+    /// <summary>
     /// Statut du compte utilisateur (Pending, Approved, Rejected)
     /// </summary>
     [Required]
@@ -67,4 +77,5 @@ public partial class UserBo
     public virtual ICollection<EventRegistrationBo> EventRegistrations { get; set; } = [];
     public virtual ICollection<PropositionBo> Propositions { get; set; } = [];
     public virtual ICollection<EventBo> Events { get; set; } = new List<EventBo>();
+    public virtual ICollection<UserPasskeyBo> Passkeys { get; set; } = [];
 }

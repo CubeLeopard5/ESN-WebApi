@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Business.User;
 
@@ -23,7 +24,8 @@ public class UserService(
     IMapper mapper,
     ILogger<UserService> logger,
     IConfiguration configuration,
-    IJwtTokenService jwtTokenService)
+    IJwtTokenService jwtTokenService,
+    Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache)
     : IUserService
 {
     /// <inheritdoc />
@@ -46,12 +48,45 @@ public class UserService(
             throw new UnauthorizedAccessException("Invalid credentials");
         }
 
+        // Check account lockout
+        if (user.LockoutEndTime.HasValue && user.LockoutEndTime > DateTime.UtcNow)
+        {
+            var remainingMinutes = (int)Math.Ceiling((user.LockoutEndTime.Value - DateTime.UtcNow).TotalMinutes);
+            logger.LogWarning("UserService.LoginAsync - Account locked for User {UserId}, {Minutes} min remaining",
+                user.Id, remainingMinutes);
+            throw new ForbiddenAccessException($"Account temporarily locked. Try again in {remainingMinutes} minute(s).");
+        }
+
         var result = hasher.VerifyHashedPassword(user, user.PasswordHash, loginDto.Password);
 
         if (result == PasswordVerificationResult.Failed)
         {
-            logger.LogWarning("UserService.LoginAsync - Invalid credentials");
+            // Increment failed attempts and apply lockout if threshold reached
+            user.FailedLoginAttempts++;
+            user.LockoutEndTime = GetLockoutDuration(user.FailedLoginAttempts);
+            unitOfWork.Users.Update(user);
+            await unitOfWork.SaveChangesAsync();
+
+            if (user.LockoutEndTime.HasValue)
+            {
+                var lockMinutes = (int)Math.Ceiling((user.LockoutEndTime.Value - DateTime.UtcNow).TotalMinutes);
+                logger.LogWarning("UserService.LoginAsync - Account locked after {Attempts} failed attempts for User {UserId}",
+                    user.FailedLoginAttempts, user.Id);
+                throw new ForbiddenAccessException($"Too many failed attempts. Account locked for {lockMinutes} minute(s).");
+            }
+
+            logger.LogWarning("UserService.LoginAsync - Invalid credentials (attempt {Attempts}) for User {UserId}",
+                user.FailedLoginAttempts, user.Id);
             throw new UnauthorizedAccessException("Invalid credentials");
+        }
+
+        // Reset failed attempts on successful login
+        if (user.FailedLoginAttempts > 0)
+        {
+            user.FailedLoginAttempts = 0;
+            user.LockoutEndTime = null;
+            unitOfWork.Users.Update(user);
+            await unitOfWork.SaveChangesAsync();
         }
 
         // Vérifier le statut du compte
@@ -238,6 +273,20 @@ public class UserService(
     public async Task<UserDto> CreateUserAsync(UserCreateDto createDto)
     {
         logger.LogInformation("UserService.CreateUserAsync called for {Email}", createDto.Email);
+
+        // Per-email registration rate limit: max 2 attempts per hour per email
+        var emailKey = $"reg:email:{createDto.Email.ToLowerInvariant()}";
+        var attempts = memoryCache.GetOrCreate(emailKey, entry =>
+        {
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1);
+            return 0;
+        });
+        if (attempts >= 2)
+        {
+            logger.LogWarning("UserService.CreateUserAsync - Too many registration attempts for {Email}", createDto.Email);
+            throw new InvalidOperationException("Too many registration attempts for this email. Please try again later.");
+        }
+        memoryCache.Set(emailKey, attempts + 1, TimeSpan.FromHours(1));
 
         var existingUser = await unitOfWork.Users.GetByEmailAsync(createDto.Email);
 
@@ -435,6 +484,21 @@ public class UserService(
         await unitOfWork.SaveChangesAsync();
 
         logger.LogInformation("UserService.RevokeUserAsync completed - User {UserId} status set to Pending", userId);
+    }
+
+    /// <summary>
+    /// Returns the lockout end time based on the number of failed attempts.
+    /// Implements exponential backoff: 3 fails = 5min, 4 = 15min, 5+ = 1 hour.
+    /// </summary>
+    private static DateTime? GetLockoutDuration(int failedAttempts)
+    {
+        return failedAttempts switch
+        {
+            >= 5 => DateTime.UtcNow.AddHours(1),
+            4 => DateTime.UtcNow.AddMinutes(15),
+            3 => DateTime.UtcNow.AddMinutes(5),
+            _ => null
+        };
     }
 
 }
