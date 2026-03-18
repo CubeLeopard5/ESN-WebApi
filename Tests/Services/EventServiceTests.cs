@@ -4,6 +4,7 @@ using Bo.Models;
 using Business.Event;
 using Dal.Repositories.Interfaces;
 using Dal.UnitOfWork.Interfaces;
+using Dto.Common;
 using Dto.Event;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -48,9 +49,10 @@ namespace Tests.Services
         #region GetAllEvents Tests
 
         [TestMethod]
-        public async Task GetAllEventsAsync_ReturnsListOfEvents()
+        public async Task GetAllEventsAsync_ReturnsPagedListOfEvents()
         {
             // Arrange
+            var pagination = new PaginationParams { PageNumber = 1, PageSize = 20 };
             var eventsBo = new List<EventBo>
             {
                 new EventBo
@@ -71,23 +73,20 @@ namespace Tests.Services
                 }
             };
 
-            var eventDtos = new List<EventDto>
-            {
-                new EventDto { Id = 1, Title = "Event 1" },
-                new EventDto { Id = 2, Title = "Event 2" }
-            };
-
-            _mockEventRepository.Setup(r => r.GetAllEventsWithDetailsAsync())
-                .ReturnsAsync(eventsBo);
+            _mockEventRepository.Setup(r => r.GetEventsPagedAsync(
+                    pagination.Skip, pagination.PageSize, global::Bo.Enums.EventTimeFilter.Future))
+                .ReturnsAsync((eventsBo, 2));
             _mockMapper.Setup(m => m.Map<EventDto>(It.IsAny<EventBo>()))
                 .Returns<EventBo>(e => new EventDto { Id = e.Id, Title = e.Title });
 
             // Act
-            var result = await _eventService.GetAllEventsAsync();
+            var result = await _eventService.GetAllEventsAsync(pagination);
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(2, result.Items.Count);
+            Assert.AreEqual(2, result.TotalCount);
+            Assert.AreEqual(1, result.PageNumber);
         }
 
         #endregion

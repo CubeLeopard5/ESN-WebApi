@@ -4,6 +4,7 @@ using Business.EventTemplate;
 using Dal.Repositories.Interfaces;
 using Dal.UnitOfWork.Interfaces;
 using Dto.Event;
+using Dto.Common;
 using Dto.EventTemplate;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -45,9 +46,10 @@ namespace Tests.Services
         #region GetAllTemplates Tests
 
         [TestMethod]
-        public async Task GetAllTemplatesAsync_ReturnsListOfTemplates()
+        public async Task GetAllTemplatesAsync_ReturnsPagedListOfTemplates()
         {
             // Arrange
+            var pagination = new PaginationParams { PageNumber = 1, PageSize = 20 };
             var templatesBo = new List<EventTemplateBo>
             {
                 new EventTemplateBo
@@ -70,17 +72,19 @@ namespace Tests.Services
                 new EventTemplateDto { Id = 2, Title = "Template 2" }
             };
 
-            _mockEventTemplateRepository.Setup(r => r.GetAllTemplatesAsync())
-                .ReturnsAsync(templatesBo);
-            _mockMapper.Setup(m => m.Map<IEnumerable<EventTemplateDto>>(templatesBo))
+            _mockEventTemplateRepository.Setup(r => r.GetPagedAsync(pagination.Skip, pagination.PageSize))
+                .ReturnsAsync((templatesBo, 2));
+            _mockMapper.Setup(m => m.Map<List<EventTemplateDto>>(templatesBo))
                 .Returns(templateDtos);
 
             // Act
-            var result = await _eventTemplateService.GetAllTemplatesAsync();
+            var result = await _eventTemplateService.GetAllTemplatesAsync(pagination);
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(2, result.Items.Count);
+            Assert.AreEqual(2, result.TotalCount);
+            Assert.AreEqual(1, result.PageNumber);
         }
 
         #endregion

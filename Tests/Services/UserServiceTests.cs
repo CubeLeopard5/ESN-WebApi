@@ -5,6 +5,7 @@ using Bo.Models;
 using Business.User;
 using Dal.Repositories.Interfaces;
 using Dal.UnitOfWork.Interfaces;
+using Dto.Common;
 using Dto.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -332,9 +333,10 @@ namespace Tests.Services
         #region GetAllUsers Tests
 
         [TestMethod]
-        public async Task GetAllUsersAsync_ReturnsListOfUsers()
+        public async Task GetAllUsersAsync_ReturnsPagedListOfUsers()
         {
             // Arrange
+            var pagination = new PaginationParams { PageNumber = 1, PageSize = 20 };
             var usersBo = new List<UserBo>
             {
                 new UserBo
@@ -363,17 +365,19 @@ namespace Tests.Services
                 new UserDto { Id = 2, Email = "user2@example.com", FirstName = "User", LastName = "Two" }
             };
 
-            _mockUserRepository.Setup(r => r.GetAllAsync())
-                .ReturnsAsync(usersBo);
-            _mockMapper.Setup(m => m.Map<IEnumerable<UserDto>>(usersBo))
+            _mockUserRepository.Setup(r => r.GetPagedAsync(pagination.Skip, pagination.PageSize))
+                .ReturnsAsync((usersBo, 2));
+            _mockMapper.Setup(m => m.Map<List<UserDto>>(usersBo))
                 .Returns(userDtos);
 
             // Act
-            var result = await _userService.GetAllUsersAsync();
+            var result = await _userService.GetAllUsersAsync(pagination);
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(2, result.Items.Count);
+            Assert.AreEqual(2, result.TotalCount);
+            Assert.AreEqual(1, result.PageNumber);
         }
 
         #endregion

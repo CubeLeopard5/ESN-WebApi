@@ -5,6 +5,7 @@ using Business.Proposition;
 using Dal.Repositories.Interfaces;
 using Dal.UnitOfWork.Interfaces;
 using Dto;
+using Dto.Common;
 using Microsoft.Extensions.Logging;
 using Moq;
 
@@ -45,9 +46,10 @@ namespace Tests.Services
         #region GetAllPropositions Tests
 
         [TestMethod]
-        public async Task GetAllPropositionsAsync_ReturnsListOfPropositions()
+        public async Task GetAllPropositionsAsync_ReturnsPagedListOfPropositions()
         {
             // Arrange
+            var pagination = new PaginationParams { PageNumber = 1, PageSize = 20 };
             var propositionsBo = new List<PropositionBo>
             {
                 new PropositionBo
@@ -72,17 +74,20 @@ namespace Tests.Services
                 new PropositionDto { Id = 2, Title = "Proposition 2" }
             };
 
-            _mockPropositionRepository.Setup(r => r.GetAllPropositionsWithDetailsAsync())
-                .ReturnsAsync(propositionsBo);
-            _mockMapper.Setup(m => m.Map<IEnumerable<PropositionDto>>(propositionsBo))
+            _mockPropositionRepository.Setup(r => r.GetPagedAsync(
+                    pagination.Skip, pagination.PageSize, null, "desc"))
+                .ReturnsAsync((propositionsBo, 2));
+            _mockMapper.Setup(m => m.Map<List<PropositionDto>>(propositionsBo))
                 .Returns(propositionDtos);
 
             // Act
-            var result = await _propositionService.GetAllPropositionsAsync();
+            var result = await _propositionService.GetAllPropositionsAsync(pagination);
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(2, result.Items.Count);
+            Assert.AreEqual(2, result.TotalCount);
+            Assert.AreEqual(1, result.PageNumber);
         }
 
         #endregion
