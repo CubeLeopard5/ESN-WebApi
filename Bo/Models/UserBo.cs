@@ -49,6 +49,12 @@ public partial class UserBo
     [StringLength(100)]
     public string? TransportPass { get; set; }
 
+    /// <summary>
+    /// Semester in format "season-year" (e.g. "autumn-2025", "spring-2026"). Applicable to exchange and local students.
+    /// </summary>
+    [StringLength(15)]
+    public string? Semester { get; set; }
+
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? LastLoginAt { get; set; }

@@ -44,6 +44,11 @@ namespace Dto.User
         public string? TransportPass { get; set; }
 
         /// <summary>
+        /// Semester for exchange students (autumn, spring, both)
+        /// </summary>
+        public string? Semester { get; set; }
+
+        /// <summary>
         /// Statut du compte utilisateur
         /// </summary>
         [Required]

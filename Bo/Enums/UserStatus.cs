@@ -18,5 +18,10 @@ public enum UserStatus
     /// <summary>
     /// Compte refusé, l'utilisateur ne peut pas se connecter
     /// </summary>
-    Rejected = 2
+    Rejected = 2,
+
+    /// <summary>
+    /// Compte archivé, l'utilisateur ne peut plus se connecter
+    /// </summary>
+    Archived = 3
 }

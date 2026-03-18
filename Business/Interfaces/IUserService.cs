@@ -191,6 +191,51 @@ public interface IUserService
     Task RevokeUserAsync(int userId);
 
     /// <summary>
+    /// Archives a user account (user can no longer log in)
+    /// </summary>
+    /// <param name="userId">User ID to archive</param>
+    /// <exception cref="KeyNotFoundException">User not found</exception>
+    Task ArchiveUserAsync(int userId);
+
+    /// <summary>
+    /// Unarchives a user account (sets status back to Approved)
+    /// </summary>
+    /// <param name="userId">User ID to unarchive</param>
+    /// <exception cref="KeyNotFoundException">User not found</exception>
+    Task UnarchiveUserAsync(int userId);
+
+    /// <summary>
+    /// Promotes a user to ESN member (changes studentType to "esn_member")
+    /// </summary>
+    /// <param name="userId">User ID to promote</param>
+    /// <exception cref="KeyNotFoundException">User not found</exception>
+    Task SetEsnMemberAsync(int userId);
+
+    /// <summary>
+    /// Removes ESN member status from a user
+    /// </summary>
+    /// <param name="userId">User ID to demote</param>
+    /// <param name="newStudentType">New student type ("local" or "exchange")</param>
+    /// <exception cref="KeyNotFoundException">User not found</exception>
+    Task RemoveEsnMemberAsync(int userId, string newStudentType);
+
+    /// <summary>
+    /// Updates the semester field for an exchange student
+    /// </summary>
+    /// <param name="userId">User ID</param>
+    /// <param name="semester">Semester value ("autumn", "spring", "both", or null)</param>
+    /// <exception cref="KeyNotFoundException">User not found</exception>
+    Task UpdateSemesterAsync(int userId, string? semester);
+
+    /// <summary>
+    /// Archives all students with a given semester value
+    /// </summary>
+    /// <param name="semester">Semester to archive (e.g. "autumn-2025")</param>
+    /// <param name="studentType">Optional filter: "exchange", "local", or null for all non-ESN members</param>
+    /// <returns>Number of users archived</returns>
+    Task<int> ArchiveBySemesterAsync(string semester, string? studentType = null);
+
+    /// <summary>
     /// Supprime définitivement un compte utilisateur
     /// </summary>
     /// <param name="id">Identifiant de l'utilisateur à supprimer</param>

@@ -287,12 +287,24 @@ public class UsersController(
         }
     }
 
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteUser(int id)
     {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
+
+        // ESN members cannot delete other ESN members, only Admin can
+        if (!User.IsInRole("Admin"))
+        {
+            var targetUser = await userService.GetUserByIdAsync(id);
+            if (targetUser != null && targetUser.StudentType == "esn_member")
+                return Forbid();
+        }
+
         logger.LogInformation("DeleteUser request received for {Id}", id);
 
         var user = await userService.DeleteUserAsync(id);
@@ -315,13 +327,15 @@ public class UsersController(
     /// <response code="200">Liste des utilisateurs en attente</response>
     /// <response code="401">Non authentifié</response>
     /// <response code="403">Pas de rôle Admin</response>
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpGet("pending")]
     [ProducesResponseType(typeof(IEnumerable<UserDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetPendingUsers()
     {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
         logger.LogInformation("GetPendingUsers called");
 
         var users = await userService.GetUsersByStatusAsync(UserStatus.Pending);
@@ -339,7 +353,7 @@ public class UsersController(
     /// <response code="401">Non authentifié</response>
     /// <response code="403">Pas de rôle Admin</response>
     /// <response code="404">Utilisateur non trouvé</response>
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpPut("{id}/approve")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -347,6 +361,9 @@ public class UsersController(
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ApproveUser(int id)
     {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
+
         logger.LogInformation("ApproveUser called for UserId {UserId}", id);
 
         try
@@ -374,7 +391,7 @@ public class UsersController(
     /// <response code="401">Non authentifié</response>
     /// <response code="403">Pas de rôle Admin</response>
     /// <response code="404">Utilisateur non trouvé</response>
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpPut("{id}/reject")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -383,6 +400,8 @@ public class UsersController(
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RejectUser(int id, [FromBody] RejectUserDto dto)
     {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
         logger.LogInformation("RejectUser called for UserId {UserId} with reason: {Reason}",
             id, dto.Reason ?? "No reason provided");
 
@@ -415,7 +434,7 @@ public class UsersController(
     /// <response code="401">Non authentifié</response>
     /// <response code="403">Pas de rôle Admin</response>
     /// <response code="404">Utilisateur non trouvé</response>
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpPut("{id}/revoke")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -423,6 +442,8 @@ public class UsersController(
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RevokeUser(int id)
     {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
         logger.LogInformation("RevokeUser called for UserId {UserId}", id);
 
         try
@@ -438,5 +459,146 @@ public class UsersController(
             logger.LogWarning(ex, "RevokeUser - User {UserId} not found", id);
             return NotFound(new { message = $"User {id} not found" });
         }
+    }
+
+    /// <summary>
+    /// Archives a user account
+    /// </summary>
+    [Authorize]
+    [HttpPut("{id}/archive")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ArchiveUser(int id)
+    {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
+
+        try
+        {
+            await userService.ArchiveUserAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Unarchives a user account (sets status back to Approved)
+    /// </summary>
+    [Authorize]
+    [HttpPut("{id}/unarchive")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UnarchiveUser(int id)
+    {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
+
+        try
+        {
+            await userService.UnarchiveUserAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Promotes a user to ESN member (Admin only)
+    /// </summary>
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}/set-esn-member")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> SetEsnMember(int id)
+    {
+        try
+        {
+            await userService.SetEsnMemberAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Removes ESN member status from a user (Admin only)
+    /// </summary>
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}/remove-esn-member")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> RemoveEsnMember(int id, [FromBody] RemoveEsnMemberDto dto)
+    {
+        try
+        {
+            await userService.RemoveEsnMemberAsync(id, dto.NewStudentType);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Updates the semester for an exchange student
+    /// </summary>
+    [Authorize]
+    [HttpPut("{id}/semester")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateSemester(int id, [FromBody] UpdateSemesterDto dto)
+    {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
+
+        try
+        {
+            await userService.UpdateSemesterAsync(id, dto.Semester);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Archives all exchange students with a given semester
+    /// </summary>
+    [Authorize]
+    [HttpPost("archive-by-semester")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> ArchiveBySemester([FromBody] ArchiveBySemesterDto dto)
+    {
+        if (!IsAdminOrEsnMember())
+            return Forbid();
+
+        var count = await userService.ArchiveBySemesterAsync(dto.Semester, dto.StudentType);
+        return Ok(new { archived = count, message = $"{count} user(s) archived for semester {dto.Semester}." });
+    }
+
+    /// <summary>
+    /// Checks if the current user is Admin or ESN member
+    /// </summary>
+    private bool IsAdminOrEsnMember()
+    {
+        return User.IsInRole("Admin") || User.FindFirst("studentType")?.Value == "esn_member";
     }
 }

@@ -215,6 +215,12 @@ public class PasskeyService(
             throw new ForbiddenAccessException("Your account has been rejected. Please contact the administrator.");
         }
 
+        if (user.Status == UserStatus.Archived)
+        {
+            logger.LogWarning("PasskeyService.CompleteLoginAsync - User {UserId} attempted login with Archived status", user.Id);
+            throw new ForbiddenAccessException("Your account has been archived.");
+        }
+
         // Generate JWT
         var token = jwtTokenService.GenerateToken(user);
 

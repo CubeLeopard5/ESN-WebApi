@@ -102,6 +102,12 @@ public class UserService(
             throw new ForbiddenAccessException("Your account has been rejected. Please contact the administrator.");
         }
 
+        if (user.Status == UserStatus.Archived)
+        {
+            logger.LogWarning("UserService.LoginAsync - User {UserId} attempted login with Archived status", user.Id);
+            throw new ForbiddenAccessException("Your account has been archived.");
+        }
+
         var token = jwtTokenService.GenerateToken(user);
 
         logger.LogInformation("UserService.LoginAsync completed successfully for {Email}", loginDto.Email);
@@ -484,6 +490,110 @@ public class UserService(
         await unitOfWork.SaveChangesAsync();
 
         logger.LogInformation("UserService.RevokeUserAsync completed - User {UserId} status set to Pending", userId);
+    }
+
+    /// <inheritdoc />
+    public async Task ArchiveUserAsync(int userId)
+    {
+        logger.LogInformation("UserService.ArchiveUserAsync called for UserId {UserId}", userId);
+
+        var user = await unitOfWork.Users.GetByIdAsync(userId)
+            ?? throw new KeyNotFoundException($"User {userId} not found");
+
+        user.Status = UserStatus.Archived;
+        unitOfWork.Users.Update(user);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("UserService.ArchiveUserAsync completed - User {UserId} archived", userId);
+    }
+
+    /// <inheritdoc />
+    public async Task UnarchiveUserAsync(int userId)
+    {
+        logger.LogInformation("UserService.UnarchiveUserAsync called for UserId {UserId}", userId);
+
+        var user = await unitOfWork.Users.GetByIdAsync(userId)
+            ?? throw new KeyNotFoundException($"User {userId} not found");
+
+        user.Status = UserStatus.Approved;
+        unitOfWork.Users.Update(user);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("UserService.UnarchiveUserAsync completed - User {UserId} unarchived (set to Approved)", userId);
+    }
+
+    /// <inheritdoc />
+    public async Task SetEsnMemberAsync(int userId)
+    {
+        logger.LogInformation("UserService.SetEsnMemberAsync called for UserId {UserId}", userId);
+
+        var user = await unitOfWork.Users.GetByIdAsync(userId)
+            ?? throw new KeyNotFoundException($"User {userId} not found");
+
+        user.StudentType = "esn_member";
+        unitOfWork.Users.Update(user);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("UserService.SetEsnMemberAsync completed - User {UserId} is now ESN member", userId);
+    }
+
+    /// <inheritdoc />
+    public async Task RemoveEsnMemberAsync(int userId, string newStudentType)
+    {
+        logger.LogInformation("UserService.RemoveEsnMemberAsync called for UserId {UserId}, newType {Type}", userId, newStudentType);
+
+        if (newStudentType != "local" && newStudentType != "exchange")
+            throw new ArgumentException("newStudentType must be 'local' or 'exchange'");
+
+        var user = await unitOfWork.Users.GetByIdAsync(userId)
+            ?? throw new KeyNotFoundException($"User {userId} not found");
+
+        user.StudentType = newStudentType;
+        unitOfWork.Users.Update(user);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("UserService.RemoveEsnMemberAsync completed - User {UserId} type set to {Type}", userId, newStudentType);
+    }
+
+    /// <inheritdoc />
+    public async Task UpdateSemesterAsync(int userId, string? semester)
+    {
+        logger.LogInformation("UserService.UpdateSemesterAsync called for UserId {UserId}, semester {Semester}", userId, semester);
+
+        var user = await unitOfWork.Users.GetByIdAsync(userId)
+            ?? throw new KeyNotFoundException($"User {userId} not found");
+
+        user.Semester = semester;
+        unitOfWork.Users.Update(user);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("UserService.UpdateSemesterAsync completed - User {UserId} semester set to {Semester}", userId, semester);
+    }
+
+    /// <inheritdoc />
+    public async Task<int> ArchiveBySemesterAsync(string semester, string? studentType = null)
+    {
+        logger.LogInformation("UserService.ArchiveBySemesterAsync called for semester {Semester}, type {Type}", semester, studentType ?? "all");
+
+        var users = await unitOfWork.Users.FindAsync(u =>
+            u.StudentType != "esn_member" &&
+            (studentType == null || u.StudentType == studentType) &&
+            u.Semester == semester &&
+            u.Status == UserStatus.Approved);
+
+        var count = 0;
+        foreach (var user in users)
+        {
+            user.Status = UserStatus.Archived;
+            unitOfWork.Users.Update(user);
+            count++;
+        }
+
+        if (count > 0)
+            await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("UserService.ArchiveBySemesterAsync completed - {Count} users archived for semester {Semester}", count, semester);
+        return count;
     }
 
     /// <summary>
