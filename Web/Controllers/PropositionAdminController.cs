@@ -63,17 +63,97 @@ public class PropositionAdminController(
     }
 
     /// <summary>
-    /// Supprime une proposition (soft delete) en tant qu'administrateur/ESN member
+    /// Archive une proposition
+    /// </summary>
+    /// <param name="id">Identifiant de la proposition à archiver</param>
+    /// <returns>Pas de contenu si succès</returns>
+    /// <response code="204">Proposition archivée avec succès</response>
+    /// <response code="401">Utilisateur non authentifié</response>
+    /// <response code="403">Utilisateur non autorisé</response>
+    /// <response code="404">Proposition non trouvée ou déjà archivée</response>
+    [HttpPut("{id}/archive")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ArchiveProposition(int id)
+    {
+        logger.LogInformation("ArchiveProposition request received for {Id}", id);
+
+        try
+        {
+            var email = User.GetUserEmailOrThrow();
+            var proposition = await propositionService.ArchivePropositionAsync(id, email);
+
+            if (proposition == null)
+            {
+                logger.LogInformation("ArchiveProposition - Proposition {Id} not found or already archived", id);
+                return NotFound(new { message = $"Proposition with ID {id} not found or already archived" });
+            }
+
+            logger.LogInformation("ArchiveProposition successful for {Id} by {Email}", id, email);
+
+            return NoContent();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            logger.LogWarning(ex, "ArchiveProposition - Unauthorized access attempt for {Id}", id);
+            return StatusCode(StatusCodes.Status403Forbidden, new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Désarchive une proposition
+    /// </summary>
+    /// <param name="id">Identifiant de la proposition à désarchiver</param>
+    /// <returns>Pas de contenu si succès</returns>
+    /// <response code="204">Proposition désarchivée avec succès</response>
+    /// <response code="401">Utilisateur non authentifié</response>
+    /// <response code="403">Utilisateur non autorisé</response>
+    /// <response code="404">Proposition non trouvée ou pas archivée</response>
+    [HttpPut("{id}/unarchive")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UnarchiveProposition(int id)
+    {
+        logger.LogInformation("UnarchiveProposition request received for {Id}", id);
+
+        try
+        {
+            var email = User.GetUserEmailOrThrow();
+            var proposition = await propositionService.UnarchivePropositionAsync(id, email);
+
+            if (proposition == null)
+            {
+                logger.LogInformation("UnarchiveProposition - Proposition {Id} not found or not archived", id);
+                return NotFound(new { message = $"Proposition with ID {id} not found or not archived" });
+            }
+
+            logger.LogInformation("UnarchiveProposition successful for {Id} by {Email}", id, email);
+
+            return NoContent();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            logger.LogWarning(ex, "UnarchiveProposition - Unauthorized access attempt for {Id}", id);
+            return StatusCode(StatusCodes.Status403Forbidden, new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Supprime définitivement une proposition (hard delete)
     /// </summary>
     /// <param name="id">Identifiant de la proposition à supprimer</param>
     /// <returns>Pas de contenu si succès</returns>
-    /// <response code="204">Proposition supprimée avec succès</response>
+    /// <response code="204">Proposition supprimée définitivement</response>
     /// <response code="401">Utilisateur non authentifié</response>
     /// <response code="403">Utilisateur non autorisé (ni membre ESN ni administrateur)</response>
     /// <response code="404">Proposition non trouvée</response>
     /// <remarks>
     /// Accessible uniquement aux membres ESN (StudentType = "esn_member") et administrateurs.
-    /// Effectue un soft delete : la proposition est marquée comme supprimée mais reste en base.
+    /// Supprime définitivement la proposition de la base de données.
     /// </remarks>
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

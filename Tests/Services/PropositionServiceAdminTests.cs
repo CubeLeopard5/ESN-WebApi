@@ -85,11 +85,11 @@ public class PropositionServiceAdminTests
 
         var user = new UserBo { Id = 1, Email = userEmail };
 
-        _mockPropositionRepository.Setup(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Active))
+        _mockPropositionRepository.Setup(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Active, null, "desc"))
             .ReturnsAsync((propositionsBo, 2));
         _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail)).ReturnsAsync(user);
-        _mockPropositionVoteRepository.Setup(r => r.GetByPropositionAndUserAsync(It.IsAny<int>(), It.IsAny<int>()))
-            .ReturnsAsync((PropositionVoteBo?)null);
+        _mockPropositionVoteRepository.Setup(r => r.GetUserVotesForPropositionsAsync(It.IsAny<int>(), It.IsAny<List<int>>()))
+            .ReturnsAsync(new List<PropositionVoteBo>());
         _mockMapper.Setup(m => m.Map<IEnumerable<PropositionDto>>(propositionsBo))
             .Returns(propositionDtos);
 
@@ -101,7 +101,7 @@ public class PropositionServiceAdminTests
         Assert.AreEqual(2, result.TotalCount);
         Assert.AreEqual(2, result.Items.Count());
         Assert.AreEqual("Active Proposition 1", result.Items.First().Title);
-        _mockPropositionRepository.Verify(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Active), Times.Once);
+        _mockPropositionRepository.Verify(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Active, null, "desc"), Times.Once);
     }
 
     [TestMethod]
@@ -144,11 +144,11 @@ public class PropositionServiceAdminTests
 
         var user = new UserBo { Id = 1, Email = userEmail };
 
-        _mockPropositionRepository.Setup(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Deleted))
+        _mockPropositionRepository.Setup(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Deleted, null, "desc"))
             .ReturnsAsync((propositionsBo, 2));
         _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail)).ReturnsAsync(user);
-        _mockPropositionVoteRepository.Setup(r => r.GetByPropositionAndUserAsync(It.IsAny<int>(), It.IsAny<int>()))
-            .ReturnsAsync((PropositionVoteBo?)null);
+        _mockPropositionVoteRepository.Setup(r => r.GetUserVotesForPropositionsAsync(It.IsAny<int>(), It.IsAny<List<int>>()))
+            .ReturnsAsync(new List<PropositionVoteBo>());
         _mockMapper.Setup(m => m.Map<IEnumerable<PropositionDto>>(propositionsBo))
             .Returns(propositionDtos);
 
@@ -160,7 +160,7 @@ public class PropositionServiceAdminTests
         Assert.AreEqual(2, result.TotalCount);
         Assert.AreEqual(2, result.Items.Count());
         Assert.AreEqual("Deleted Proposition 1", result.Items.First().Title);
-        _mockPropositionRepository.Verify(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Deleted), Times.Once);
+        _mockPropositionRepository.Verify(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.Deleted, null, "desc"), Times.Once);
     }
 
     [TestMethod]
@@ -202,11 +202,11 @@ public class PropositionServiceAdminTests
 
         var user = new UserBo { Id = 1, Email = userEmail };
 
-        _mockPropositionRepository.Setup(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.All))
+        _mockPropositionRepository.Setup(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.All, null, "desc"))
             .ReturnsAsync((propositionsBo, 2));
         _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail)).ReturnsAsync(user);
-        _mockPropositionVoteRepository.Setup(r => r.GetByPropositionAndUserAsync(It.IsAny<int>(), It.IsAny<int>()))
-            .ReturnsAsync((PropositionVoteBo?)null);
+        _mockPropositionVoteRepository.Setup(r => r.GetUserVotesForPropositionsAsync(It.IsAny<int>(), It.IsAny<List<int>>()))
+            .ReturnsAsync(new List<PropositionVoteBo>());
         _mockMapper.Setup(m => m.Map<IEnumerable<PropositionDto>>(propositionsBo))
             .Returns(propositionDtos);
 
@@ -219,7 +219,7 @@ public class PropositionServiceAdminTests
         Assert.AreEqual(2, result.Items.Count());
         Assert.IsTrue(result.Items.Any(p => p.Title == "Active Proposition"));
         Assert.IsTrue(result.Items.Any(p => p.Title == "Deleted Proposition"));
-        _mockPropositionRepository.Verify(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.All), Times.Once);
+        _mockPropositionRepository.Verify(r => r.GetPagedWithFilterAsync(0, 10, DeletedStatus.All, null, "desc"), Times.Once);
     }
 
     #endregion
@@ -227,7 +227,7 @@ public class PropositionServiceAdminTests
     #region DeletePropositionAsAdminAsync Tests
 
     [TestMethod]
-    public async Task DeletePropositionAsAdminAsync_WhenEsnMember_ShouldDeleteSuccessfully()
+    public async Task DeletePropositionAsAdminAsync_WhenEsnMember_ShouldHardDeleteSuccessfully()
     {
         // Arrange
         var propositionId = 1;
@@ -248,7 +248,7 @@ public class PropositionServiceAdminTests
             Title = "Test Proposition",
             Description = "Test Description",
             IsDeleted = false,
-            UserId = 1, // Different owner
+            UserId = 1,
             CreatedAt = DateTime.UtcNow
         };
 
@@ -258,7 +258,7 @@ public class PropositionServiceAdminTests
             Title = "Test Proposition"
         };
 
-        _mockPropositionRepository.Setup(r => r.GetByIdAsync(propositionId))
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
             .ReturnsAsync(propositionBo);
         _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
             .ReturnsAsync(esnMember);
@@ -270,9 +270,55 @@ public class PropositionServiceAdminTests
 
         // Assert
         Assert.IsNotNull(result);
-        Assert.IsTrue(propositionBo.IsDeleted);
-        Assert.IsNotNull(propositionBo.DeletedAt);
-        _mockPropositionRepository.Verify(r => r.Update(propositionBo), Times.Once);
+        _mockPropositionRepository.Verify(r => r.Delete(propositionBo), Times.Once);
+        _mockUnitOfWork.Verify(u => u.SaveChangesAsync(), Times.Once);
+    }
+
+    [TestMethod]
+    public async Task DeletePropositionAsAdminAsync_WhenAdmin_ShouldHardDeleteSuccessfully()
+    {
+        // Arrange
+        var propositionId = 1;
+        var userEmail = "admin@test.com";
+        var admin = new UserBo
+        {
+            Id = 2,
+            Email = userEmail,
+            FirstName = "Admin",
+            LastName = "User",
+            BirthDate = DateTime.Now.AddYears(-25),
+            Role = new RoleBo { Name = UserRole.Admin }
+        };
+
+        var propositionBo = new PropositionBo
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            Description = "Test Description",
+            IsDeleted = false,
+            UserId = 1,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        var propositionDto = new PropositionDto
+        {
+            Id = propositionId,
+            Title = "Test Proposition"
+        };
+
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
+            .ReturnsAsync(propositionBo);
+        _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+            .ReturnsAsync(admin);
+        _mockMapper.Setup(m => m.Map<PropositionDto>(propositionBo))
+            .Returns(propositionDto);
+
+        // Act
+        var result = await _propositionService.DeletePropositionAsAdminAsync(propositionId, userEmail);
+
+        // Assert
+        Assert.IsNotNull(result);
+        _mockPropositionRepository.Verify(r => r.Delete(propositionBo), Times.Once);
         _mockUnitOfWork.Verify(u => u.SaveChangesAsync(), Times.Once);
     }
 
@@ -289,7 +335,7 @@ public class PropositionServiceAdminTests
             FirstName = "Regular",
             LastName = "User",
             BirthDate = DateTime.Now.AddYears(-25),
-            StudentType = Bo.Constants.StudentType.Local // NOT ESN member, NOT Admin
+            StudentType = Bo.Constants.StudentType.Local
         };
 
         var propositionBo = new PropositionBo
@@ -298,11 +344,11 @@ public class PropositionServiceAdminTests
             Title = "Test Proposition",
             Description = "Test Description",
             IsDeleted = false,
-            UserId = 1, // Different owner
+            UserId = 1,
             CreatedAt = DateTime.UtcNow
         };
 
-        _mockPropositionRepository.Setup(r => r.GetByIdAsync(propositionId))
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
             .ReturnsAsync(propositionBo);
         _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
             .ReturnsAsync(regularUser);
@@ -319,9 +365,242 @@ public class PropositionServiceAdminTests
         }
         Assert.IsTrue(exceptionThrown, "Expected UnauthorizedAccessException was not thrown");
 
-        // Verify no update or save was called
-        _mockPropositionRepository.Verify(r => r.Update(It.IsAny<PropositionBo>()), Times.Never);
+        _mockPropositionRepository.Verify(r => r.Delete(It.IsAny<PropositionBo>()), Times.Never);
         _mockUnitOfWork.Verify(u => u.SaveChangesAsync(), Times.Never);
+    }
+
+    #endregion
+
+    #region ArchivePropositionAsync Tests
+
+    [TestMethod]
+    public async Task ArchivePropositionAsync_WhenExists_ShouldSetIsArchivedTrue()
+    {
+        // Arrange
+        var propositionId = 1;
+        var userEmail = "admin@test.com";
+        var admin = new UserBo
+        {
+            Id = 2,
+            Email = userEmail,
+            FirstName = "Admin",
+            LastName = "User",
+            BirthDate = DateTime.Now.AddYears(-25),
+            Role = new RoleBo { Name = UserRole.Admin }
+        };
+
+        var propositionBo = new PropositionBo
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            Description = "Test Description",
+            IsDeleted = false,
+            UserId = 1,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        var propositionDto = new PropositionDto
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            IsArchived = true // DTO field mapped from IsDeleted
+        };
+
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
+            .ReturnsAsync(propositionBo);
+        _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+            .ReturnsAsync(admin);
+        _mockMapper.Setup(m => m.Map<PropositionDto>(propositionBo))
+            .Returns(propositionDto);
+
+        // Act
+        var result = await _propositionService.ArchivePropositionAsync(propositionId, userEmail);
+
+        // Assert
+        Assert.IsNotNull(result);
+        Assert.IsTrue(propositionBo.IsDeleted);
+        Assert.IsNotNull(propositionBo.DeletedAt);
+        _mockPropositionRepository.Verify(r => r.Update(propositionBo), Times.Once);
+        _mockUnitOfWork.Verify(u => u.SaveChangesAsync(), Times.Once);
+    }
+
+    [TestMethod]
+    public async Task ArchivePropositionAsync_WhenAlreadyArchived_ShouldReturnNull()
+    {
+        // Arrange
+        var propositionId = 1;
+        var userEmail = "admin@test.com";
+        var admin = new UserBo
+        {
+            Id = 2,
+            Email = userEmail,
+            FirstName = "Admin",
+            LastName = "User",
+            BirthDate = DateTime.Now.AddYears(-25),
+            Role = new RoleBo { Name = UserRole.Admin }
+        };
+
+        var propositionBo = new PropositionBo
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            Description = "Test Description",
+            IsDeleted = true, // Already archived
+            DeletedAt = DateTime.UtcNow,
+            UserId = 1,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
+            .ReturnsAsync(propositionBo);
+        _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+            .ReturnsAsync(admin);
+
+        // Act
+        var result = await _propositionService.ArchivePropositionAsync(propositionId, userEmail);
+
+        // Assert
+        Assert.IsNull(result);
+        _mockPropositionRepository.Verify(r => r.Update(It.IsAny<PropositionBo>()), Times.Never);
+    }
+
+    [TestMethod]
+    public async Task ArchivePropositionAsync_WhenNotEsnOrAdmin_ShouldThrowUnauthorized()
+    {
+        // Arrange
+        var propositionId = 1;
+        var userEmail = "regular@test.com";
+        var regularUser = new UserBo
+        {
+            Id = 2,
+            Email = userEmail,
+            FirstName = "Regular",
+            LastName = "User",
+            BirthDate = DateTime.Now.AddYears(-25),
+            StudentType = Bo.Constants.StudentType.Local
+        };
+
+        var propositionBo = new PropositionBo
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            Description = "Test Description",
+            IsDeleted = false,
+            UserId = 1,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
+            .ReturnsAsync(propositionBo);
+        _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+            .ReturnsAsync(regularUser);
+
+        // Act & Assert
+        var exceptionThrown = false;
+        try
+        {
+            await _propositionService.ArchivePropositionAsync(propositionId, userEmail);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            exceptionThrown = true;
+        }
+        Assert.IsTrue(exceptionThrown, "Expected UnauthorizedAccessException was not thrown");
+    }
+
+    #endregion
+
+    #region UnarchivePropositionAsync Tests
+
+    [TestMethod]
+    public async Task UnarchivePropositionAsync_WhenArchived_ShouldSetIsArchivedFalse()
+    {
+        // Arrange
+        var propositionId = 1;
+        var userEmail = "admin@test.com";
+        var admin = new UserBo
+        {
+            Id = 2,
+            Email = userEmail,
+            FirstName = "Admin",
+            LastName = "User",
+            BirthDate = DateTime.Now.AddYears(-25),
+            Role = new RoleBo { Name = UserRole.Admin }
+        };
+
+        var propositionBo = new PropositionBo
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            Description = "Test Description",
+            IsDeleted = true,
+            DeletedAt = DateTime.UtcNow,
+            UserId = 1,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        var propositionDto = new PropositionDto
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            IsArchived = false
+        };
+
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
+            .ReturnsAsync(propositionBo);
+        _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+            .ReturnsAsync(admin);
+        _mockMapper.Setup(m => m.Map<PropositionDto>(propositionBo))
+            .Returns(propositionDto);
+
+        // Act
+        var result = await _propositionService.UnarchivePropositionAsync(propositionId, userEmail);
+
+        // Assert
+        Assert.IsNotNull(result);
+        Assert.IsFalse(propositionBo.IsDeleted);
+        Assert.IsNull(propositionBo.DeletedAt);
+        _mockPropositionRepository.Verify(r => r.Update(propositionBo), Times.Once);
+        _mockUnitOfWork.Verify(u => u.SaveChangesAsync(), Times.Once);
+    }
+
+    [TestMethod]
+    public async Task UnarchivePropositionAsync_WhenNotArchived_ShouldReturnNull()
+    {
+        // Arrange
+        var propositionId = 1;
+        var userEmail = "admin@test.com";
+        var admin = new UserBo
+        {
+            Id = 2,
+            Email = userEmail,
+            FirstName = "Admin",
+            LastName = "User",
+            BirthDate = DateTime.Now.AddYears(-25),
+            Role = new RoleBo { Name = UserRole.Admin }
+        };
+
+        var propositionBo = new PropositionBo
+        {
+            Id = propositionId,
+            Title = "Test Proposition",
+            Description = "Test Description",
+            IsDeleted = false, // Not archived
+            UserId = 1,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        _mockPropositionRepository.Setup(r => r.GetPropositionByIdUnfilteredAsync(propositionId))
+            .ReturnsAsync(propositionBo);
+        _mockUserRepository.Setup(r => r.GetByEmailAsync(userEmail))
+            .ReturnsAsync(admin);
+
+        // Act
+        var result = await _propositionService.UnarchivePropositionAsync(propositionId, userEmail);
+
+        // Assert
+        Assert.IsNull(result);
+        _mockPropositionRepository.Verify(r => r.Update(It.IsAny<PropositionBo>()), Times.Never);
     }
 
     #endregion

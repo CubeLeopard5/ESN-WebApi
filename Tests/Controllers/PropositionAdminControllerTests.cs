@@ -170,4 +170,103 @@ public class PropositionAdminControllerTests
     }
 
     #endregion
+
+    #region ArchiveProposition Tests
+
+    [TestMethod]
+    public async Task ArchiveProposition_WhenSuccess_ShouldReturn204()
+    {
+        // Arrange
+        var propositionId = 1;
+        var archivedProposition = new PropositionDto { Id = propositionId, Title = "Archived", IsArchived = true };
+
+        _mockPropositionService
+            .Setup(s => s.ArchivePropositionAsync(propositionId, TestAdminEmail))
+            .ReturnsAsync(archivedProposition);
+
+        // Act
+        var result = await _controller.ArchiveProposition(propositionId);
+
+        // Assert
+        Assert.IsInstanceOfType<NoContentResult>(result);
+        _mockPropositionService.Verify(s => s.ArchivePropositionAsync(propositionId, TestAdminEmail), Times.Once);
+    }
+
+    [TestMethod]
+    public async Task ArchiveProposition_WhenNotFound_ShouldReturn404()
+    {
+        // Arrange
+        var propositionId = 999;
+
+        _mockPropositionService
+            .Setup(s => s.ArchivePropositionAsync(propositionId, TestAdminEmail))
+            .ReturnsAsync((PropositionDto?)null);
+
+        // Act
+        var result = await _controller.ArchiveProposition(propositionId);
+
+        // Assert
+        Assert.IsInstanceOfType<NotFoundObjectResult>(result);
+    }
+
+    [TestMethod]
+    public async Task ArchiveProposition_WhenUnauthorized_ShouldReturn403()
+    {
+        // Arrange
+        var propositionId = 1;
+
+        _mockPropositionService
+            .Setup(s => s.ArchivePropositionAsync(propositionId, TestAdminEmail))
+            .ThrowsAsync(new UnauthorizedAccessException("Access denied"));
+
+        // Act
+        var result = await _controller.ArchiveProposition(propositionId);
+
+        // Assert
+        Assert.IsInstanceOfType<ObjectResult>(result);
+        var objectResult = (ObjectResult)result;
+        Assert.AreEqual(403, objectResult.StatusCode);
+    }
+
+    #endregion
+
+    #region UnarchiveProposition Tests
+
+    [TestMethod]
+    public async Task UnarchiveProposition_WhenSuccess_ShouldReturn204()
+    {
+        // Arrange
+        var propositionId = 1;
+        var unarchivedProposition = new PropositionDto { Id = propositionId, Title = "Unarchived", IsArchived = false };
+
+        _mockPropositionService
+            .Setup(s => s.UnarchivePropositionAsync(propositionId, TestAdminEmail))
+            .ReturnsAsync(unarchivedProposition);
+
+        // Act
+        var result = await _controller.UnarchiveProposition(propositionId);
+
+        // Assert
+        Assert.IsInstanceOfType<NoContentResult>(result);
+        _mockPropositionService.Verify(s => s.UnarchivePropositionAsync(propositionId, TestAdminEmail), Times.Once);
+    }
+
+    [TestMethod]
+    public async Task UnarchiveProposition_WhenNotFound_ShouldReturn404()
+    {
+        // Arrange
+        var propositionId = 999;
+
+        _mockPropositionService
+            .Setup(s => s.UnarchivePropositionAsync(propositionId, TestAdminEmail))
+            .ReturnsAsync((PropositionDto?)null);
+
+        // Act
+        var result = await _controller.UnarchiveProposition(propositionId);
+
+        // Assert
+        Assert.IsInstanceOfType<NotFoundObjectResult>(result);
+    }
+
+    #endregion
 }

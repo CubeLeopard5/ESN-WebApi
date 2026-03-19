@@ -625,4 +625,100 @@ public class PropositionRepositoryTests
     }
 
     #endregion
+
+    #region Archived Filtering Tests
+
+    [TestMethod]
+    public async Task GetPagedAsync_ShouldExcludeArchivedPropositions()
+    {
+        // Arrange - IsDeleted=true means archived
+        var activeProp = new PropositionBo
+        {
+            Title = "Active Prop",
+            Description = "Active Description",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now
+        };
+        var archivedProp = new PropositionBo
+        {
+            Title = "Archived Prop",
+            Description = "Archived Description",
+            UserId = _testUser.Id,
+            IsDeleted = true,
+            DeletedAt = DateTime.Now,
+            CreatedAt = DateTime.Now.AddDays(-1)
+        };
+        await _context.Propositions.AddRangeAsync(activeProp, archivedProp);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, totalCount) = await _repository.GetPagedAsync(0, 10);
+
+        // Assert
+        Assert.AreEqual(1, totalCount);
+        Assert.AreEqual(1, items.Count);
+        Assert.AreEqual("Active Prop", items[0].Title);
+    }
+
+    [TestMethod]
+    public async Task GetPagedWithFilterAsync_WithDeletedFilter_ReturnsOnlyArchivedPropositions()
+    {
+        // Arrange - DeletedStatus.Deleted = archived propositions
+        var activeProp = new PropositionBo
+        {
+            Title = "Active",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = false,
+            CreatedAt = DateTime.Now
+        };
+        var archivedProp = new PropositionBo
+        {
+            Title = "Archived",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = true,
+            DeletedAt = DateTime.Now,
+            CreatedAt = DateTime.Now.AddDays(-1)
+        };
+        await _context.Propositions.AddRangeAsync(activeProp, archivedProp);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var (items, totalCount) = await _repository.GetPagedWithFilterAsync(
+            0, 10, Bo.Enums.DeletedStatus.Deleted);
+
+        // Assert
+        Assert.AreEqual(1, totalCount);
+        Assert.AreEqual(1, items.Count);
+        Assert.AreEqual("Archived", items[0].Title);
+    }
+
+    [TestMethod]
+    public async Task GetPropositionByIdUnfilteredAsync_ShouldReturnArchivedProposition()
+    {
+        // Arrange
+        var archivedProp = new PropositionBo
+        {
+            Title = "Archived",
+            Description = "Desc",
+            UserId = _testUser.Id,
+            IsDeleted = true,
+            DeletedAt = DateTime.Now,
+            CreatedAt = DateTime.Now
+        };
+        await _context.Propositions.AddAsync(archivedProp);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var result = await _repository.GetPropositionByIdUnfilteredAsync(archivedProp.Id);
+
+        // Assert
+        Assert.IsNotNull(result);
+        Assert.AreEqual("Archived", result.Title);
+        Assert.IsTrue(result.IsDeleted);
+    }
+
+    #endregion
 }

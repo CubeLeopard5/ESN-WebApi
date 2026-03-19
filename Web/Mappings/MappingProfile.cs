@@ -26,7 +26,11 @@ namespace Web.Mappings
 
             CreateMap<PropositionBo, PropositionDto>()
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
-                .ReverseMap();
+                .ForMember(dest => dest.IsArchived, opt => opt.MapFrom(src => src.IsDeleted));
+
+            CreateMap<PropositionDto, PropositionBo>()
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
+                .ForMember(dest => dest.IsDeleted, opt => opt.Ignore());
 
             CreateMap<EventBo, EventDto>()
                 .ForMember(dest => dest.IsCurrentUserRegistered, opt => opt.Ignore()) // Calculé dans le service

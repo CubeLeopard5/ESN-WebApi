@@ -199,26 +199,24 @@ public class PropositionService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<
             throw new UnauthorizedAccessException($"User not found: {userEmail}");
         }
 
-        // Verify authorization: owner, ESN member, or admin
+        // Verify authorization: only owner can archive via this endpoint
         bool isOwner = proposition.UserId == user.Id;
-        bool isEsnMember = user.StudentType?.ToLower() == "esn_member";
-        bool isAdmin = user.Role?.Name == UserRole.Admin;
 
-        if (!isOwner && !isEsnMember && !isAdmin)
+        if (!isOwner)
         {
             logger.LogWarning("PropositionService.DeletePropositionAsync - User {Email} (ID: {UserId}) tried to delete Proposition {Id} owned by UserId {OwnerId}",
                 userEmail, user.Id, id, proposition.UserId);
             throw new UnauthorizedAccessException("You don't have permission to delete this proposition");
         }
 
-        // Soft delete
+        // Archive (IsDeleted = archived)
         proposition.IsDeleted = true;
         proposition.DeletedAt = DateTime.UtcNow;
 
         unitOfWork.Propositions.Update(proposition);
         await unitOfWork.SaveChangesAsync();
 
-        logger.LogInformation("PropositionService.DeletePropositionAsync completed for PropositionId {Id}", id);
+        logger.LogInformation("PropositionService.DeletePropositionAsync (archived) completed for PropositionId {Id}", id);
 
         return mapper.Map<PropositionDto>(proposition);
     }
@@ -374,8 +372,8 @@ public class PropositionService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<
     {
         logger.LogInformation("PropositionService.DeletePropositionAsAdminAsync called for PropositionId {Id} by {Email}", id, userEmail);
 
-        var proposition = await unitOfWork.Propositions.GetByIdAsync(id);
-        if (proposition == null || proposition.IsDeleted)
+        var proposition = await unitOfWork.Propositions.GetPropositionByIdUnfilteredAsync(id);
+        if (proposition == null)
         {
             logger.LogWarning("PropositionService.DeletePropositionAsAdminAsync - Proposition {Id} not found", id);
             return null;
@@ -400,14 +398,111 @@ public class PropositionService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<
             throw new UnauthorizedAccessException("You don't have permission to delete propositions as admin");
         }
 
-        // Soft delete
+        var dto = mapper.Map<PropositionDto>(proposition);
+
+        // Hard delete - remove from database
+        unitOfWork.Propositions.Delete(proposition);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("PropositionService.DeletePropositionAsAdminAsync (hard delete) completed for PropositionId {Id} by {Email}", id, userEmail);
+
+        return dto;
+    }
+
+    /// <inheritdoc />
+    public async Task<PropositionDto?> ArchivePropositionAsync(int id, string userEmail)
+    {
+        logger.LogInformation("PropositionService.ArchivePropositionAsync called for PropositionId {Id} by {Email}", id, userEmail);
+
+        var proposition = await unitOfWork.Propositions.GetPropositionByIdUnfilteredAsync(id);
+        if (proposition == null)
+        {
+            logger.LogWarning("PropositionService.ArchivePropositionAsync - Proposition {Id} not found", id);
+            return null;
+        }
+
+        // Get the user to verify authorization
+        var user = await unitOfWork.Users.GetByEmailAsync(userEmail);
+        if (user == null)
+        {
+            logger.LogError("PropositionService.ArchivePropositionAsync - User not found for {Email}", userEmail);
+            throw new UnauthorizedAccessException($"User not found: {userEmail}");
+        }
+
+        // Verify authorization: ESN member or admin
+        bool isEsnMember = user.StudentType?.ToLower() == "esn_member";
+        bool isAdmin = user.Role?.Name == UserRole.Admin;
+
+        if (!isEsnMember && !isAdmin)
+        {
+            logger.LogWarning("PropositionService.ArchivePropositionAsync - User {Email} (ID: {UserId}) tried to archive Proposition {Id} without sufficient permissions",
+                userEmail, user.Id, id);
+            throw new UnauthorizedAccessException("You don't have permission to archive propositions");
+        }
+
+        // Already archived (IsDeleted = archived)
+        if (proposition.IsDeleted)
+        {
+            logger.LogInformation("PropositionService.ArchivePropositionAsync - Proposition {Id} is already archived", id);
+            return null;
+        }
+
         proposition.IsDeleted = true;
         proposition.DeletedAt = DateTime.UtcNow;
 
         unitOfWork.Propositions.Update(proposition);
         await unitOfWork.SaveChangesAsync();
 
-        logger.LogInformation("PropositionService.DeletePropositionAsAdminAsync completed for PropositionId {Id} by {Email}", id, userEmail);
+        logger.LogInformation("PropositionService.ArchivePropositionAsync completed for PropositionId {Id} by {Email}", id, userEmail);
+
+        return mapper.Map<PropositionDto>(proposition);
+    }
+
+    /// <inheritdoc />
+    public async Task<PropositionDto?> UnarchivePropositionAsync(int id, string userEmail)
+    {
+        logger.LogInformation("PropositionService.UnarchivePropositionAsync called for PropositionId {Id} by {Email}", id, userEmail);
+
+        var proposition = await unitOfWork.Propositions.GetPropositionByIdUnfilteredAsync(id);
+        if (proposition == null)
+        {
+            logger.LogWarning("PropositionService.UnarchivePropositionAsync - Proposition {Id} not found", id);
+            return null;
+        }
+
+        // Get the user to verify authorization
+        var user = await unitOfWork.Users.GetByEmailAsync(userEmail);
+        if (user == null)
+        {
+            logger.LogError("PropositionService.UnarchivePropositionAsync - User not found for {Email}", userEmail);
+            throw new UnauthorizedAccessException($"User not found: {userEmail}");
+        }
+
+        // Verify authorization: ESN member or admin
+        bool isEsnMember = user.StudentType?.ToLower() == "esn_member";
+        bool isAdmin = user.Role?.Name == UserRole.Admin;
+
+        if (!isEsnMember && !isAdmin)
+        {
+            logger.LogWarning("PropositionService.UnarchivePropositionAsync - User {Email} (ID: {UserId}) tried to unarchive Proposition {Id} without sufficient permissions",
+                userEmail, user.Id, id);
+            throw new UnauthorizedAccessException("You don't have permission to unarchive propositions");
+        }
+
+        // Not archived
+        if (!proposition.IsDeleted)
+        {
+            logger.LogInformation("PropositionService.UnarchivePropositionAsync - Proposition {Id} is not archived", id);
+            return null;
+        }
+
+        proposition.IsDeleted = false;
+        proposition.DeletedAt = null;
+
+        unitOfWork.Propositions.Update(proposition);
+        await unitOfWork.SaveChangesAsync();
+
+        logger.LogInformation("PropositionService.UnarchivePropositionAsync completed for PropositionId {Id} by {Email}", id, userEmail);
 
         return mapper.Map<PropositionDto>(proposition);
     }

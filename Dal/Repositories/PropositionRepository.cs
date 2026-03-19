@@ -111,4 +111,12 @@ public class PropositionRepository(EsnDevContext context)
 
         return (items, totalCount);
     }
+
+    /// <inheritdoc />
+    public async Task<PropositionBo?> GetPropositionByIdUnfilteredAsync(int id)
+    {
+        return await _dbSet
+            .Include(p => p.User)
+            .FirstOrDefaultAsync(p => p.Id == id);
+    }
 }

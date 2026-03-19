@@ -35,5 +35,7 @@ namespace Dto
         /// Attention: En base de données, VoteType.Down = 2, mais le DTO expose -1 pour compatibilité frontend
         /// </remarks>
         public int? UserVoteType { get; set; } = null;
+
+        public bool IsArchived { get; set; } = false;
     }
 }

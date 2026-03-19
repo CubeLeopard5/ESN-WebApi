@@ -58,4 +58,10 @@ public interface IPropositionRepository : IRepository<PropositionBo>
     /// - All : toutes les propositions
     /// </remarks>
     Task<(List<PropositionBo> Items, int TotalCount)> GetPagedWithFilterAsync(int skip, int take, Bo.Enums.DeletedStatus deletedStatus, string? sortBy = null, string? sortOrder = "desc");
+
+    /// <summary>
+    /// Récupère une proposition par ID sans filtre (pour opérations admin archive/unarchive/delete)
+    /// </summary>
+    /// <param name="id">Identifiant de la proposition</param>
+    Task<PropositionBo?> GetPropositionByIdUnfilteredAsync(int id);
 }

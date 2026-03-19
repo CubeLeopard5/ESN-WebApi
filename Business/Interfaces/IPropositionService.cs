@@ -75,16 +75,15 @@ public interface IPropositionService
     Task<PropositionDto?> UpdatePropositionAsync(int id, PropositionDto propositionDto, string userEmail);
 
     /// <summary>
-    /// Supprime une proposition (soft delete)
+    /// Supprime une proposition (archive la proposition)
     /// </summary>
     /// <param name="id">Identifiant de la proposition à supprimer</param>
     /// <param name="userEmail">Email de l'utilisateur effectuant la suppression</param>
-    /// <returns>Proposition supprimée ou null si non trouvée</returns>
+    /// <returns>Proposition archivée ou null si non trouvée</returns>
     /// <exception cref="UnauthorizedAccessException">L'utilisateur n'est pas l'auteur de la proposition</exception>
     /// <remarks>
-    /// Seul l'auteur de la proposition peut la supprimer.
-    /// Effectue un soft delete pour préservation historique.
-    /// La proposition n'apparaîtra plus dans les listes mais reste en base.
+    /// Seul l'auteur de la proposition peut la supprimer via cet endpoint.
+    /// La proposition est archivée (IsArchived=true) et n'apparaîtra plus dans les listes publiques.
     /// </remarks>
     Task<PropositionDto?> DeletePropositionAsync(int id, string userEmail);
 
@@ -143,7 +142,7 @@ public interface IPropositionService
         string? userEmail = null);
 
     /// <summary>
-    /// Supprime une proposition en tant qu'administrateur/ESN member (soft delete)
+    /// Supprime définitivement une proposition (hard delete)
     /// </summary>
     /// <param name="id">Identifiant de la proposition à supprimer</param>
     /// <param name="userEmail">Email de l'utilisateur effectuant la suppression</param>
@@ -151,9 +150,25 @@ public interface IPropositionService
     /// <exception cref="UnauthorizedAccessException">L'utilisateur n'est ni membre ESN ni administrateur</exception>
     /// <remarks>
     /// Accessible uniquement aux membres ESN (StudentType = "esn_member") et administrateurs.
-    /// Effectue un soft delete pour préservation historique.
-    /// La proposition n'apparaîtra plus dans les listes publiques mais reste en base.
-    /// Peut supprimer n'importe quelle proposition, même celles d'autres utilisateurs.
+    /// Supprime définitivement la proposition de la base de données.
     /// </remarks>
     Task<PropositionDto?> DeletePropositionAsAdminAsync(int id, string userEmail);
+
+    /// <summary>
+    /// Archive une proposition (réservé ESN member/Admin)
+    /// </summary>
+    /// <param name="id">Identifiant de la proposition à archiver</param>
+    /// <param name="userEmail">Email de l'utilisateur effectuant l'archivage</param>
+    /// <returns>Proposition archivée ou null si non trouvée ou déjà archivée</returns>
+    /// <exception cref="UnauthorizedAccessException">L'utilisateur n'est ni membre ESN ni administrateur</exception>
+    Task<PropositionDto?> ArchivePropositionAsync(int id, string userEmail);
+
+    /// <summary>
+    /// Désarchive une proposition (réservé ESN member/Admin)
+    /// </summary>
+    /// <param name="id">Identifiant de la proposition à désarchiver</param>
+    /// <param name="userEmail">Email de l'utilisateur effectuant le désarchivage</param>
+    /// <returns>Proposition désarchivée ou null si non trouvée ou pas archivée</returns>
+    /// <exception cref="UnauthorizedAccessException">L'utilisateur n'est ni membre ESN ni administrateur</exception>
+    Task<PropositionDto?> UnarchivePropositionAsync(int id, string userEmail);
 }

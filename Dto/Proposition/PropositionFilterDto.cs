@@ -9,13 +9,8 @@ namespace Dto.Proposition;
 public class PropositionFilterDto
 {
     /// <summary>
-    /// Filtre par statut de suppression
+    /// Filtre par statut (Active = non archivées, Deleted = archivées, All = toutes)
     /// </summary>
-    /// <remarks>
-    /// All = toutes les propositions,
-    /// Active = uniquement les actives,
-    /// Deleted = uniquement les supprimées
-    /// </remarks>
     [EnumDataType(typeof(DeletedStatus))]
     public DeletedStatus Status { get; set; } = DeletedStatus.Active;
 }
